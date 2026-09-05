@@ -75,7 +75,7 @@ should prevent for three years.
 
 ### The first thing to prove
 
-React Router v7's Cloudflare template gives you a `fetch` handler. This project
+React Router (now at **8.x**, not 7) gives you a `fetch` handler via its Cloudflare vite plugin. This project
 also needs `scheduled` and `queue` exported from the same Worker, which is
 straightforward but is not the template's default shape. **Wire and deploy that
 before building anything on top of it** — it is an hour, and it is what Phase 0

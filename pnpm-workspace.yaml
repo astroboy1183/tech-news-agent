@@ -1,0 +1,9 @@
+# esbuild and workerd ship native binaries and need their install scripts to
+# run; without this pnpm skips them and vite/wrangler cannot start.
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+minimumReleaseAgeExclude:
+  - '@anthropic-ai/sdk@0.124.0'
+  - '@cloudflare/workers-types@5.20260905.1'

@@ -1,0 +1,72 @@
+/* Paper is the default; Ink is the dark theme. Every colour is defined on the
+   bare :root so the un-stamped "system" state can never fall through. */
+:root {
+  --ground: #fbfaf7;
+  --card: #ffffff;
+  --sunken: #efede7;
+  --rule: #dfdad0;
+  --hair: #ebe7e0;
+  --ink: #15171c;
+  --ink-2: #454a58;
+  --ink-3: #6e7382;
+  --ink-4: #9ca1ae;
+  --accent: #9a5b00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="paper"]) {
+    --ground: #0a0d12;
+    --card: #0e121a;
+    --sunken: #141922;
+    --rule: #1e2430;
+    --hair: #161b24;
+    --ink: #e9ebf0;
+    --ink-2: #98a1b5;
+    --ink-3: #69728a;
+    --ink-4: #4e566a;
+    --accent: #e9a94a;
+  }
+}
+
+:root[data-theme="ink"] {
+  --ground: #0a0d12;
+  --card: #0e121a;
+  --sunken: #141922;
+  --rule: #1e2430;
+  --hair: #161b24;
+  --ink: #e9ebf0;
+  --ink-2: #98a1b5;
+  --ink-3: #69728a;
+  --ink-4: #4e566a;
+  --accent: #e9a94a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Archivo, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
+
+.ser {
+  font-family: Literata, Georgia, serif;
+}
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}

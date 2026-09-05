@@ -9,10 +9,18 @@ Systems · Security · Cloud & Infra · Science · Gaming · Industry & Policy
 
 ---
 
-## Status — design complete, ready for v0.1.0
+## Status — v0.1.0 deployed
 
-Planning and design are finished. **No application code written yet.** The stack
-is decided and the release plan is agreed; next step is Phase 0.
+**Live:** https://tech-news-agent.jayanthapalla.workers.dev ·
+[/health](https://tech-news-agent.jayanthapalla.workers.dev/health)
+
+Foundation is done: the Worker serves pages, the schema is live in production,
+102 sources are seeded, and lint, typecheck and tests all pass in CI.
+
+> **Blocked on one thing.** The account is still on the **Workers Free** plan, so
+> cron triggers could not be registered (Free caps at 5 per account) and
+> `limits.cpu_ms` is rejected. Nothing polls until the plan is upgraded —
+> everything else is in place and waiting.
 
 **Running cost: ~$20/month** — $5 Workers Paid, ~$1.50 D1/R2/Vectorize, ~$13.50
 Claude Haiku.
@@ -35,7 +43,7 @@ the pipeline runs at two speeds:
 |---|---|
 | Language | TypeScript, frontend and backend |
 | Runtime | Cloudflare Workers — `fetch`, `scheduled`, `queue` |
-| Frontend | React 19 + React Router v7, server-rendered then hydrated |
+| Frontend | React 19 + **React Router 8**, server-rendered then hydrated |
 | Styling | Hand-written CSS with custom properties — Paper (default) and Ink |
 | Database | D1 (SQLite) + FTS5, via Drizzle ORM |
 | Queues | Cloudflare Queues |
@@ -44,6 +52,7 @@ the pipeline runs at two speeds:
 | Objects | R2 — thumbnail cache, nightly D1 backups |
 | Identity | Cloudflare Access |
 | AI | `claude-haiku-4-5` via `@anthropic-ai/sdk` |
+| Package manager | pnpm — npm 10 hits a resolver bug on this tree |
 | Validation | Zod · **Feeds** fast-xml-parser · **Tests** Vitest with `@cloudflare/vitest-pool-workers` |
 
 The alternatives were scored in detail before choosing — see the comparison link
@@ -71,13 +80,18 @@ which matters more for a project maintained in evenings.
 ## Development
 
 ```bash
-npm install
-npm run dev          # wrangler dev with local D1, KV, R2
-npm run lint         # biome
-npm run typecheck    # tsc --noEmit
-npm run test         # vitest in the Workers runtime
-npm run build        # react-router build
+pnpm install
+pnpm dev             # vite dev with local D1 and KV
+pnpm lint            # biome
+pnpm typecheck       # react-router typegen + wrangler types + tsc
+pnpm test            # vitest in the real Workers runtime
+pnpm build           # react-router build
+pnpm deploy          # build + wrangler deploy
 ```
+
+**Use pnpm, not npm.** npm 10 fails on this dependency tree with
+`Cannot read properties of null (reading 'edgesOut')`, and the Workers vitest
+pool pins vitest 4 while npm resolves 5.
 
 ### Branching and releases
 

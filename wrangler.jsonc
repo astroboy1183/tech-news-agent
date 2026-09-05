@@ -1,0 +1,67 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tech-news-agent",
+  "main": "./workers/app.ts",
+  "compatibility_date": "2025-01-09",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "assets": { "directory": "./build/client" },
+
+  "observability": { "enabled": true },
+
+  // Paid plan only, and paid already gives 30s by default, so this is left
+  // commented until the account is upgraded.
+  // "limits": { "cpu_ms": 30000 },
+
+  "triggers": {
+    "crons": [
+      "* * * * *", // scheduler — pick sources whose poll is due
+      "*/10 * * * *", // summary selector — spend the remaining budget
+      "0 2 * * *", // curate the daily digest (07:30 IST)
+      "30 2 * * *" // deliver: Slack, email (08:00 IST)
+    ]
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tech-news",
+      "database_id": "200d70f7-8af4-4b73-a6ac-0575615584b7",
+      "migrations_dir": "./migrations"
+    }
+  ],
+
+  "kv_namespaces": [{ "binding": "CACHE", "id": "12ef312c0792400786ad37eb6c72f3e5" }],
+
+  // R2 needs a one-time enable in the Cloudflare dashboard before this binding
+  // can be added. Nothing uses it until v0.5.0 (thumbnail cache) and v1.0.0
+  // (nightly D1 backups), so it stays commented out to keep v0.1.0 deployable.
+  // "r2_buckets": [
+  //   { "binding": "MEDIA", "bucket_name": "tech-news-media" }
+  // ],
+
+  "queues": {
+    "producers": [
+      { "binding": "COLLECT_Q", "queue": "tech-news-collect" },
+      { "binding": "ENRICH_Q", "queue": "tech-news-enrich" }
+    ],
+    "consumers": [
+      {
+        "queue": "tech-news-collect",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3
+      },
+      {
+        "queue": "tech-news-enrich",
+        "max_batch_size": 5,
+        "max_batch_timeout": 10,
+        "max_retries": 3
+      }
+    ]
+  },
+
+  "vectorize": [{ "binding": "VECTORS", "index_name": "tech-news-clusters" }],
+
+  "ai": { "binding": "AI" }
+}

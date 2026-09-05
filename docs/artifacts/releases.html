@@ -1,0 +1,334 @@
+<title>Release Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ground:#FBFAF7; --surface:#FFFFFF; --sunken:#EFEDE7;
+    --ink:#15171C; --ink-2:#454A58; --ink-3:#6E7382; --ink-4:#9CA1AE;
+    --rule:#DFDAD0; --rule-soft:#EBE7E0;
+    --accent:#9A5B00; --accent-soft:#F6EDE0; --accent-ink:#9A5B00;
+    --warn:#8A5A15; --warn-soft:#F2E6D2;
+    --ok:#1F6B4F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+      --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+      --rule:#1E2430; --rule-soft:#161B24;
+      --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+      --warn:#D9A441; --warn-soft:#2A2113;
+      --ok:#5BC48A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+    --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+    --rule:#1E2430; --rule-soft:#161B24;
+    --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+    --warn:#D9A441; --warn-soft:#2A2113;
+    --ok:#5BC48A;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:Archivo,system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:940px; margin:0 auto; padding:0 26px 90px}
+  h1,h2,h3,h4{margin:0}
+  a{color:var(--accent)}
+  code{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.86em; background:var(--sunken); padding:.1em .35em; border-radius:2px}
+  .m{font-family:"JetBrains Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+  .lbl{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+
+  /* masthead */
+  header.mast{padding:60px 0 28px; border-bottom:2px solid var(--ink)}
+  h1{font-family:Literata,Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.05rem); font-weight:700; letter-spacing:-.038em; line-height:1.03; text-wrap:balance}
+  .sub{font-size:1.08rem; color:var(--ink-2); max-width:62ch; margin:15px 0 0; text-wrap:pretty}
+  .stats{display:flex; flex-wrap:wrap; gap:0; margin-top:28px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); overflow:hidden}
+  .stat{flex:1 1 150px; padding:13px 16px; border-right:1px solid var(--rule); display:flex; flex-direction:column; gap:2px}
+  .stat:last-child{border-right:none}
+  .stat .v{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.42rem; font-variant-numeric:tabular-nums}
+
+  section{padding-top:52px}
+  h2{font-family:Literata,Georgia,serif; font-size:1.5rem; font-weight:700; letter-spacing:-.028em; margin-bottom:6px}
+  .lead{color:var(--ink-2); max-width:66ch; margin:8px 0 0}
+  p{margin:12px 0; max-width:66ch}
+
+  pre{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.76rem; line-height:1.7;
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+    padding:18px 20px; overflow-x:auto; margin:20px 0; color:var(--ink-2);
+  }
+  pre b{color:var(--accent-ink); font-weight:500}
+
+  /* phase */
+  .phase{border:1px solid var(--rule); border-radius:4px; background:var(--surface); margin:16px 0; overflow:hidden}
+  .phead{display:flex; gap:16px; align-items:flex-start; padding:16px 20px; border-bottom:1px solid var(--rule); background:var(--sunken)}
+  .pnum{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.6rem; font-weight:500;
+    color:var(--accent-ink); line-height:1; flex:none; padding-top:2px; font-variant-numeric:tabular-nums;
+  }
+  .ptitle{display:flex; flex-direction:column; gap:5px; flex:1; min-width:0}
+  .ptitle h3{font-family:Literata,Georgia,serif; font-size:1.14rem; font-weight:700; letter-spacing:-.02em}
+  .goal{font-size:.9rem; color:var(--ink-2)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:3px}
+  .chip{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.05em; border:1px solid var(--rule); border-radius:2px; padding:3px 8px; color:var(--ink-3); background:var(--ground)}
+  .chip.eff{border-color:var(--accent); color:var(--accent-ink)}
+  .chip.gate{border-color:var(--warn); color:var(--warn)}
+  .pbody{padding:16px 20px; display:flex; flex-direction:column; gap:15px}
+
+  .sub-h{font-size:.82rem; font-weight:700; letter-spacing:-.005em; color:var(--ink); margin-bottom:-6px}
+  ol.tasks{margin:0; padding-left:22px; display:flex; flex-direction:column; gap:6px}
+  ol.tasks li{font-size:.9rem; color:var(--ink-2); padding-left:2px}
+  ol.tasks li b, ol.tasks li strong{color:var(--ink); font-weight:600}
+  ul.plain{margin:0; padding-left:19px; display:flex; flex-direction:column; gap:5px}
+  ul.plain li{font-size:.88rem; color:var(--ink-2)}
+
+  .files{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.73rem; color:var(--ink-3); line-height:1.85; border-top:1px dashed var(--rule); padding-top:12px}
+  .done{border-left:3px solid var(--accent); background:var(--accent-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .done .lbl{color:var(--accent-ink); display:block; margin-bottom:3px}
+  .done p{margin:0; font-size:.89rem; color:var(--ink); max-width:none}
+  .watch{border-left:3px solid var(--warn); background:var(--warn-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .watch .lbl{color:var(--warn); display:block; margin-bottom:4px}
+  .watch ul{margin:0; padding-left:17px; display:flex; flex-direction:column; gap:4px}
+  .watch li, .watch p{font-size:.88rem; color:var(--ink); margin:0}
+
+  .tw{overflow-x:auto; margin:18px 0; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:.875rem}
+  th,td{text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--sunken); border-bottom:1px solid var(--rule); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.ms{font-family:"JetBrains Mono",ui-monospace,monospace; color:var(--accent-ink); white-space:nowrap}
+
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--rule); font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.72rem; color:var(--ink-4); display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+  .stackrow{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:.87rem}
+  .stackrow b{font-weight:600}
+  .keyidea{border:1px solid var(--accent);border-radius:5px;background:var(--accent-soft);padding:17px 19px;display:flex;flex-direction:column;gap:8px;margin:20px 0}
+  .keyidea .k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .keyidea h3{font-size:1.05rem;font-weight:700;letter-spacing:-.018em;margin:0}
+  .keyidea p{margin:0;font-size:.9rem;color:var(--ink);max-width:none}
+  .cons{border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+  .cons .n{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;color:var(--accent-ink)}
+  .cons h4{font-size:.92rem;font-weight:700;letter-spacing:-.014em;margin:0}
+  .cons p{margin:0;font-size:.85rem;color:var(--ink-2);max-width:none}
+</style>
+<style>
+  .opt{border:1px solid var(--rule);border-radius:5px;background:var(--surface);margin:14px 0;overflow:hidden}
+  .ohead{display:flex;gap:15px;align-items:flex-start;padding:15px 18px;border-bottom:1px solid var(--rule);background:var(--sunken)}
+  .oletter{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:1.5rem;font-weight:500;color:var(--accent-ink);line-height:1;flex:none;padding-top:2px}
+  .otitle{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+  .otitle h3{font-family:Literata,Georgia,serif;font-size:1.08rem;font-weight:700;letter-spacing:-.018em}
+  .ocost{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.82rem;color:var(--accent-ink);flex:none;text-align:right;padding-top:3px}
+  .obody{padding:14px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px}
+  .obody .pro,.obody .con{display:flex;flex-direction:column;gap:5px}
+  .obody h5{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 3px;color:var(--ink-3)}
+  .obody ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px}
+  .obody li{font-size:.85rem;color:var(--ink-2)}
+  .stackline{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.72rem;color:var(--ink-3);padding:10px 18px;border-top:1px dashed var(--rule);line-height:1.8}
+  .verdict{grid-column:1 / -1;border-top:1px solid var(--rule-soft);margin-top:11px;padding-top:11px;font-size:.87rem;color:var(--ink)}
+  .verdict b{color:var(--accent-ink)}
+  .swap{width:100%;border-collapse:collapse;font-size:.85rem}
+  .swap td,.swap th{padding:8px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  .swap td:first-child{font-weight:600;white-space:nowrap}
+  .pick{border:1px solid var(--accent);border-radius:5px;background:var(--accent-soft);padding:16px 18px;margin:18px 0;display:flex;flex-direction:column;gap:7px}
+  .pick .k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .pick p{margin:0;font-size:.9rem;color:var(--ink);max-width:none}
+</style>
+<style>
+  .score{width:100%;border-collapse:collapse;font-size:.85rem}
+  .score th,.score td{padding:9px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:middle}
+  .score thead th{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);background:var(--sunken);border-bottom:1px solid var(--rule)}
+  .score td.dim{font-weight:600;white-space:nowrap}
+  .score td.w{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.72rem;color:var(--ink-3);text-align:center}
+  .bar{display:flex;align-items:center;gap:8px}
+  .bar .track{flex:1;height:6px;background:var(--sunken);border-radius:3px;overflow:hidden;min-width:52px}
+  .bar .fill{height:6px;border-radius:3px}
+  .bar .n{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.76rem;width:16px;text-align:right;font-variant-numeric:tabular-nums}
+  .win{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.06em;padding:2px 7px;border-radius:3px;white-space:nowrap}
+  .wp{background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--accent)}
+  .wc{background:var(--sunken);color:var(--ink-2);border:1px solid var(--rule)}
+  .wt{color:var(--ink-3);border:1px dashed var(--rule)}
+  .totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+  .tot{border:1px solid var(--rule);border-radius:5px;background:var(--surface);padding:17px 19px;display:flex;flex-direction:column;gap:5px}
+  .tot .lab{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .tot .big{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums}
+  .tot .sub2{font-size:.82rem;color:var(--ink-2)}
+  .deep{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin:18px 0}
+  .deep h4{font-family:Literata,Georgia,serif;font-size:1.02rem;font-weight:700;margin:0 0 5px;letter-spacing:-.015em}
+  .deep p{margin:0 0 8px;font-size:.89rem;color:var(--ink-2);max-width:70ch}
+  .deep p:last-child{margin-bottom:0}
+  .vcard{border:1px solid var(--rule);border-radius:5px;background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;gap:7px}
+  .vcard.rec{border-color:var(--accent);background:var(--accent-soft)}
+  .vcard h4{font-family:Literata,Georgia,serif;font-size:1.05rem;font-weight:700;margin:0;letter-spacing:-.016em}
+  .vcard p{margin:0;font-size:.87rem;color:var(--ink-2);max-width:none}
+  .vcard.rec p{color:var(--ink)}
+</style>
+<style>
+  .rel{border:1px solid var(--rule);border-radius:5px;background:var(--surface);margin:13px 0;overflow:hidden}
+  .rel.pre{opacity:.94}
+  .rel.major{border-color:var(--accent);border-width:2px}
+  .rhead{display:flex;gap:15px;align-items:center;padding:13px 17px;border-bottom:1px solid var(--rule);background:var(--sunken)}
+  .rv{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:1.02rem;font-weight:500;color:var(--accent-ink);flex:none}
+  .rt{font-family:Literata,Georgia,serif;font-size:1.02rem;font-weight:700;letter-spacing:-.016em;flex:1}
+  .rtag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.62rem;letter-spacing:.09em;padding:3px 8px;border-radius:3px;border:1px solid var(--rule);color:var(--ink-3);white-space:nowrap}
+  .rtag.pub{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+  .reff{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.72rem;color:var(--ink-3);flex:none}
+  .rbody{padding:13px 17px;display:flex;flex-direction:column;gap:9px}
+  .rbody ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+  .rbody li{font-size:.87rem;color:var(--ink-2)}
+  .rship{font-size:.85rem;color:var(--ink);border-left:3px solid var(--accent);padding:7px 0 7px 12px;background:var(--accent-soft);border-radius:0 3px 3px 0}
+  .rship b{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-ink);display:block;margin-bottom:2px}
+  .flow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--rule-soft);font-size:.87rem}
+  .flow b{font-weight:600}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div class="lbl" style="color:var(--accent-ink)">Tech News Portal · delivery</div>
+  <h1>Release Plan</h1>
+  <p class="sub">Ten releases to 1.0. Every one tagged, deployed and published on GitHub — and <b>v0.6 is the first you would actually open</b>.</p>
+  <div class="stats">
+    <div class="stat"><span class="lbl">Releases</span><span class="v">10</span></div>
+    <div class="stat"><span class="lbl">Pre-releases</span><span class="v">5</span></div>
+    <div class="stat"><span class="lbl">To v0.6</span><span class="v">17 d</span></div>
+    <div class="stat"><span class="lbl">To v1.0</span><span class="v">26 d</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>How releases work</h2>
+  <div style="margin-top:14px">
+    <div class="flow"><b>Branching</b><span><code>main</code> is always deployable. Work on <code>feat/*</code> or <code>fix/*</code>, open a PR, squash-merge.</span></div>
+    <div class="flow"><b>Deploy</b><span>Every merge to <code>main</code> deploys to production automatically. No separate staging — a Worker version rolls back in seconds.</span></div>
+    <div class="flow"><b>Tagging</b><span><code>git tag v0.3.0 &amp;&amp; git push --tags</code> triggers build, migrate, deploy, then publishes the GitHub Release.</span></div>
+    <div class="flow"><b>Notes</b><span>Generated from Conventional Commits since the previous tag, then edited by hand before publishing.</span></div>
+    <div class="flow" style="border-bottom:none"><b>Rollback</b><span><code>wrangler rollback</code> reverts in seconds. D1 migrations are forward-only, so every migration must be additive.</span></div>
+  </div>
+  <p><b>Commit convention.</b> <code>feat:</code> <code>fix:</code> <code>perf:</code> <code>refactor:</code> <code>docs:</code> <code>test:</code> <code>chore:</code>, scoped by area — <code>feat(collect): add WebSub subscriber</code>. This is what makes generated release notes readable.</p>
+</section>
+
+<section>
+  <h2>The ten releases</h2>
+  <p class="lead"><code>v0.1</code> through <code>v0.5</code> ship as GitHub pre-releases: the pipeline works but there is nothing to look at. They still deploy to production, because a working pipeline with no UI is exactly what those phases are for.</p>
+  
+  <div class="rel pre">
+    <div class="rhead"><span class="rv">v0.1.0</span><span class="rt">Foundation</span><span class="rtag">PRE-RELEASE</span><span class="reff">~0.5 day</span></div>
+    <div class="rbody"><ul><li>React Router v7 on Workers with <code>scheduled</code> and <code>queue</code> wired alongside <code>fetch</code> — the integration proved before anything is built on it</li><li>D1 with the full migration, including <code>articles_fts</code> and its triggers</li><li>KV, R2, both queues, Vectorize index</li><li><code>GET /health</code> reporting every binding; ~200 seed sources</li></ul>
+      <div class="rship"><b>Ship when</b><code>/health</code> green in production and CI deploying on merge.</div>
+    </div>
+  </div>
+  <div class="rel pre">
+    <div class="rhead"><span class="rv">v0.2.0</span><span class="rt">Collector</span><span class="rtag">PRE-RELEASE</span><span class="reff">~4 days</span></div>
+    <div class="rbody"><ul><li>Tiered scheduler, conditional GET, WebSub push</li><li>RSS, Atom and JSON Feed with adapters for HN, Reddit, GitHub and arXiv</li><li>URL canonicalization, dedupe, headline normalisation, rule-based classification</li><li><strong><code>/raw</code> — the reality check</strong>, and the headline census committed to the repo</li></ul>
+      <div class="rship"><b>Ship when</b>24 hours unattended yields ~7,900 rows, and re-running adds zero.</div>
+    </div>
+  </div>
+  <div class="rel pre">
+    <div class="rhead"><span class="rv">v0.3.0</span><span class="rt">Clusters</span><span class="rtag">PRE-RELEASE</span><span class="reff">~2 days</span></div>
+    <div class="rbody"><ul><li>Trigram candidates, embeddings only for the ambiguous cases</li><li>Cluster records with arrival timelines</li><li>Corroboration and velocity scoring</li></ul>
+      <div class="rship"><b>Ship when</b>Clusters average &gt;1.8 members and 30 spot-checks show no false merges.</div>
+    </div>
+  </div>
+  <div class="rel pre">
+    <div class="rhead"><span class="rv">v0.4.0</span><span class="rt">Summaries</span><span class="rtag">PRE-RELEASE</span><span class="reff">~2.5 days</span></div>
+    <div class="rbody"><ul><li>Per-section budget allocation with floors</li><li>Cluster-level summarization through the Batch API</li><li>KV spend ledger with a hard daily cap; prompt caching verified</li></ul>
+      <div class="rship"><b>Ship when</b>A full week stays under $0.45/day with every section clearing its floor.</div>
+    </div>
+  </div>
+  <div class="rel pre">
+    <div class="rhead"><span class="rv">v0.5.0</span><span class="rt">Editorial engine</span><span class="rtag">PRE-RELEASE</span><span class="reff">~2.5 days</span></div>
+    <div class="rbody"><ul><li>Five lead gates and the manual pin override</li><li>Slot filler across 73 positions with no story repeated</li><li>Empty states, image pipeline, composition cached in KV</li></ul>
+      <div class="rship"><b>Ship when</b><code>/api/frontpage.json</code> returns a correct front page and the pin works.</div>
+    </div>
+  </div>
+  <div class="rel major">
+    <div class="rhead"><span class="rv">v0.6.0</span><span class="rt">The Portal</span><span class="rtag pub">RELEASE</span><span class="reff">~4.5 days</span></div>
+    <div class="rbody"><ul><li>Paper and Ink themes, toggle persisted</li><li>The image-led front page, 73 stories, cards in both states</li><li>All ten section pages with topic filters</li><li><strong><code>/story/:id</code></strong> — cluster pages with arrival timelines</li><li><code>/live</code>, <code>/digest</code>, and <code>j</code>/<code>k</code> navigation</li></ul>
+      <div class="rship"><b>Ship when</b><strong>You read it by choice rather than to test it.</strong></div>
+    </div>
+  </div>
+  <div class="rel">
+    <div class="rhead"><span class="rv">v0.7.0</span><span class="rt">Discovery</span><span class="rtag pub">RELEASE</span><span class="reff">~1.5 days</span></div>
+    <div class="rbody"><ul><li>Full-text search with <code>bm25()</code> ranking</li><li>Topic pages, archive, any past day</li><li>Saved list, click tracking, feedback capture</li><li>RSS for the portal, every section and every topic</li></ul>
+      <div class="rship"><b>Ship when</b>You can find a story you half-remember from three weeks ago.</div>
+    </div>
+  </div>
+  <div class="rel">
+    <div class="rhead"><span class="rv">v0.8.0</span><span class="rt">Operations</span><span class="rtag pub">RELEASE</span><span class="reff">~1 day</span></div>
+    <div class="rbody"><ul><li><code>/sources</code> with OPML import and per-feed controls</li><li><code>/dashboard</code> — KPIs, funnel, budget by section, latency</li><li>Phone layout at 390px</li></ul>
+      <div class="rship"><b>Ship when</b>You can add fifty sources without touching the code.</div>
+    </div>
+  </div>
+  <div class="rel">
+    <div class="rhead"><span class="rv">v0.9.0</span><span class="rt">Delivery</span><span class="rtag pub">RELEASE</span><span class="reff">~2.5 days</span></div>
+    <div class="rbody"><ul><li>Slack: daily digest by section, slash commands, breaking channel, feedback buttons</li><li>Email: daily HTML digest, double opt-in, one-click unsubscribe <em>(needs a domain)</em></li></ul>
+      <div class="rship"><b>Ship when</b>The digest arrives without you opening anything. <strong>Release candidate.</strong></div>
+    </div>
+  </div>
+  <div class="rel major">
+    <div class="rhead"><span class="rv">v1.0.0</span><span class="rt">The Agent</span><span class="rtag pub">RELEASE</span><span class="reff">~4 days</span></div>
+    <div class="rbody"><ul><li>Weekly preference pass reshaping ranking, budget allocation and lead contention</li><li>Weekly gap sweep proposing sources via Slack approve/reject</li><li>Source self-repair and weight adjustment</li><li>Nightly D1 backup to R2 with a <strong>verified restore</strong></li><li>Tests on the six correctness-critical modules, retention, rate limiting, runbook</li></ul>
+      <div class="rship"><b>Ship when</b><strong>You can ignore it for a month and it is still right.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Continuous integration</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Workflow</th><th>Trigger</th><th>Does</th></tr></thead>
+    <tbody>
+      <tr><td><code>ci.yml</code></td><td>PRs, non-main pushes</td><td>Lint, typecheck, test, build, dry-run deploy — then uploads a preview version and comments its URL on the PR</td></tr>
+      <tr><td><code>deploy.yml</code></td><td>Push to <code>main</code></td><td>Full checks, D1 migrations, deploy, then a <code>/health</code> smoke test with five retries</td></tr>
+      <tr><td><code>release.yml</code></td><td>Tag <code>v*</code></td><td>Full checks, migrate, deploy, publish the Release — automatically flagged pre-release for <code>v0.1</code>–<code>v0.5</code></td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Secrets:</b> <code>CLOUDFLARE_API_TOKEN</code>, <code>CLOUDFLARE_ACCOUNT_ID</code>. <b>Variable:</b> <code>HEALTH_URL</code>. The Anthropic key is a Worker secret set with <code>wrangler secret put</code> — it never enters Actions.</p>
+</section>
+
+<section>
+  <h2>Timeline</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Milestone</th><th class="num">Cumulative day</th></tr></thead>
+    <tbody>
+      <tr><td>v0.1 Foundation</td><td class="num">1</td></tr>
+      <tr><td>v0.2 Collector</td><td class="num">5</td></tr>
+      <tr><td>v0.3 Clusters</td><td class="num">7</td></tr>
+      <tr><td>v0.4 Summaries</td><td class="num">10</td></tr>
+      <tr><td>v0.5 Editorial engine</td><td class="num">12</td></tr>
+      <tr class="total"><td>v0.6 The Portal — first readable</td><td class="num">17</td></tr>
+      <tr><td>v0.7 Discovery</td><td class="num">18</td></tr>
+      <tr><td>v0.8 Operations</td><td class="num">19</td></tr>
+      <tr><td>v0.9 Delivery</td><td class="num">22</td></tr>
+      <tr class="total"><td>v1.0 The Agent</td><td class="num">26</td></tr>
+    </tbody>
+  </table></div>
+  <p>At one focused day per working day that is about five weeks. Evenings and weekends only, roughly <b>three months to 1.0</b> — with something genuinely readable at <b>v0.6, around six weeks in</b>.</p>
+</section>
+
+<section>
+  <h2>After 1.0</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Version</th><th>Theme</th></tr></thead>
+    <tbody>
+      <tr><td class="ms">v1.1</td><td>Source expansion past 514 — OPML packs per section</td></tr>
+      <tr><td class="ms">v1.2</td><td>Better clustering: tuned thresholds, cross-language matching</td></tr>
+      <tr><td class="ms">v1.3</td><td>Reading history and a genuinely personal front page</td></tr>
+      <tr><td class="ms">v1.4</td><td>Public sharing — clean permalinks, OG cards, optional public mode</td></tr>
+      <tr><td class="ms">v2.0</td><td>Only if the data says so: Postgres migration as D1's ceiling nears</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <span>Tech News Portal · release plan</span>
+  <span>docs/RELEASES.md</span>
+</footer>
+</div>

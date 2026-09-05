@@ -1,0 +1,9 @@
+/// <reference types="@cloudflare/vitest-pool-workers/types" />
+
+// Supplied by the React Router vite plugin at build time.
+declare module "virtual:react-router/server-build" {
+  import type { ServerBuild } from "react-router";
+
+  const build: ServerBuild;
+  export default build;
+}
