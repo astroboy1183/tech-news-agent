@@ -51,6 +51,11 @@ export type Story = {
   /** Outlets per hour since first sighting; separates breaking from gradual. */
   velocity: number;
   score: number;
+  /** Written by the summarizer across every outlet in the cluster, or null. */
+  summary: string | null;
+  /** Present only when there is a genuine stake beyond the event itself. */
+  whyItMatters: string | null;
+  topics: string[];
   firstSeenAt: number;
   lastSeenAt: number;
   publishedAt: number | null;
@@ -64,4 +69,5 @@ export type FrontPageCounts = {
   stories: number;
   corroborated: number;
   sources: number;
+  summarized: number;
 };

@@ -1,6 +1,7 @@
 import { pruneVectors, runClusterPass } from "./cluster/index";
 import { reconcileSubscriptions } from "./feeds/websub.server";
 import { recordRun } from "./runs.server";
+import { dispatchForSummary } from "./select.server";
 
 /**
  * Cron dispatcher. Each schedule maps to one stage, and every handler enqueues
@@ -21,9 +22,16 @@ export async function runScheduled(cron: string, env: Env): Promise<void> {
       }
       return;
     }
-    case "*/10 * * * *":
-      // Keep hub subscriptions alive; v0.4.0 adds budget selection here too.
-      return reconcileSubscriptions(env, CALLBACK_BASE);
+    case "*/10 * * * *": {
+      const outcomes = await Promise.allSettled([
+        reconcileSubscriptions(env, CALLBACK_BASE),
+        spendBudget(env),
+      ]);
+      for (const outcome of outcomes) {
+        if (outcome.status === "rejected") console.error(String(outcome.reason));
+      }
+      return;
+    }
     case "0 2 * * *":
       // v0.5.0 will compose the daily digest here. For now the daily slot is
       // where housekeeping lives.
@@ -120,5 +128,29 @@ async function maintain(env: Env): Promise<void> {
   } catch (error) {
     console.error(`maintenance failed: ${String(error)}`);
     await recordRun(env, { stage: "maintain", startedAt, error: String(error) });
+  }
+}
+
+/**
+ * Spend what today's budget still allows on the stories most worth it.
+ *
+ * Runs on its own ten-minute beat rather than with collection, so a burst of
+ * arrivals cannot drag summarization along with it and empty the day's budget
+ * in an hour.
+ */
+async function spendBudget(env: Env): Promise<void> {
+  const startedAt = Date.now();
+  try {
+    const { queued, reason, remainingMicros } = await dispatchForSummary(env);
+    if (queued > 0 || reason !== "nothing-eligible") {
+      await recordRun(env, {
+        stage: "select",
+        startedAt,
+        counts: { queued, remainingMicros },
+      });
+    }
+  } catch (error) {
+    console.error(`summary selection failed: ${String(error)}`);
+    await recordRun(env, { stage: "select", startedAt, error: String(error) });
   }
 }

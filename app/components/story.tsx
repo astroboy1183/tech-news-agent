@@ -43,6 +43,30 @@ function Sources({ story, max = 4 }: { story: Story; max?: number }) {
   );
 }
 
+/**
+ * The stake, when there is one.
+ *
+ * Marked with a rule rather than a label because the summarizer only returns
+ * this when a story genuinely has consequences beyond the event — most do not,
+ * and a heading over an empty idea would invite one to be manufactured.
+ */
+function WhyItMatters({ text }: { text: string }) {
+  return (
+    <p
+      style={{
+        margin: "12px 0 0",
+        paddingLeft: 11,
+        borderLeft: "2px solid var(--accent)",
+        fontSize: 13,
+        lineHeight: 1.5,
+        color: "var(--ink-2)",
+      }}
+    >
+      {text}
+    </p>
+  );
+}
+
 function Thumb({ story, height }: { story: Story; height: number }) {
   return (
     <div className="thumb" style={{ height }}>
@@ -91,7 +115,12 @@ export function Lead({ story }: { story: Story }) {
       >
         {story.headline}
       </a>
-      {story.excerpt ? <p className="standfirst clamp-3">{story.excerpt}</p> : null}
+      {story.summary ? (
+        <p className="standfirst">{story.summary}</p>
+      ) : story.excerpt ? (
+        <p className="standfirst clamp-3">{story.excerpt}</p>
+      ) : null}
+      {story.whyItMatters ? <WhyItMatters text={story.whyItMatters} /> : null}
       <Sources story={story} max={5} />
     </article>
   );

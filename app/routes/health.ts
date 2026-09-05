@@ -1,4 +1,5 @@
 import { cloudflare } from "../context";
+import { formatMicros, readSpend } from "../lib/budget.server";
 import type { Route } from "./+types/health";
 
 type Check = { ok: boolean; detail?: string };
@@ -38,14 +39,30 @@ export async function loader({ context }: Route.LoaderArgs) {
     .all<{ stage: string; last_run: number }>()
     .catch(() => ({ results: [] as { stage: string; last_run: number }[] }));
 
+  // Whether the summarizer can run at all, and what today has cost so far.
+  const spend = await readSpend(env).catch(() => null);
+  const summarizer = (env as { ANTHROPIC_API_KEY?: string }).ANTHROPIC_API_KEY
+    ? "enabled"
+    : "disabled — ANTHROPIC_API_KEY not set";
+
   const checks = { db, kv, r2, vectors };
   const healthy = Object.values(checks).every((c) => c.ok);
 
   return Response.json(
     {
       status: healthy ? "ok" : "degraded",
-      version: "0.3.0",
+      version: "0.5.0",
       checks,
+      summarizer,
+      budget: spend
+        ? {
+            day: spend.day,
+            spent: formatMicros(spend.spentMicros),
+            cap: formatMicros(spend.capMicros),
+            remaining: formatMicros(spend.remainingMicros),
+            summariesToday: spend.summaries,
+          }
+        : null,
       lastRuns: lastRuns.results ?? [],
       time: new Date().toISOString(),
     },

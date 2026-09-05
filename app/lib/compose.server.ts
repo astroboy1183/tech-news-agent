@@ -36,14 +36,29 @@ type ClusterRow = {
   excerpt: string | null;
   image_url: string | null;
   published_at: number | null;
+  summary: string | null;
+  why_it_matters: string | null;
+  topics_json: string | null;
 };
 
 const SELECT = `
   SELECT c.id, c.headline, c.section, c.source_count, c.velocity, c.score,
          c.first_seen_at, c.last_seen_at,
-         a.url_canonical, a.excerpt, a.image_url, a.published_at
+         a.url_canonical, a.excerpt, a.image_url, a.published_at,
+         e.summary, e.why_it_matters, e.topics_json
     FROM clusters c
-    JOIN articles a ON a.id = c.primary_article_id`;
+    JOIN articles a ON a.id = c.primary_article_id
+    LEFT JOIN enrichments e ON e.cluster_id = c.id`;
+
+function parseTopics(json: string | null): string[] {
+  if (!json) return [];
+  try {
+    const parsed = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed.filter((t): t is string => typeof t === "string") : [];
+  } catch {
+    return [];
+  }
+}
 
 function toStory(row: ClusterRow, sources: string[]): Story {
   return {
@@ -53,6 +68,9 @@ function toStory(row: ClusterRow, sources: string[]): Story {
     excerpt: row.excerpt,
     imageUrl: row.image_url,
     section: row.section,
+    summary: row.summary,
+    whyItMatters: row.why_it_matters,
+    topics: parseTopics(row.topics_json),
     sourceCount: row.source_count,
     sources,
     velocity: row.velocity,
@@ -170,7 +188,8 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
             (SELECT COUNT(*) FROM articles WHERE fetched_at > ?1) AS today,
             (SELECT COUNT(*) FROM clusters) AS stories,
             (SELECT COUNT(*) FROM clusters WHERE source_count > 1) AS corroborated,
-            (SELECT COUNT(*) FROM sources WHERE active = 1) AS sources`,
+            (SELECT COUNT(*) FROM sources WHERE active = 1) AS sources,
+            (SELECT COUNT(*) FROM enrichments) AS summarized`,
   )
     .bind(now - 86400)
     .first<{
@@ -179,6 +198,7 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
       stories: number;
       corroborated: number;
       sources: number;
+      summarized: number;
     }>();
 
   return {
@@ -193,6 +213,7 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
       stories: counts?.stories ?? 0,
       corroborated: counts?.corroborated ?? 0,
       sources: counts?.sources ?? 0,
+      summarized: counts?.summarized ?? 0,
     },
   };
 }
