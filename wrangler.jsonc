@@ -18,7 +18,8 @@
       "* * * * *", // scheduler — pick sources whose poll is due
       "*/10 * * * *", // summary selector — spend the remaining budget
       "0 2 * * *", // curate the daily digest (07:30 IST)
-      "30 2 * * *" // deliver: Slack, email (08:00 IST)
+      "30 2 * * *", // deliver: Slack, email (08:00 IST)
+      "0 3 * * 1" // weekly: reweight sources, retire the dead, prune history
     ]
   },
 

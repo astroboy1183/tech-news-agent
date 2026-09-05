@@ -1,3 +1,4 @@
+import { pruneOldArticles, runAgentPass } from "./agent.server";
 import { pruneVectors, runClusterPass } from "./cluster/index";
 import { composeDigest } from "./digest.server";
 import { reconcileSubscriptions } from "./feeds/websub.server";
@@ -40,6 +41,8 @@ export async function runScheduled(cron: string, env: Env): Promise<void> {
       return maintain(env);
     case "30 2 * * *":
       return deliver(env);
+    case "0 3 * * 1":
+      return weeklyPass(env);
     default:
       console.warn(`unrecognised cron schedule: ${cron}`);
   }
@@ -193,5 +196,28 @@ async function deliver(env: Env): Promise<void> {
   } catch (error) {
     console.error(`delivery failed: ${String(error)}`);
     await recordRun(env, { stage: "deliver", startedAt, error: String(error) });
+  }
+}
+
+/**
+ * The weekly pass: reweight sources from evidence, retire what has stopped
+ * answering, and trim history past the retention window.
+ *
+ * Weekly rather than nightly on purpose. Trust should move slowly — a source
+ * having a quiet week is not a source that has become untrustworthy — and a
+ * cadence this slow makes the change visible in the run log rather than lost
+ * in the noise of a daily job.
+ */
+async function weeklyPass(env: Env): Promise<void> {
+  const startedAt = Date.now();
+  try {
+    await runAgentPass(env);
+    const pruned = await pruneOldArticles(env);
+    if (pruned.articles > 0 || pruned.clusters > 0) {
+      await recordRun(env, { stage: "prune", startedAt, counts: pruned });
+    }
+  } catch (error) {
+    console.error(`weekly pass failed: ${String(error)}`);
+    await recordRun(env, { stage: "agent", startedAt, error: String(error) });
   }
 }

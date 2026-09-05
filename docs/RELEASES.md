@@ -167,18 +167,30 @@ It comes to you instead of you going to it.
 
 ## v1.0.0 — The Agent
 
-**Phases 8 + 9 · ~4 days**
+**Phases 8 + 9 · shipped**
 
 1.0 means it runs unattended and gets better on its own.
 
-- Weekly preference pass reshaping ranking, budget allocation and lead contention
-- Weekly gap sweep proposing sources via Slack approve/reject
-- Source self-repair and weight adjustment
-- Nightly D1 backup to R2 with a **verified restore**
-- Tests on the six correctness-critical modules
-- Retention policy, rate limiting, error budget, runbook
+- **Weekly reweighting from evidence, not ratings.** Clustering already
+  measures trust for free: a source whose stories several independent
+  newsrooms also file is reporting real events, and one that is *first* into a
+  cluster others later join broke the story. Both are rates, so a small careful
+  outlet is not punished for publishing less than a firehose. Weights ease a
+  third of the way toward their target each week, so one quiet fortnight cannot
+  bury a publisher.
+- **Source self-repair.** A feed failing every attempt for days is retired
+  rather than polled forever, and retried a few at a time each week — capped,
+  because an unbounded revival makes a dead feed flap between states for ever.
+- **Retention** at one year, deleted in bounded batches.
+- **The runbook** — [RUNBOOK.md](./RUNBOOK.md).
+- **D1 Time Travel is the backup.** Thirty days of point-in-time restore, free
+  on the paid plan. A nightly R2 export would be a staler second copy, unverified
+  unless someone actually restored it. Everything but `articles` and `sources`
+  is derived and rebuildable by re-running the pipeline.
 
-**Ship when** you can ignore it for a month and it is still right.
+**Shipped when** every stage ran itself, with 136 tests over the
+correctness-critical modules.
+
 
 ---
 
