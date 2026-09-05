@@ -607,9 +607,14 @@ async function refreshClusters(env: Env, clusterIds: number[], now: number): Pro
     clusterIds.map((id) =>
       env.DB.prepare(
         `WITH members AS (
-           SELECT id, source_id, title, section, heuristic_score,
-                  COALESCE(published_at, fetched_at) AS seen_at, fetched_at
-             FROM articles WHERE cluster_id = ?1
+           SELECT a.id, a.source_id, a.title, a.section, a.heuristic_score,
+                  COALESCE(a.published_at, a.fetched_at) AS seen_at, a.fetched_at,
+                  -- Aggregators repost other people's work, so they make poor
+                  -- fronts for a story: their headline is someone else's and
+                  -- their excerpt is usually "submitted by /u/...".
+                  CASE WHEN s.kind IN ('reddit', 'hn') THEN 1 ELSE 0 END AS is_aggregator
+             FROM articles a JOIN sources s ON s.id = a.source_id
+            WHERE a.cluster_id = ?1
          ),
          agg AS (
            SELECT COUNT(DISTINCT source_id) AS sources,
@@ -623,13 +628,15 @@ async function refreshClusters(env: Env, clusterIds: number[], now: number): Pro
            first_seen_at = (SELECT first_seen FROM agg),
            last_seen_at  = (SELECT last_seen FROM agg),
            headline      = COALESCE(
-                             (SELECT title FROM members ORDER BY heuristic_score DESC LIMIT 1),
+                             (SELECT title FROM members
+                               ORDER BY is_aggregator ASC, heuristic_score DESC LIMIT 1),
                              headline),
            -- The story fronts with its best-scoring member, so the link, image
            -- and byline the page shows come from the outlet that told it best
            -- rather than merely first.
            primary_article_id = COALESCE(
-                             (SELECT id FROM members ORDER BY heuristic_score DESC LIMIT 1),
+                             (SELECT id FROM members
+                               ORDER BY is_aggregator ASC, heuristic_score DESC LIMIT 1),
                              primary_article_id),
            -- The lane the story belongs in is whichever its members mostly
            -- agree on, not whichever outlet happened to file first.

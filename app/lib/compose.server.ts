@@ -10,7 +10,13 @@
 
 import { SECTIONS, type Section } from "./classify";
 import { chooseLead, currentPin, type Rejection, readLeadHistory, recordLead } from "./lead.server";
-import { type FrontPageCounts, SECTION_LABELS, type SectionBlock, type Story } from "./sections";
+import {
+  type FrontPageCounts,
+  SECTION_LABELS,
+  type SectionBlock,
+  type Story,
+  usableExcerpt,
+} from "./sections";
 
 export type { SectionBlock, Story } from "./sections";
 export { SECTION_LABELS } from "./sections";
@@ -90,7 +96,7 @@ function toStory(row: ClusterRow, sources: string[]): Story {
     id: row.id,
     headline: row.headline,
     url: row.url_canonical,
-    excerpt: row.excerpt,
+    excerpt: usableExcerpt(row.excerpt),
     imageUrl: row.image_url,
     section: row.section,
     summary: row.summary,

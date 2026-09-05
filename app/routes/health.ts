@@ -44,6 +44,13 @@ export async function loader({ context }: Route.LoaderArgs) {
   const summarizer = (env as { ANTHROPIC_API_KEY?: string }).ANTHROPIC_API_KEY
     ? "enabled"
     : "disabled — ANTHROPIC_API_KEY not set";
+  const delivery = {
+    rss: "enabled",
+    slack: (env as { SLACK_WEBHOOK_URL?: string }).SLACK_WEBHOOK_URL
+      ? "enabled"
+      : "disabled — SLACK_WEBHOOK_URL not set",
+    email: "blocked — needs a domain to send from",
+  };
 
   const checks = { db, kv, r2, vectors };
   const healthy = Object.values(checks).every((c) => c.ok);
@@ -51,9 +58,10 @@ export async function loader({ context }: Route.LoaderArgs) {
   return Response.json(
     {
       status: healthy ? "ok" : "degraded",
-      version: "0.8.0",
+      version: "0.9.0",
       checks,
       summarizer,
+      delivery,
       budget: spend
         ? {
             day: spend.day,

@@ -15,6 +15,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap"
         />
+        <link rel="alternate" type="application/rss+xml" title="Tech News Agent" href="/feed.xml" />
         <Links />
         {/* Applied before first paint: without it the page renders in Paper,
             then repaints into Ink a frame later, which reads as a flicker on

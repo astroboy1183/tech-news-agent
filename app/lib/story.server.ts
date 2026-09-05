@@ -7,7 +7,7 @@
  * aggregated page actually has: who reported this, and who is just repeating it?
  */
 
-import type { Story } from "./sections";
+import { type Story, usableExcerpt } from "./sections";
 
 export type Arrival = {
   articleId: number;
@@ -69,7 +69,7 @@ function toStory(row: Row, sources: string[]): Story {
     id: row.id,
     headline: row.headline,
     url: row.url_canonical,
-    excerpt: row.excerpt,
+    excerpt: usableExcerpt(row.excerpt),
     imageUrl: row.image_url,
     section: row.section,
     summary: row.summary,

@@ -71,3 +71,33 @@ export type FrontPageCounts = {
   sources: number;
   summarized: number;
 };
+
+/**
+ * Excerpts that say nothing.
+ *
+ * Aggregator feeds carry furniture where an opening paragraph should be —
+ * "submitted by /u/someone [link] [comments]" is Reddit's entire excerpt for a
+ * link post. Printing it under a headline is worse than printing nothing,
+ * because it looks like the summary and reads like an error.
+ */
+const BOILERPLATE = [
+  /^\s*submitted by\s*\/u\//i,
+  /^\s*\[link\]\s*\[comments\]\s*$/i,
+  /^\s*comments\s*$/i,
+  /^\s*read more\s*$/i,
+  /^\s*\[?\s*\.{3}\s*\]?\s*$/,
+];
+
+/** The excerpt if it carries meaning, otherwise null. */
+export function usableExcerpt(excerpt: string | null): string | null {
+  if (!excerpt) return null;
+  const trimmed = excerpt.replace(/\s+/g, " ").trim();
+  if (trimmed.length < 24) return null;
+  if (BOILERPLATE.some((p) => p.test(trimmed))) return null;
+  // A link post whose text is only Reddit's trailer, however it is worded.
+  const stripped = trimmed
+    .replace(/submitted by\s*\/u\/[\w-]+/gi, "")
+    .replace(/\[link\]|\[comments\]/gi, "")
+    .trim();
+  return stripped.length < 24 ? null : trimmed;
+}

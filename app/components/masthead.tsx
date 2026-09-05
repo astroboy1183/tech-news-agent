@@ -145,6 +145,9 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
           <Link className="meta" to="/live" style={{ letterSpacing: "0.1em" }}>
             <span style={{ color: "var(--accent)" }}>●</span> LIVE
           </Link>
+          <Link className="meta" to="/digest" style={{ letterSpacing: "0.1em" }}>
+            DIGEST
+          </Link>
           <Link className="meta" to="/archive" style={{ letterSpacing: "0.1em" }}>
             ARCHIVE
           </Link>

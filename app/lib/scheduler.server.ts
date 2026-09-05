@@ -1,7 +1,9 @@
 import { pruneVectors, runClusterPass } from "./cluster/index";
+import { composeDigest } from "./digest.server";
 import { reconcileSubscriptions } from "./feeds/websub.server";
 import { recordRun } from "./runs.server";
 import { dispatchForSummary } from "./select.server";
+import { deliverToSlack, NoWebhook } from "./slack.server";
 
 /**
  * Cron dispatcher. Each schedule maps to one stage, and every handler enqueues
@@ -37,8 +39,7 @@ export async function runScheduled(cron: string, env: Env): Promise<void> {
       // where housekeeping lives.
       return maintain(env);
     case "30 2 * * *":
-      // v0.9.0 — deliver to Slack and email.
-      return;
+      return deliver(env);
     default:
       console.warn(`unrecognised cron schedule: ${cron}`);
   }
@@ -152,5 +153,45 @@ async function spendBudget(env: Env): Promise<void> {
   } catch (error) {
     console.error(`summary selection failed: ${String(error)}`);
     await recordRun(env, { stage: "select", startedAt, error: String(error) });
+  }
+}
+
+/**
+ * Publish the day's digest to whichever channels are configured.
+ *
+ * A channel nobody set up is not a failure, so an unconfigured Slack webhook
+ * is recorded and passed over rather than raised. Email waits on a domain:
+ * there is nowhere to send from until one exists.
+ */
+async function deliver(env: Env): Promise<void> {
+  const startedAt = Date.now();
+  try {
+    const digest = await composeDigest(env);
+    if (digest.counts.stories === 0) {
+      await recordRun(env, { stage: "deliver", startedAt, counts: { skipped: 1 } });
+      return;
+    }
+
+    let slack = 0;
+    let configured = 0;
+    try {
+      const result = await deliverToSlack(env, digest, CALLBACK_BASE);
+      configured = 1;
+      slack = result.delivered ? 1 : 0;
+      if (!result.delivered) {
+        console.warn(`slack rejected the digest with ${result.status}`);
+      }
+    } catch (error) {
+      if (!(error instanceof NoWebhook)) throw error;
+    }
+
+    await recordRun(env, {
+      stage: "deliver",
+      startedAt,
+      counts: { stories: digest.counts.stories, slack, configured },
+    });
+  } catch (error) {
+    console.error(`delivery failed: ${String(error)}`);
+    await recordRun(env, { stage: "deliver", startedAt, error: String(error) });
   }
 }
