@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}
+    h1,h2,h3{margin:0}
+    .ser{font-family:Literata,Georgia,serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .sec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#E9A94A}
+    .card{border:1px solid #1E2430;border-radius:5px;background:#0E121A}
+    .sw{display:flex;align-items:center;gap:10px;padding:4px 0}
+    .chip{width:26px;height:26px;border-radius:4px;flex:none;border:1px solid rgba(255,255,255,.06)}
+    .srow{display:grid;grid-template-columns:20px minmax(0,1.1fr) minmax(0,1.6fr) 58px;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #161B24}
+  </style>
+</helmet>
+
+<div style="padding:30px 32px;display:flex;flex-direction:column;gap:22px;min-height:1240px">
+
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <span class="sec">Design system</span>
+    <h2 class="ser" style="font-size:30px;font-weight:700;letter-spacing:-0.028em">Ink &amp; Paper</h2>
+    <p style="margin:0;font-size:13.5px;color:#98A1B5;max-width:82ch">A broadsheet in the dark. <strong style="color:#E9EBF0">Ink</strong> is the default — near-black with a single warm gold accent. <strong style="color:#E9EBF0">Paper</strong> is the daylight mode. Layout, spacing and type scale never change between them.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+    <div class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E9EBF0" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 019.5 3.5a8.5 8.5 0 1011 11z"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:-0.015em">Ink</span><span class="sec" style="margin-left:auto">Default</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div class="sw"><span class="chip" style="background:#0A0D12"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px">Ground</span><span class="m" style="font-size:10px;color:#69728A">#0A0D12</span></div></div>
+        <div class="sw"><span class="chip" style="background:#0E121A"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px">Card</span><span class="m" style="font-size:10px;color:#69728A">#0E121A</span></div></div>
+        <div class="sw"><span class="chip" style="background:#1E2430"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px">Rule &#183; hairline</span><span class="m" style="font-size:10px;color:#69728A">#1E2430 &#183; #161B24</span></div></div>
+        <div class="sw"><span class="chip" style="background:#E9EBF0"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px">Ink</span><span class="m" style="font-size:10px;color:#69728A">#E9EBF0 · #98A1B5 · #69728A · #4E566A</span></div></div>
+        <div class="sw"><span class="chip" style="background:#E9A94A"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px">Accent &#8212; the only warm colour</span><span class="m" style="font-size:10px;color:#69728A">#E9A94A</span></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:11px;background:#FBFAF7;border-color:#DFDAD0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:-0.015em;color:#15171C">Paper</span><span class="sec" style="margin-left:auto;color:#9A5B00">Daylight</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div class="sw"><span class="chip" style="background:#FBFAF7;border-color:#DFDAD0"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#15171C">Ground</span><span class="m" style="font-size:10px;color:#7A7E8C">#FBFAF7</span></div></div>
+        <div class="sw"><span class="chip" style="background:#FFFFFF;border-color:#DFDAD0"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#15171C">Card</span><span class="m" style="font-size:10px;color:#7A7E8C">#FFFFFF</span></div></div>
+        <div class="sw"><span class="chip" style="background:#DFDAD0;border-color:#CFC9BD"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#15171C">Rule &#183; hairline</span><span class="m" style="font-size:10px;color:#7A7E8C">#DFDAD0 &#183; #EBE7E0</span></div></div>
+        <div class="sw"><span class="chip" style="background:#15171C;border-color:#DFDAD0"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#15171C">Ink</span><span class="m" style="font-size:10px;color:#7A7E8C">#15171C · #4A4E5A · #7A7E8C · #A3A7B3</span></div></div>
+        <div class="sw"><span class="chip" style="background:#9A5B00;border-color:#DFDAD0"></span><div style="display:flex;flex-direction:column"><span style="font-size:12.5px;color:#15171C">Accent</span><span class="m" style="font-size:10px;color:#7A7E8C">#9A5B00</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sections -->
+  <div class="card" style="padding:17px 19px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <span class="sec">The ten sections</span>
+      <span class="m" style="font-size:9px;color:#4E566A;letter-spacing:0.1em">NAME + POSITION CARRY IDENTITY &#183; NO PER-SECTION COLOUR</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">01</span><span style="font-size:13px;font-weight:600">AI &amp; ML</span><span style="font-size:12px;color:#98A1B5">research · deep learning · computer vision · language models · robotics · tooling</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">96 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">02</span><span style="font-size:13px;font-weight:600">Software</span><span style="font-size:12px;color:#98A1B5">languages · frameworks · databases · devtools · open source</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">74 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">03</span><span style="font-size:13px;font-weight:600">Hardware</span><span style="font-size:12px;color:#98A1B5">components · silicon · semiconductors · servers · storage</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">58 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">04</span><span style="font-size:13px;font-weight:600">Consumer Tech</span><span style="font-size:12px;color:#98A1B5">phones · laptops · wearables · audio · cameras · smart home · EVs</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">61 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">05</span><span style="font-size:13px;font-weight:600">Operating Systems</span><span style="font-size:12px;color:#98A1B5">Windows · macOS · Linux · Android · iOS · BSD</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">47 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">06</span><span style="font-size:13px;font-weight:600">Security</span><span style="font-size:12px;color:#98A1B5">vulnerabilities · breaches · cryptography · privacy · surveillance</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">52 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">07</span><span style="font-size:13px;font-weight:600">Cloud &amp; Infra</span><span style="font-size:12px;color:#98A1B5">cloud platforms · devops · data centres · networking · observability</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">44 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">08</span><span style="font-size:13px;font-weight:600">Science</span><span style="font-size:12px;color:#98A1B5">quantum · space · physics · materials · biotech</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">38 src</span></div>
+      <div class="srow"><span class="m" style="font-size:9.5px;color:#4E566A">09</span><span style="font-size:13px;font-weight:600">Gaming</span><span style="font-size:12px;color:#98A1B5">industry · engines · hardware · Linux gaming</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">26 src</span></div>
+      <div class="srow" style="border-bottom:none"><span class="m" style="font-size:9.5px;color:#4E566A">10</span><span style="font-size:13px;font-weight:600">Industry &amp; Policy</span><span style="font-size:12px;color:#98A1B5">big tech · startups · funding · regulation · antitrust</span><span class="m" style="font-size:10px;color:#69728A;text-align:right">18 src</span></div>
+    </div>
+    <p style="margin:0;font-size:12px;color:#69728A;line-height:1.55;border-top:1px solid #1E2430;padding-top:11px"><strong style="color:#98A1B5">Why no colour per section.</strong> Beyond about six, categorical colours stop separating reliably for colourblind readers — that was checked, not guessed. Rather than cap the portal at six, identity moves to the section name, its place in the nav, and the page it sits on. Colour is then free to mean one thing only: <span style="color:#E9A94A">this is worth your attention</span>.</p>
+  </div>
+
+  <!-- type -->
+  <div class="card" style="padding:17px 19px;display:flex;flex-direction:column;gap:13px">
+    <span class="sec">Type &#8212; Literata for headlines, Archivo for interface, JetBrains Mono for data</span>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div style="display:grid;grid-template-columns:126px minmax(0,1fr);gap:14px;align-items:baseline"><span class="m" style="font-size:9px;color:#4E566A">LITERATA 38/700</span><span class="ser" style="font-size:38px;font-weight:700;letter-spacing:-0.028em;line-height:1.06">The lead of the day</span></div>
+      <div style="display:grid;grid-template-columns:126px minmax(0,1fr);gap:14px;align-items:baseline"><span class="m" style="font-size:9px;color:#4E566A">LITERATA 21/600</span><span class="ser" style="font-size:21px;font-weight:600;letter-spacing:-0.018em;line-height:1.22">A summarized story</span></div>
+      <div style="display:grid;grid-template-columns:126px minmax(0,1fr);gap:14px;align-items:baseline"><span class="m" style="font-size:9px;color:#4E566A">LITERATA 17/400i</span><span class="ser" style="font-size:17px;font-style:italic;color:#A8B0C2;line-height:1.5">The standfirst under a lead, set in italic</span></div>
+      <div style="display:grid;grid-template-columns:126px minmax(0,1fr);gap:14px;align-items:baseline"><span class="m" style="font-size:9px;color:#4E566A">ARCHIVO 15/600</span><span style="font-size:15px;font-weight:600;letter-spacing:-0.012em">A compact row — sans keeps dense lists crisp</span></div>
+      <div style="display:grid;grid-template-columns:126px minmax(0,1fr);gap:14px;align-items:baseline"><span class="m" style="font-size:9px;color:#4E566A">MONO 9.5</span><span class="m" style="font-size:9.5px;color:#69728A;letter-spacing:0.15em">AI &amp; ML / COMPUTER VISION &#183; ARXIV &#183; 2m</span></div>
+    </div>
+    <p style="margin:0;font-size:12px;color:#69728A;line-height:1.55;border-top:1px solid #1E2430;padding-top:11px">The serif is a hierarchy device, not decoration: it appears only above ~15px, and it marks the stories that earned a summary. Dense rows stay in Archivo, where a serif turns muddy on a dark ground.</p>
+  </div>
+
+  <div class="card" style="padding:17px 19px;display:flex;flex-direction:column;gap:10px">
+    <span class="sec">Status &#8212; never colour alone, always an icon and a word</span>
+    <div style="display:flex;gap:28px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5BC48A" stroke-width="2.5" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;color:#5BC48A">Healthy</span><span class="m" style="font-size:9.5px;color:#4E566A">#5BC48A</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E0A03C" stroke-width="2" stroke-linecap="round"><path d="M12 3l9 16H3z"></path><path d="M12 9v4.5"></path></svg><span style="font-size:12.5px;color:#E0A03C">Needs attention</span><span class="m" style="font-size:9.5px;color:#4E566A">#E0A03C</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E86A6A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5"></path></svg><span style="font-size:12.5px;color:#E86A6A">Failing</span><span class="m" style="font-size:9.5px;color:#4E566A">#E86A6A</span></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

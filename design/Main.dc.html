@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#FBFAF7;color:#15171C;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#15171C;text-decoration:none}a:hover{color:#9A5B00}
+    h1,h2,h3,h4{margin:0}
+    .ser{font-family:Literata,Georgia,serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .sec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#9A5B00}
+    .secq{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#6E7382}
+    .meta{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;color:#6E7382;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .rule{height:1px;background:#DFDAD0}
+    .hair{height:1px;background:#EBE7E0}
+    .nav{font-size:13.5px;color:#454A58;font-weight:500;white-space:nowrap}
+    .nav:hover{color:#9A5B00}
+    .th{background:#EDE9E1;border:1px solid #E2DCD2;border-radius:3px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+    .item{padding:10px 0;border-bottom:1px solid #EBE7E0;display:flex;gap:11px;align-items:flex-start}
+    .item:last-child{border-bottom:none}
+    .hl{font-size:13.5px;font-weight:600;line-height:1.32;letter-spacing:-0.008em}
+    .col{display:flex;flex-direction:column;gap:0}
+    .cl2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .cl3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .cl4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .lead-hl{min-height:118px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  </style>
+</helmet>
+
+<div style="min-height:3320px;background:#FBFAF7">
+
+  <!-- ══ masthead ══ -->
+  <div style="padding:16px 40px 0">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px;padding-bottom:13px">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span class="ser" style="font-size:29px;font-weight:700;letter-spacing:-0.032em;line-height:1">Tech News Agent</span>
+        <span class="m" style="font-size:8.5px;color:#6E7382;letter-spacing:0.14em">ONE STOP FOR EVERYTHING TECHNOLOGY</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span class="m" style="font-size:9.5px;color:#6E7382;letter-spacing:0.07em;text-align:right;line-height:1.7">SAT 29 AUG 2026 · 09:14 IST<br><span style="color:#9A5B00">●</span> 7,912 TODAY · 508 SUMMARIZED</span>
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid #DFDAD0;border-radius:4px;padding:8px 11px;background:#FFFFFF;min-width:180px">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9CA1AE" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+          <span style="font-size:12.5px;color:#9CA1AE">Search 214,808 stories</span>
+        </div>
+        <div style="display:flex;gap:0;border:1px solid #DFDAD0;border-radius:4px;overflow:hidden">
+          <span class="m" style="font-size:9px;padding:6px 9px;background:#15171C;color:#FBFAF7;font-weight:500">PAPER</span>
+          <span class="m" style="font-size:9px;padding:6px 9px;color:#6E7382;background:#FFFFFF">INK</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:2px;background:#15171C"></div>
+    <div style="display:flex;align-items:center;gap:24px;padding:10px 0">
+      <span style="font-size:13.5px;color:#9A5B00;font-weight:700">Front page</span>
+      <a href="#" class="nav">AI &amp; ML</a><a href="#" class="nav">Software</a>
+      <a href="#" class="nav">Hardware</a><a href="#" class="nav">Security</a>
+      <a href="#" class="nav">Consumer</a>
+      <a href="#" class="nav" style="display:flex;align-items:center;gap:5px">More
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#454A58" stroke-width="3" stroke-linecap="round"><path d="M5 9l7 7 7-7"></path></svg>
+      </a>
+      <span style="margin-left:auto;display:flex;align-items:center;gap:16px">
+        <a href="#" class="m" style="font-size:9.5px;color:#9A5B00;letter-spacing:0.1em">● LIVE</a>
+        <a href="#" class="m" style="font-size:9.5px;color:#6E7382;letter-spacing:0.1em">SAVED</a>
+        <a href="#" class="m" style="font-size:9.5px;color:#6E7382;letter-spacing:0.1em">DASHBOARD</a>
+      </span>
+    </div>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ══ hero band ══ -->
+  <div style="padding:22px 40px 0;display:grid;grid-template-columns:minmax(0,2.1fr) 1px minmax(0,1fr);gap:0">
+    <div style="padding-right:28px;display:flex;flex-direction:column;gap:0">
+      <div class="th" style="height:290px;margin-bottom:14px">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.2"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding-bottom:8px">
+        <span style="width:5px;height:5px;border-radius:50%;background:#9A5B00"></span>
+        <span class="sec">Developing · AI &amp; ML / computer vision</span>
+        <span class="m" style="font-size:9.5px;color:#6E7382;margin-left:auto">6 SOURCES · 2m</span>
+      </div>
+      <a href="#" class="ser lead-hl" style="font-size:36px;font-weight:700;line-height:1.09;letter-spacing:-0.03em;text-wrap:balance">A single vision transformer matches specialist models across twelve benchmarks</a>
+      <p class="ser" class="cl3" style="margin:11px 0 0;font-size:16.5px;line-height:1.55;color:#454A58;font-style:italic;max-width:58ch">One backbone, no per-task heads. The claim that matters is sample efficiency rather than accuracy — it reaches parity on a fifth of the labelled data.</p>
+      <div style="display:flex;align-items:center;gap:8px;padding-top:11px;flex-wrap:wrap">
+        <span class="m" style="font-size:9.5px;color:#454A58">arXiv</span><span class="m" style="font-size:9.5px;color:#C4BEB2">●</span>
+        <a href="#" class="m" style="font-size:9.5px;color:#9A5B00">The Gradient</a><a href="#" class="m" style="font-size:9.5px;color:#9A5B00">Import AI</a><a href="#" class="m" style="font-size:9.5px;color:#9A5B00">Hacker News</a><span class="m" style="font-size:9.5px;color:#9CA1AE">+3</span>
+      </div>
+    </div>
+
+    <div style="background:#DFDAD0"></div>
+
+    <div style="padding-left:26px;display:flex;flex-direction:column;gap:0">
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:16px;border-bottom:1px solid #DFDAD0">
+        <div class="th" style="height:126px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.3"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Security</span>
+        <a href="#" class="ser cl3" style="font-size:19px;font-weight:600;line-height:1.24;letter-spacing:-0.015em;min-height:71px">Signal ships a post-quantum ratchet to every client</a>
+        <p style="margin:0;font-size:12.5px;color:#454A58;line-height:1.5">Rolled out silently over six weeks; the write-up explains the migration path.</p>
+        <span class="meta">signal blog · 48m · <span style="color:#9A5B00">4 src</span></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;padding-top:16px">
+        <div class="th" style="height:126px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.3"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Industry &amp; Policy</span>
+        <a href="#" class="ser cl3" style="font-size:19px;font-weight:600;line-height:1.24;letter-spacing:-0.015em;min-height:71px">EU begins enforcing the AI Act against general-purpose models</a>
+        <p style="margin:0;font-size:12.5px;color:#454A58;line-height:1.5">First deadlines apply above the compute threshold; two providers filed for the extension.</p>
+        <span class="meta">reuters · 11m · <span style="color:#9A5B00">5 src</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ four across ══ -->
+  <div style="padding:22px 40px 0">
+    <div class="rule"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:18px">
+      <div style="padding-right:22px;display:flex;flex-direction:column;gap:8px">
+        <div class="th" style="height:104px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Hardware</span>
+        <a href="#" class="ser cl3" style="font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-0.012em;min-height:60px">Zen 6 desktop silicon leaks with a 12-channel memory controller</a>
+        <span class="meta">techpowerup · 3h · <span style="color:#9A5B00">4 src</span></span>
+      </div>
+      <div style="padding:0 22px;border-left:1px solid #EBE7E0;display:flex;flex-direction:column;gap:8px">
+        <div class="th" style="height:104px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Operating Systems</span>
+        <a href="#" class="ser cl3" style="font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-0.012em;min-height:60px">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+        <span class="meta">phoronix · 19m · <span style="color:#9A5B00">3 src</span></span>
+      </div>
+      <div style="padding:0 22px;border-left:1px solid #EBE7E0;display:flex;flex-direction:column;gap:8px">
+        <div class="th" style="height:104px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Cloud &amp; Infra</span>
+        <a href="#" class="ser cl3" style="font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-0.012em;min-height:60px">Cloudflare open-sources its edge inference scheduler</a>
+        <span class="meta">hacker news · 26m · 312 pts</span>
+      </div>
+      <div style="padding-left:22px;border-left:1px solid #EBE7E0;display:flex;flex-direction:column;gap:8px">
+        <div class="th" style="height:104px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+        <span class="secq">Gaming</span>
+        <a href="#" class="ser cl3" style="font-size:16px;font-weight:600;line-height:1.25;letter-spacing:-0.012em;min-height:60px">Valve confirms a new Proton branch for anti-cheat compatibility</a>
+        <span class="meta">valve · 9m · <span style="color:#9A5B00">4 src</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ main grid: sections + rail ══ -->
+  <div style="padding:26px 40px 0;display:grid;grid-template-columns:minmax(0,1fr) 1px 288px;gap:0">
+    <div style="padding-right:30px">
+      <div style="height:2px;background:#15171C"></div>
+      <div style="display:flex;align-items:baseline;justify-content:space-between;padding:12px 0 18px">
+        <h2 class="ser" style="font-size:19px;font-weight:700;letter-spacing:-0.022em">Across every section</h2>
+        <span class="m" style="font-size:9px;color:#6E7382;letter-spacing:0.1em">10 SECTIONS · 514 SOURCES · EVERY MINUTE</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px">
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">AI & ML</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Meta open-sources a 40B mixture-of-experts checkpoint</a><span class="meta">meta ai · 2h · <span style="color:#9A5B00">5 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">A survey of diffusion methods for video generation</a><span class="meta">arxiv · 4h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Nvidia ships TensorRT 12 with FP4 kernels</a><span class="meta">nvidia · 6h · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Physical Intelligence shows one policy across nine robot bodies</a><span class="meta">pi · 7h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">An open reproduction of the depth-anything training run</a><span class="meta">github · 9h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Software</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Rust 1.94 stabilises async closures</a><span class="meta">rust blog · 4m · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Postgres 19 beta lands with native columnar storage</a><span class="meta">postgres weekly · 1h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Show HN: a SQLite-backed job queue in 400 lines</a><span class="meta">hacker news · 84 pts</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Deno 3 drops the Node compatibility shim</a><span class="meta">deno · 5h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Bun ships a native SQL driver for Postgres</a><span class="meta">bun · 8h · <span style="color:#9A5B00">2 src</span></span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Hardware</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">MSI lists three Zen 6 motherboards in a support-page leak</a><span class="meta">videocardz · 7m</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">ServeTheHome benchmarks the first 128-core Arm server board</a><span class="meta">servethehome · 41m</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">DDR6 spec finalised at JEDEC</a><span class="meta">techpowerup · 3h · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Micron announces 64TB QLC enterprise SSDs</a><span class="meta">micron · 6h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Chips and Cheese dissects the RDNA5 front end</a><span class="meta">chipsandcheese · 11h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Consumer Tech</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Framework opens its mainboard designs to third parties</a><span class="meta">liliputing · 33m · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Sony's compact drops the mechanical shutter entirely</a><span class="meta">dpreview · 5h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Teardown finds a user-replaceable Pixel Watch battery</a><span class="meta">ifixit · 9h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Rivian's next platform moves to a 48V architecture</a><span class="meta">the verge · 10h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Matter 1.6 finally lands multi-admin properly</a><span class="meta">the ambient · 13h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Operating Systems</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Windows 11 26H1 moves the Recall index fully on-device</a><span class="meta">windows central · 52m · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">macOS 27.2 beta rewrites the window manager</a><span class="meta">macrumors · 2h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Fedora 44 proposes dropping the X11 session</a><span class="meta">fedora magazine · 4h · <span style="color:#9A5B00">2 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Android 17 developer preview drops legacy storage</a><span class="meta">android police · 7h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">OpenBSD 7.8 ships the rewritten pf state table</a><span class="meta">undeadly · 14h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Security</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">CISA adds two actively exploited Ivanti flaws to KEV</a><span class="meta">bleepingcomputer · 5m · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">A backdoored CI action sat live for six hours across 40k repos</a><span class="meta">the register · 3h · <span style="color:#9A5B00">7 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Chrome patches a V8 type-confusion under active attack</a><span class="meta">google · 6h · <span style="color:#9A5B00">5 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Researchers demonstrate a practical Rowhammer on DDR5</a><span class="meta">usenix · 9h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Cloudflare publishes its 2026 post-quantum readiness data</a><span class="meta">cloudflare · 12h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Cloud &amp; Infra</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">A four-hour us-east-1 degradation, explained</a><span class="meta">aws · 7h · <span style="color:#9A5B00">6 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Kubernetes 1.36 drops in-tree cloud providers</a><span class="meta">kubernetes · 11h · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Fly.io publishes its multi-region Postgres postmortem</a><span class="meta">fly · 13h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">OpenTelemetry logs reach general availability</a><span class="meta">otel · 15h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Hetzner adds ARM instances in Ashburn</a><span class="meta">hetzner · 18h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Science</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">IBM posts a 1,200-qubit roadmap update</a><span class="meta">ibm research · 12m · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Room-temperature maser demonstrated in silicon</a><span class="meta">nature · 8h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Starship flight 14 sticks the tower catch</a><span class="meta">spacex · 14h · <span style="color:#9A5B00">8 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">A new upper bound on the muon g-2 anomaly</a><span class="meta">fermilab · 16h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Perovskite tandem cells pass 34% in certified testing</a><span class="meta">nrel · 20h</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Gaming</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Unreal 6 preview leans hard on hardware Lumen</a><span class="meta">epic · 6h · <span style="color:#9A5B00">3 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Steam Deck 2 shipping estimates slip to spring</a><span class="meta">valve · 10h · <span style="color:#9A5B00">5 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Proton 10.0 brings anti-cheat parity to 40 more titles</a><span class="meta">protondb · 12h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Godot 5 alpha adds a first-party multiplayer stack</a><span class="meta">godot · 15h</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Nintendo confirms a Switch 2 developer program</a><span class="meta">nintendo · 19h · <span style="color:#9A5B00">6 src</span></span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-bottom:22px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:7px"><span class="sec">Industry &amp; Policy</span><a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a></div>
+            <div class="hair" style="margin-bottom:2px"></div>
+            <div class="item"><div class="th" style="width:66px;height:50px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl3" style="font-size:14.5px">Anthropic and two rivals named in an EU compute-threshold filing</a><span class="meta">the register · 33m</span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">A $2.1B round values the humanoid-robotics leader at $18B</a><span class="meta">bloomberg · 4h · <span style="color:#9A5B00">5 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">UK CMA opens a cloud-licensing investigation</a><span class="meta">cma · 8h · <span style="color:#9A5B00">4 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Chip export rules widen to cover HBM4</a><span class="meta">reuters · 12h · <span style="color:#9A5B00">7 src</span></span></div></div>
+            <div class="item"><div style="display:flex;flex-direction:column;gap:3px;min-width:0"><a href="#" class="hl cl2" style="font-size:13.5px">Two more states pass age-verification laws</a><span class="meta">techdirt · 16h</span></div></div>
+          </div>
+      </div>
+    </div>
+
+    <div style="background:#DFDAD0"></div>
+
+    <!-- rail -->
+    <div style="padding-left:26px;display:flex;flex-direction:column;gap:0">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:8px">
+        <span class="sec">Latest</span>
+        <a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">LIVE FEED →</a>
+      </div>
+      <div style="height:2px;background:#9A5B00"></div>
+      <div class="col" style="padding-top:2px">
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9A5B00">2m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Vision transformer matches specialists</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">4m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Rust 1.94 stabilises async closures</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">5m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">CISA adds two Ivanti flaws to KEV</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">7m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">MSI lists three Zen 6 motherboards</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">9m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Valve confirms a new Proton branch</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">12m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">IBM posts a 1,200-qubit roadmap</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">19m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Linux 6.19 merge window opens</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">26m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Cloudflare open-sources its scheduler</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">33m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Framework opens mainboard designs</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">41m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">128-core Arm server board benchmarks</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">48m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Signal ships post-quantum ratchet</a></div>
+        <div style="padding:8px 0;border-bottom:1px solid #EBE7E0;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px"><span class="m" style="font-size:9px;color:#9CA1AE">55m</span><a href="#" class="cl2" style="font-size:12.5px;font-weight:500;line-height:1.35">Micron announces 64TB QLC SSDs</a></div>
+      </div>
+
+      <div style="border:1px solid #DFDAD0;border-radius:5px;background:#FFFFFF;padding:14px 15px;margin-top:16px;display:flex;flex-direction:column;gap:10px">
+        <span class="secq">Most covered right now</span>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;flex-direction:column;gap:2px"><a href="#" style="font-size:12.5px;font-weight:600;line-height:1.35">Starship flight 14 tower catch</a><span class="m" style="font-size:8.5px;color:#9CA1AE">8 SOURCES</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><a href="#" style="font-size:12.5px;font-weight:600;line-height:1.35">Backdoored CI action, 40k repos</a><span class="m" style="font-size:8.5px;color:#9CA1AE">7 SOURCES</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><a href="#" style="font-size:12.5px;font-weight:600;line-height:1.35">Chip export rules widen to HBM4</a><span class="m" style="font-size:8.5px;color:#9CA1AE">7 SOURCES</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><a href="#" style="font-size:12.5px;font-weight:600;line-height:1.35">Vision transformer benchmark sweep</a><span class="m" style="font-size:8.5px;color:#9CA1AE">6 SOURCES</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #DFDAD0;border-radius:5px;background:#FFFFFF;padding:14px 15px;margin-top:12px;display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="secq">Coverage today</span><span class="m" style="font-size:9.5px;color:#454A58">508 / 7,912</span></div>
+        <div style="height:4px;background:#EDE9E1;border-radius:2px;display:flex"><div style="width:67%;background:#9A5B00;border-radius:2px"></div></div>
+        <span class="m" style="font-size:8.5px;color:#9CA1AE;line-height:1.7">EVERY SECTION CLEARS ITS DAILY FLOOR. UNSUMMARIZED STORIES STILL APPEAR IN FULL.</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:26px 40px 36px">
+    <div class="rule"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:13px">
+      <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.09em">EVERY HEADLINE LINKS TO THE PUBLISHER · WE SUMMARIZE AND LINK, NEVER REPUBLISH</span>
+      <a href="#" class="m" style="font-size:9px;color:#9A5B00;letter-spacing:0.09em">RSS · JSON · SLACK · EMAIL</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

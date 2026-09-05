@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#FBFAF7;color:#15171C;font-family:Archivo,system-ui,sans-serif;font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#9A5B00;text-decoration:none}
+    h1,h2,h3{margin:0}
+    .ser{font-family:Literata,Georgia,serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .sec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#9A5B00}
+    .card{border:1px solid #DFDAD0;border-radius:5px;background:#FFFFFF}
+    .slot{display:grid;grid-template-columns:112px minmax(0,1fr) 92px;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid #EBE7E0}
+    .gate{display:grid;grid-template-columns:24px minmax(0,1fr);gap:11px;padding:9px 0;border-bottom:1px solid #EBE7E0}
+    .num{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;color:#9A5B00}
+    .cl3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .stress{border:1px solid #DFDAD0;border-radius:4px;background:#FFFFFF;padding:13px 14px;display:flex;flex-direction:column;gap:7px}
+    .lead-hl{min-height:118px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  </style>
+</helmet>
+
+<div style="padding:30px 32px;display:flex;flex-direction:column;gap:24px;min-height:1500px">
+
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <span class="sec">Editorial system</span>
+    <h2 class="ser" style="font-size:29px;font-weight:700;letter-spacing:-0.028em">How the front page composes itself</h2>
+    <p style="margin:0;font-size:13.5px;color:#454A58;max-width:84ch">Nobody edits this page. Every slot is filled by a rule, so the rules have to be good — and inspectable. This is the part that decides whether the portal reads as edited or as a script that ranked some rows.</p>
+  </div>
+
+  <!-- lead gates -->
+  <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:13px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <span class="sec">Choosing the lead — five gates, all must pass</span>
+      <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">EVALUATED EVERY 10 MINUTES</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div class="gate"><span class="num">01</span><div><span style="font-weight:600">Corroborated by 3+ independent sources.</span> <span style="color:#454A58">A single outlet, however good, is never the lead. This alone kills most press-release noise.</span></div></div>
+      <div class="gate"><span class="num">02</span><div><span style="font-weight:600">Has an AI summary.</span> <span style="color:#454A58">If it wasn't worth spending on, it isn't worth 36px. Ties the lead to the budget's own judgement.</span></div></div>
+      <div class="gate"><span class="num">03</span><div><span style="font-weight:600">Under 6 hours old, or still gaining sources.</span> <span style="color:#454A58">Velocity, not just count — a story picking up its 4th and 5th outlet right now beats one that had 8 yesterday.</span></div></div>
+      <div class="gate"><span class="num">04</span><div><span style="font-weight:600">Not the same section as yesterday's lead</span>, unless it clears the threshold by 25%. <span style="color:#454A58">Stops AI &amp; ML holding the lead every single day on volume.</span></div></div>
+      <div class="gate" style="border-bottom:none"><span class="num">05</span><div><span style="font-weight:600">Not muted by your preferences.</span> <span style="color:#454A58">The weekly preference pass can demote a whole topic out of lead contention.</span></div></div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;border-top:1px solid #DFDAD0;padding-top:13px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="1.9" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M12 3l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 18l-5.9 3 1.2-6.5L2.5 9.9 9.1 9z"></path></svg>
+      <p style="margin:0;font-size:12.5px;color:#454A58;line-height:1.55"><strong style="color:#15171C">And a manual pin overrides all five.</strong> One click on any story pins it as the lead for up to 12 hours. Automation gets it wrong sometimes; the fix should take three seconds, not a deploy. The pin shows a small marker so you know the page isn't running on rules right now.</p>
+    </div>
+  </div>
+
+  <!-- slot map -->
+  <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+    <span class="sec">Every slot on the page, and what fills it</span>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div class="slot" style="border-bottom:1px solid #DFDAD0"><span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.11em">SLOT</span><span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.11em">RULE</span><span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.11em;text-align:right">COUNT</span></div>
+      <div class="slot"><span style="font-weight:600">Lead</span><span style="color:#454A58">Passes all five gates, then highest velocity-weighted score</span><span class="m" style="font-size:11px;text-align:right">1</span></div>
+      <div class="slot"><span style="font-weight:600">Hero secondaries</span><span style="color:#454A58">Next two by score, each from a <em>different</em> section to the lead</span><span class="m" style="font-size:11px;text-align:right">2</span></div>
+      <div class="slot"><span style="font-weight:600">Four across</span><span style="color:#454A58">Highest-scoring summarized story from four sections not yet used</span><span class="m" style="font-size:11px;text-align:right">4</span></div>
+      <div class="slot"><span style="font-weight:600">Section blocks</span><span style="color:#454A58">Top 5 per section by score; lead item of each gets a thumbnail</span><span class="m" style="font-size:11px;text-align:right">50</span></div>
+      <div class="slot"><span style="font-weight:600">Latest rail</span><span style="color:#454A58">Pure reverse-chronological, no scoring at all — the honest firehose</span><span class="m" style="font-size:11px;text-align:right">12</span></div>
+      <div class="slot" style="border-bottom:none"><span style="font-weight:600">Most covered</span><span style="color:#454A58">Largest clusters in the last 6 hours, by source count</span><span class="m" style="font-size:11px;text-align:right">4</span></div>
+    </div>
+    <p style="margin:0;font-size:12.5px;color:#6E7382;border-top:1px solid #DFDAD0;padding-top:12px;line-height:1.55"><strong style="color:#454A58">73 stories, and no story appears twice.</strong> Slots are filled in order and each one removes its picks from the pool below it, so the section blocks never repeat what is already in the hero.</p>
+  </div>
+
+  <!-- headline stress test -->
+  <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:13px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <span class="sec">Headline stress test</span>
+      <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">REAL HEADLINES ARE 24–190 CHARACTERS</span>
+    </div>
+    <p style="margin:0;font-size:12.5px;color:#454A58;max-width:88ch">Placeholder copy is always a tidy 70 characters and always looks good. These are the shapes that actually break a front page. The lead box is fixed at three lines with a <code style="font-family:'JetBrains Mono',monospace;font-size:11px;background:#EFEDE7;padding:1px 4px;border-radius:2px">min-height</code>, so the standfirst never moves.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+      <div class="stress">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">24 CHARS · SHORT</span>
+        <span class="ser lead-hl" style="font-size:36px;font-weight:700;line-height:1.09;letter-spacing:-0.03em">Linux 6.19 is out</span>
+        <span class="m" style="font-size:9px;color:#9A5B00">BOX HOLDS · STANDFIRST STAYS PUT</span>
+      </div>
+      <div class="stress">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">188 CHARS · OVERLONG</span>
+        <span class="ser lead-hl" style="font-size:36px;font-weight:700;line-height:1.09;letter-spacing:-0.03em">Researchers at three institutions publish a joint paper describing a method for training vision-language models that reduces labelled-data requirements by roughly eighty percent</span>
+        <span class="m" style="font-size:9px;color:#9A5B00">CLAMPED AT 3 LINES · NO OVERFLOW</span>
+      </div>
+      <div class="stress">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">COLON + LONG COMPOUND TOKEN</span>
+        <span class="ser cl3" style="font-size:19px;font-weight:600;line-height:1.24;letter-spacing:-0.015em;min-height:71px">CVE-2026-31847: unauthenticated remote code execution in ConnectWise ScreenConnect versions before 25.4.2</span>
+        <span class="m" style="font-size:9px;color:#9A5B00">WRAPS CLEANLY · NO HORIZONTAL SCROLL</span>
+      </div>
+      <div class="stress">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">ALL CAPS + EM DASH</span>
+        <span class="ser cl3" style="font-size:19px;font-weight:600;line-height:1.24;letter-spacing:-0.015em;min-height:71px">EXCLUSIVE — NVIDIA'S NEXT DATACENTRE PART SLIPS TWO QUARTERS, ACCORDING TO THREE SUPPLY-CHAIN SOURCES</span>
+        <span class="m" style="font-size:9px;color:#9A5B00">NORMALISED TO SENTENCE CASE ON INGEST</span>
+      </div>
+    </div>
+    <p style="margin:0;font-size:12.5px;color:#6E7382;border-top:1px solid #DFDAD0;padding-top:12px;line-height:1.55"><strong style="color:#454A58">Ingest normalisation, before anything is stored:</strong> strip the outlet name where feeds append it, collapse ALL-CAPS to sentence case, convert straight quotes to typographic, drop trailing ellipses, and trim leading tags like <em>EXCLUSIVE —</em> into a badge instead of the headline.</p>
+  </div>
+
+  <!-- states -->
+  <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+    <span class="sec">When there is nothing to lead with</span>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+      <div style="border:1px dashed #DFDAD0;border-radius:4px;padding:13px 14px;display:flex;flex-direction:column;gap:6px">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">NO STORY CLEARS THE GATES</span>
+        <span style="font-size:12.5px;color:#454A58;line-height:1.5">The lead slot collapses and the four-across row promotes to the top. The page never shows a weak story at 36px.</span>
+      </div>
+      <div style="border:1px dashed #DFDAD0;border-radius:4px;padding:13px 14px;display:flex;flex-direction:column;gap:6px">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">A SECTION IS QUIET</span>
+        <span style="font-size:12.5px;color:#454A58;line-height:1.5">Its block shows what it has and says <em>&ldquo;3 stories today&rdquo;</em> rather than padding to five. Quiet days are information.</span>
+      </div>
+      <div style="border:1px dashed #DFDAD0;border-radius:4px;padding:13px 14px;display:flex;flex-direction:column;gap:6px">
+        <span class="m" style="font-size:9px;color:#9CA1AE;letter-spacing:0.1em">NO IMAGE IN THE FEED</span>
+        <span style="font-size:12.5px;color:#454A58;line-height:1.5">The thumbnail slot is dropped entirely, not filled with a grey box — text reflows to full width.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

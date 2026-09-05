@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}a:hover{color:#F0BE72}
+    h1,h2,h3{margin:0}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#69728A}
+    .card{background:#0E121A;border:1px solid #1E2430;border-radius:4px}
+    .tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;color:#69728A;border:1px solid #1E2430;border-radius:2px;padding:2px 7px}
+  </style>
+</helmet>
+<div style="min-height:950px;padding:0 0 34px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 34px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="width:7px;height:7px;background:#E9A94A;border-radius:50%;display:inline-block"></span>
+      <span style="font-size:18px;font-weight:600;letter-spacing:-0.022em">Tech News Agent</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <a href="#" style="color:#98A1B5">Archive</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Tags</span>
+      <a href="#" style="color:#98A1B5">Saved</a>
+      <a href="#" style="color:#98A1B5">Sources</a>
+      <a href="#" style="color:#98A1B5">Dashboard</a>
+    </div>
+  </div>
+  <div style="padding:24px 34px 0;display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:32px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:9px">
+            <a href="#" class="m" style="font-size:11px;color:#69728A">TAGS</a><span class="m" style="font-size:11px;color:#4E566A">/</span>
+            <h1 class="m" style="font-size:25px;font-weight:500;color:#E9A94A">kernel</h1>
+          </div>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5">84 stories across the archive &#183; 14 in the last month</p>
+        </div>
+        <span class="m" style="font-size:11px;border:1px solid #E9A94A;color:#E9A94A;border-radius:3px;padding:7px 13px;background:#221A0E;flex:none">+ FOLLOW THIS TAG</span>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid #1E2430;border-bottom:1px solid #1E2430;padding:11px 0">
+        <span class="lbl">Often with</span>
+        <a href="#" class="tag" style="color:#98A1B5">scheduler 11</a>
+        <a href="#" class="tag" style="color:#98A1B5">performance 9</a>
+        <a href="#" class="tag" style="color:#98A1B5">filesystems 7</a>
+        <a href="#" class="tag" style="color:#98A1B5">security 6</a>
+        <a href="#" class="tag" style="color:#98A1B5">arm 4</a>
+      </div>
+
+      <span class="lbl">August 2026</span>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #141922">
+          <span class="m" style="font-size:10.5px;color:#69728A;flex:none;width:44px;padding-top:3px">23 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.018em;color:#E9EBF0">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+            <div class="m" style="font-size:10.5px;color:#69728A">phoronix &#183; <span style="color:#E9A94A">3 src</span></div>
+            <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">After three cycles in -next the new scheduler is merged.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #141922">
+          <span class="m" style="font-size:10.5px;color:#69728A;flex:none;width:44px;padding-top:3px">14 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.018em;color:#E9EBF0">bcachefs removed from the mainline tree</a>
+            <div class="m" style="font-size:10.5px;color:#69728A">lwn.net &#183; <span style="color:#E9A94A">4 src</span></div>
+            <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">Maintainer friction, not technical merit. It continues out of tree.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #141922">
+          <span class="m" style="font-size:10.5px;color:#69728A;flex:none;width:44px;padding-top:3px">06 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.018em;color:#E9EBF0">Rust for Linux reaches the point of no return</a>
+            <div class="m" style="font-size:10.5px;color:#69728A">lwn.net &#183; <span style="color:#E9A94A">6 src</span></div>
+          </div>
+        </div>
+      </div>
+
+      <span class="lbl">July 2026</span>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #141922">
+          <span class="m" style="font-size:10.5px;color:#69728A;flex:none;width:44px;padding-top:3px">28 Jul</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.018em;color:#E9EBF0">Linux 6.18 released with the new io_uring zero-copy path</a>
+            <div class="m" style="font-size:10.5px;color:#69728A">kernel.org &#183; <span style="color:#E9A94A">5 src</span></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;padding:13px 0">
+          <span class="m" style="font-size:10.5px;color:#69728A;flex:none;width:44px;padding-top:3px">17 Jul</span>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.018em;color:#E9EBF0">A new memory-tiering policy for CXL-attached RAM</a>
+            <div class="m" style="font-size:10.5px;color:#69728A">lwn.net</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:11px">
+        <span class="lbl">Activity, 12 months</span>
+        <svg width="100%" height="52" viewBox="0 0 240 52" preserveAspectRatio="none" aria-label="Stories tagged kernel per month">
+          <g fill="#5A4A28">
+            <rect x="0" y="30" width="16" height="22" rx="1"></rect><rect x="20" y="24" width="16" height="28" rx="1"></rect>
+            <rect x="40" y="34" width="16" height="18" rx="1"></rect><rect x="60" y="18" width="16" height="34" rx="1"></rect>
+            <rect x="80" y="28" width="16" height="24" rx="1"></rect><rect x="100" y="36" width="16" height="16" rx="1"></rect>
+            <rect x="120" y="22" width="16" height="30" rx="1"></rect><rect x="140" y="26" width="16" height="26" rx="1"></rect>
+            <rect x="160" y="14" width="16" height="38" rx="1"></rect><rect x="180" y="32" width="16" height="20" rx="1"></rect>
+            <rect x="200" y="20" width="16" height="32" rx="1"></rect>
+          </g>
+          <rect x="220" y="10" width="16" height="42" rx="1" fill="#E9A94A"></rect>
+        </svg>
+        <div style="display:flex;justify-content:space-between"><span class="m" style="font-size:9.5px;color:#4E566A">SEP 25</span><span class="m" style="font-size:9.5px;color:#E9A94A">AUG 26 &#183; 14</span></div>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:10px">
+        <span class="lbl">Who writes about this</span>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#98A1B5">
+          <div style="display:flex;justify-content:space-between"><span>LWN.net</span><span class="m">34</span></div>
+          <div style="display:flex;justify-content:space-between"><span>Phoronix</span><span class="m">28</span></div>
+          <div style="display:flex;justify-content:space-between"><span>kernel.org</span><span class="m">12</span></div>
+          <div style="display:flex;justify-content:space-between"><span>Hacker News</span><span class="m">10</span></div>
+        </div>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:7px">
+        <span class="lbl">Follow</span>
+        <p style="margin:0;font-size:12.5px;color:#98A1B5;line-height:1.5">Followed tags are boosted in the daily digest and get their own feed.</p>
+        <a href="#" class="m" style="font-size:11px">/feed/tag/kernel.xml &#8594;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

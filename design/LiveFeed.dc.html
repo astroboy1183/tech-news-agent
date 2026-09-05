@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9EBF0;text-decoration:none}a:hover{color:#E9A94A}
+    h1,h2,h3{margin:0}
+    .ser{font-family:Literata,Georgia,serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .sec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#8892A8}
+    .meta{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;color:#69728A;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .navlink{font-size:12.5px;color:#98A1B5}.navlink:hover{color:#E9A94A}
+    .chip{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;border:1px solid #1E2430;border-radius:3px;padding:5px 10px;color:#98A1B5}
+    .card{border:1px solid #1E2430;border-radius:5px;background:#0E121A}
+    .row{display:grid;grid-template-columns:52px minmax(0,1fr);border-bottom:1px solid #161B24}
+  </style>
+</helmet>
+
+<div style="min-height:1500px">
+
+  <div style="padding:16px 40px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:12px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="ser" style="font-size:21px;font-weight:700;letter-spacing:-0.024em">Tech News Agent</span>
+        <span class="m" style="font-size:9px;color:#E9A94A;border:1px solid #2E3646;border-radius:3px;padding:2px 7px;letter-spacing:0.1em">LIVE</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:19px">
+        <a href="#" class="navlink">Front page</a>
+        <span style="font-size:12.5px;color:#E9A94A;font-weight:600">Live</span>
+        <a href="#" class="navlink">Archive</a><a href="#" class="navlink">Saved</a>
+        <a href="#" class="navlink">Sources</a><a href="#" class="navlink">Dashboard</a>
+        <div style="display:flex;gap:0;border:1px solid #1E2430;border-radius:4px;overflow:hidden">
+          <span class="m" style="font-size:9.5px;padding:5px 9px;color:#69728A;border-right:1px solid #1E2430">PAPER</span>
+          <span class="m" style="font-size:9.5px;padding:5px 9px;background:#E9A94A;color:#0A0D12;font-weight:500">INK</span>
+        </div>
+      </div>
+    </div>
+    <div style="height:2px;background:#E9EBF0"></div>
+  </div>
+
+  <!-- filters -->
+  <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:13px 40px;border-bottom:1px solid #1E2430">
+    <span class="chip" style="background:#E9A94A;color:#0A0D12;border-color:#E9A94A;font-weight:500">ALL 10 SECTIONS</span>
+    <a href="#" class="chip">AI &amp; ML</a><a href="#" class="chip">Software</a><a href="#" class="chip">Hardware</a>
+    <a href="#" class="chip">Consumer</a><a href="#" class="chip">OS</a><a href="#" class="chip">Security</a>
+    <a href="#" class="chip">Cloud</a><a href="#" class="chip">Science</a><a href="#" class="chip">Gaming</a><a href="#" class="chip">Industry</a>
+    <span style="width:1px;height:18px;background:#1E2430;margin:0 4px"></span>
+    <a href="#" class="chip" style="color:#E9A94A;border-color:#2E3646">&#10003; 2+ SOURCES</a>
+    <a href="#" class="chip">SUMMARIZED</a><a href="#" class="chip">SCORE &#8805; 40</a>
+    <span class="m" style="font-size:9px;color:#4E566A;margin-left:auto;letter-spacing:0.1em">7,912 TODAY &#183; 508 SUMMARIZED</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:34px;padding:0 40px">
+    <div style="display:flex;flex-direction:column;gap:0">
+
+      <div style="display:flex;justify-content:center;padding:16px 0 8px">
+        <span class="m" style="font-size:10px;background:#221A0E;border:1px solid #E9A94A;color:#E9A94A;border-radius:16px;padding:6px 16px;letter-spacing:0.06em">&#8593; 23 NEW STORIES</span>
+      </div>
+
+      <span class="sec" style="padding:10px 0 10px;color:#4E566A">Just now</span>
+
+      <div class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+        <div class="meta"><span class="sec" style="color:#E9A94A">AI &amp; ML / computer vision</span><span>arxiv</span><span style="color:#E9A94A">2m</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">6 sources</span><span style="margin-left:auto;color:#4E566A">score 94</span></div>
+        <a href="#" class="ser" style="font-size:21px;font-weight:600;line-height:1.22;letter-spacing:-0.018em">A single vision transformer matches specialist models across twelve benchmarks</a>
+        <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.6">One backbone, no per-task heads. The claim that matters is sample efficiency &#8212; parity on a fifth of the labelled data.</p>
+      </div>
+
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">4m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Rust 1.94 stabilises async closures</a><div class="meta"><span class="sec">Software</span><span>rust blog</span><span style="margin-left:auto;color:#4E566A">score 51</span></div></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">5m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">CISA adds two actively exploited Ivanti flaws to the KEV catalog</a><div class="meta"><span class="sec">Security</span><span>bleepingcomputer</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">3 src</span><span style="margin-left:auto;color:#4E566A">score 68</span></div></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">7m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">MSI lists three Zen 6 motherboards in a support-page leak</a><div class="meta"><span class="sec">Hardware</span><span>videocardz</span><span style="margin-left:auto;color:#4E566A">score 38</span></div></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">9m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Valve confirms a new Proton branch for anti-cheat compatibility</a><div class="meta"><span class="sec">Gaming</span><span>valve</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">4 src</span><span style="margin-left:auto;color:#4E566A">score 64</span></div></div></div>
+
+      <div class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:8px;margin:10px 0">
+        <div class="meta"><span class="sec" style="color:#E9A94A">Industry &amp; Policy</span><span>reuters</span><span>11m</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">5 sources</span><span style="margin-left:auto;color:#4E566A">score 88</span></div>
+        <a href="#" class="ser" style="font-size:21px;font-weight:600;line-height:1.22;letter-spacing:-0.018em">EU begins enforcing the AI Act against general-purpose models</a>
+        <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.6">First compliance deadlines apply above the compute threshold. Two providers have filed for the transitional extension.</p>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="m" style="font-size:9px;color:#4E566A">ALSO</span><a href="#" class="m" style="font-size:9.5px;color:#E9A94A">the register</a><a href="#" class="m" style="font-size:9.5px;color:#E9A94A">wired</a><a href="#" class="m" style="font-size:9.5px;color:#E9A94A">techcrunch</a><span class="m" style="font-size:9.5px;color:#4E566A">+2</span></div>
+      </div>
+
+      <span class="sec" style="padding:14px 0 10px;color:#4E566A;border-top:1px solid #1E2430;margin-top:6px">Earlier this hour</span>
+
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">12m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">IBM posts a 1,200-qubit roadmap update</a><div class="meta"><span class="sec">Science</span><span>ibm research</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">3 src</span><span style="margin-left:auto;color:#4E566A">score 59</span></div></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">19m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Linux 6.19 merge window opens with the scheduler rewrite landing</a><div class="meta"><span class="sec">Operating Systems / linux</span><span>phoronix</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">3 src</span><span style="margin-left:auto;color:#4E566A">score 79</span></div><p style="margin:0;font-size:13px;color:#98A1B5;line-height:1.55">After three cycles in -next the new scheduler is merged. Gains on high-core desktops, one NUMA regression.</p></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">26m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Cloudflare open-sources its edge inference scheduler</a><div class="meta"><span class="sec">Cloud &amp; Infra</span><span>hacker news</span><span>312 pts</span><span style="margin-left:auto;color:#4E566A">score 66</span></div></div></div>
+      <div class="row"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">33m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Framework opens its mainboard designs to third parties</a><div class="meta"><span class="sec">Consumer Tech</span><span>liliputing</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">3 src</span><span style="margin-left:auto;color:#4E566A">score 55</span></div></div></div>
+      <div class="row" style="border-bottom:none"><span class="m" style="font-size:9.5px;color:#69728A;padding:12px 12px 12px 0;text-align:right">48m</span><div style="padding:12px 0;display:flex;flex-direction:column;gap:4px"><a href="#" style="font-size:15px;font-weight:600;line-height:1.3;letter-spacing:-0.012em">Signal ships post-quantum ratchet to all clients</a><div class="meta"><span class="sec">Security</span><span>signal blog</span><span style="border:1px solid #2E3646;border-radius:3px;padding:1px 6px;color:#E9A94A">4 src</span><span style="margin-left:auto;color:#4E566A">score 74</span></div></div></div>
+
+      <div style="display:flex;justify-content:center;padding:22px 0 30px"><span class="m" style="font-size:9.5px;border:1px solid #1E2430;color:#98A1B5;border-radius:4px;padding:9px 20px;letter-spacing:0.08em">LOAD OLDER</span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;padding-top:16px">
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:10px">
+        <span class="sec" style="color:#E9A94A">Today by section</span>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">AI &amp; ML</a><span class="m" style="color:#69728A">2,140</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Software</a><span class="m" style="color:#69728A">1,204</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Hardware</a><span class="m" style="color:#69728A">982</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Consumer Tech</a><span class="m" style="color:#69728A">874</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Operating Systems</a><span class="m" style="color:#69728A">741</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Security</a><span class="m" style="color:#69728A">688</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Cloud &amp; Infra</a><span class="m" style="color:#69728A">512</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Science</a><span class="m" style="color:#69728A">361</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Gaming</a><span class="m" style="color:#69728A">247</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#98A1B5"><a href="#">Industry &amp; Policy</a><span class="m" style="color:#69728A">163</span></div>
+        </div>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="sec" style="color:#98A1B5">Summary budget</span><span class="m" style="font-size:9.5px;color:#98A1B5">$0.31 / $0.46</span></div>
+        <div style="height:4px;background:#141922;border-radius:2px;display:flex"><div style="width:67%;background:#E9A94A;border-radius:2px"></div></div>
+        <span class="m" style="font-size:9px;color:#4E566A;line-height:1.7">EVERY SECTION CLEARS ITS FLOOR. AT THE CAP THE FEED KEEPS FILLING.</span>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:9px">
+        <span class="sec" style="color:#98A1B5">Feed health</span>
+        <div style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5BC48A" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;color:#98A1B5">507 of 514 polling</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="2" stroke-linecap="round"><path d="M4 11a9 9 0 019 9"></path><path d="M4 4a16 16 0 0116 16"></path><circle cx="5" cy="19" r="1.6" fill="#E9A94A" stroke="none"></circle></svg><span style="font-size:12.5px;color:#98A1B5">118 pushing via WebSub</span></div>
+        <span class="m" style="font-size:9px;color:#4E566A;border-top:1px solid #1E2430;padding-top:9px">MEDIAN LATENCY 3m12s &#183; WEBSUB 11s</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}
+    a:hover{color:#F0BE72;text-decoration:underline}
+    h1,h2,h3{margin:0}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:0.11em;text-transform:uppercase;color:#69728A}
+    .meta{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:#69728A}
+    mark{background:#221A0E;color:#E9EBF0;padding:0 2px;border-radius:1px}
+  </style>
+</helmet>
+
+<div style="min-height:880px;padding:0 0 36px">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 40px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <span style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:21px;font-weight:600">Tech News Agent</span>
+    <div style="display:flex;align-items:center;gap:22px;font-size:13.5px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Archive</span>
+      <a href="#" style="color:#98A1B5">Saved</a><a href="#" style="color:#98A1B5">Sources</a><a href="#" style="color:#98A1B5">Dashboard</a>
+    </div>
+  </div>
+
+  <div style="padding:28px 40px 0;display:flex;flex-direction:column;gap:18px">
+
+    <!-- search field -->
+    <div style="display:flex;align-items:center;gap:11px;border:1px solid #E9A94A;border-radius:3px;padding:11px 15px;background:#0E121A">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <span style="font-size:16px;color:#E9EBF0">wayland</span>
+      <span style="width:1px;height:17px;background:#E9A94A;margin-left:-8px"></span>
+    </div>
+
+    <!-- filters -->
+    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+      <span class="lbl" style="margin-right:2px">Filter</span>
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #E9A94A;background:#E9A94A;color:#0E121A;border-radius:2px;padding:4px 11px;display:flex;align-items:center;gap:6px">Operating Systems
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0E121A" stroke-width="3" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+      </span>
+      <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #1E2430;background:#0E121A;color:#98A1B5;border-radius:2px;padding:4px 11px">Gadgets &amp; Hardware</a>
+      <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #1E2430;background:#0E121A;color:#98A1B5;border-radius:2px;padding:4px 11px">Technology</a>
+      <span style="width:1px;height:20px;background:#1E2430;margin:0 5px"></span>
+      <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #1E2430;background:#0E121A;color:#98A1B5;border-radius:2px;padding:4px 11px">Any date</a>
+      <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #1E2430;background:#0E121A;color:#98A1B5;border-radius:2px;padding:4px 11px">Any source</a>
+      <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #1E2430;background:#0E121A;color:#98A1B5;border-radius:2px;padding:4px 11px">Saved only</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:start">
+
+      <!-- results -->
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #1E2430">
+          <span style="font-size:13.5px;color:#98A1B5"><span style="font-weight:600;color:#E9EBF0">37 stories</span> matching &ldquo;wayland&rdquo; in Operating Systems</span>
+          <span class="meta">Newest first</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;padding:16px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:18px;font-weight:600;line-height:1.28;color:#E9EBF0">Fedora 44 proposes dropping the X11 session entirely</a>
+          <div class="meta"><span style="color:#98A1B5;font-weight:500">Fedora Magazine</span> &#183; 23 Aug 2026</div>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">The change proposal is open for FESCo review. <mark>XWayland</mark> stays, so most legacy apps are unaffected.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;padding:16px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:18px;font-weight:600;line-height:1.28;color:#E9EBF0">GNOME 50 lands explicit sync by default</a>
+          <div class="meta"><span style="color:#98A1B5;font-weight:500">Phoronix</span> &#183; 19 Aug 2026 &#183; <span style="color:#E9A94A">3 sources</span></div>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">The long-standing NVIDIA flicker on <mark>Wayland</mark> is finally resolved for the common case.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;padding:16px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:18px;font-weight:600;line-height:1.28;color:#E9EBF0">KDE Plasma 6.6 makes the <mark>Wayland</mark> session the only option</a>
+          <div class="meta"><span style="color:#98A1B5;font-weight:500">Linuxiac</span> &#183; 11 Aug 2026</div>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">The X11 session is removed from the build entirely; distro maintainers were given two cycles of notice.</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:4px;padding:16px 0">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:18px;font-weight:600;line-height:1.28;color:#E9EBF0">A protocol for HDR passthrough merges into <mark>wayland</mark>-protocols</a>
+          <div class="meta"><span style="color:#98A1B5;font-weight:500">LWN.net</span> &#183; 4 Aug 2026</div>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5;line-height:1.5">Two years of design work; compositors can now hand HDR metadata straight to the display.</p>
+        </div>
+      </div>
+
+      <!-- archive rail -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="background:#0E121A;border:1px solid #1E2430;border-radius:3px;padding:15px 16px;display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span class="lbl">Browse by day</span>
+            <span class="meta">Aug 2026</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7, minmax(0,1fr));gap:4px">
+            <span class="meta" style="text-align:center;font-size:9.5px">M</span><span class="meta" style="text-align:center;font-size:9.5px">T</span><span class="meta" style="text-align:center;font-size:9.5px">W</span><span class="meta" style="text-align:center;font-size:9.5px">T</span><span class="meta" style="text-align:center;font-size:9.5px">F</span><span class="meta" style="text-align:center;font-size:9.5px">S</span><span class="meta" style="text-align:center;font-size:9.5px">S</span>
+
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;color:#3A434F">27</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;color:#3A434F">28</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;color:#3A434F">29</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;color:#3A434F">30</span>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;color:#3A434F">31</span>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">1</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">2</a>
+
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#221A0E;border-radius:2px;color:#E9EBF0">3</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">4</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#221A0E;border-radius:2px;color:#E9EBF0">5</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">6</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">7</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">8</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#221A0E;border-radius:2px;color:#E9EBF0">9</a>
+
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">10</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#221A0E;border-radius:2px;color:#E9EBF0">11</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">12</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">13</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">14</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">15</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">16</a>
+
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">17</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">18</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#221A0E;border-radius:2px;color:#E9EBF0">19</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">20</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">21</a>
+            <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#141922;border-radius:2px;color:#E9EBF0">22</a>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;text-align:center;padding:5px 0;background:#E9A94A;border-radius:2px;color:#0E121A;font-weight:500">23</span>
+          </div>
+          <span class="meta" style="border-top:1px solid #141922;padding-top:9px;line-height:1.5">Darker days matched your search. 178 digests archived since launch.</span>
+        </div>
+
+        <div style="background:#0E121A;border:1px solid #1E2430;border-radius:3px;padding:15px 16px;display:flex;flex-direction:column;gap:9px">
+          <span class="lbl">Save this search</span>
+          <p style="margin:0;font-size:12.5px;color:#98A1B5;line-height:1.45">Turn it into a tag feed and get new matches in the daily digest.</p>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;border:1px solid #E9A94A;color:#E9A94A;border-radius:3px;padding:6px 12px;text-align:center;background:#221A0E">Follow &ldquo;wayland&rdquo;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

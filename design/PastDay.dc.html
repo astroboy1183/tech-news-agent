@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}a:hover{color:#F0BE72}
+    h1,h2,h3{margin:0}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#69728A}
+  </style>
+</helmet>
+<div style="min-height:1080px;padding:0 0 30px">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 34px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="width:7px;height:7px;background:#E9A94A;border-radius:50%;display:inline-block"></span>
+      <span style="font-size:18px;font-weight:600;letter-spacing:-0.022em">Tech News Agent</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Archive</span>
+      <a href="#" style="color:#98A1B5">Tags</a><a href="#" style="color:#98A1B5">Saved</a>
+      <a href="#" style="color:#98A1B5">Sources</a><a href="#" style="color:#98A1B5">Dashboard</a>
+    </div>
+  </div>
+
+  <!-- archived banner + date nav -->
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 34px;background:#221A0E;border-bottom:1px solid #2E3646">
+    <div style="display:flex;align-items:center;gap:9px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5.5l3.5 2"></path></svg>
+      <span class="m" style="font-size:11px;color:#E9A94A;letter-spacing:0.06em">ARCHIVED DIGEST &#183; 4 DAYS AGO</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:0;border:1px solid #2E3646;border-radius:3px;overflow:hidden">
+      <a href="#" class="m" style="font-size:11px;padding:6px 12px;color:#98A1B5;border-right:1px solid #2E3646">&#8592; 18 AUG</a>
+      <span class="m" style="font-size:11px;padding:6px 14px;background:#E9A94A;color:#0A0D12">19 AUG 2026</span>
+      <a href="#" class="m" style="font-size:11px;padding:6px 12px;color:#98A1B5;border-left:1px solid #2E3646">20 AUG &#8594;</a>
+    </div>
+  </div>
+
+  <div style="padding:22px 34px 16px;border-bottom:1px solid #1E2430;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;align-items:baseline;gap:12px">
+      <h1 style="font-size:24px;font-weight:700;letter-spacing:-0.03em">Wednesday 19 August</h1>
+      <span class="m" style="font-size:11px;color:#69728A">21 STORIES &#183; FROM 231 COLLECTED &#183; YOU OPENED 8</span>
+    </div>
+    <p style="margin:0;font-size:15px;line-height:1.5;color:#98A1B5;max-width:94ch">GNOME shipped explicit sync, which quietly fixes the NVIDIA flicker everyone has lived with on Wayland for years. Intel confirmed the Nova Lake delay. A CI action with 40k dependents shipped a backdoor for six hours.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:0">
+
+    <div style="border-right:1px solid #1E2430;padding:0 24px 26px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;border-top:3px solid #E9A94A">
+        <div style="display:flex;align-items:center;gap:8px"><h2 style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#E9A94A">Gadgets &amp; Hardware</h2><span class="m" style="font-size:10.5px;color:#69728A">7</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:13px 0;border-bottom:1px solid #141922">
+        <a href="#" style="font-size:17px;font-weight:600;line-height:1.24;letter-spacing:-0.02em;color:#E9EBF0">Intel confirms Nova Lake slips to the second half of 2027</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">TOM&#39;S HARDWARE &#183; <span style="color:#E9A94A">5 SRC</span></div>
+        <p style="margin:0;font-size:13px;color:#98A1B5;line-height:1.5">Foundry capacity, not design. The desktop roadmap now has an eighteen-month hole in it.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0;border-bottom:1px solid #141922">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">DDR6 spec finalised at JEDEC</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">TECHPOWERUP</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">Framework opens its mainboard designs to third parties</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">LILIPUTING &#183; <span style="color:#E9A94A">3 SRC</span></div>
+      </div>
+    </div>
+
+    <div style="border-right:1px solid #1E2430;padding:0 24px 26px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;border-top:3px solid #E9A94A">
+        <div style="display:flex;align-items:center;gap:8px"><h2 style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#E9A94A">Technology</h2><span class="m" style="font-size:10.5px;color:#69728A">8</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:13px 0;border-bottom:1px solid #141922">
+        <a href="#" style="font-size:17px;font-weight:600;line-height:1.24;letter-spacing:-0.02em;color:#E9EBF0">Backdoored CI action sat live for six hours across 40k repos</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">BLEEPING COMPUTER &#183; <span style="color:#E9A94A">7 SRC</span></div>
+        <p style="margin:0;font-size:13px;color:#98A1B5;line-height:1.5">Tag was force-pushed, not a new release. Pin to commit SHAs, again.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0;border-bottom:1px solid #141922">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">SQLite ships a native vector index</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">HACKER NEWS &#183; 891 PTS</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">The Register on the quiet death of the tech interview whiteboard</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">THE REGISTER</div>
+      </div>
+    </div>
+
+    <div style="padding:0 24px 26px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;border-top:3px solid #E9A94A">
+        <div style="display:flex;align-items:center;gap:8px"><h2 style="font-size:12.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#E9A94A">Operating Systems</h2><span class="m" style="font-size:10.5px;color:#69728A">6</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:13px 0;border-bottom:1px solid #141922">
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <a href="#" style="font-size:17px;font-weight:600;line-height:1.24;letter-spacing:-0.02em;color:#E9EBF0">GNOME 50 lands explicit sync by default</a>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:4px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+        <div class="m" style="font-size:10.5px;color:#69728A">PHORONIX &#183; <span style="color:#E9A94A">3 SRC</span></div>
+        <p style="margin:0;font-size:13px;color:#98A1B5;line-height:1.5">The long-standing NVIDIA flicker on Wayland is finally resolved for the common case.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0;border-bottom:1px solid #141922">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">Debian 14 freeze date announced</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">DEBIAN NEWS</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding:13px 0">
+        <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.26;letter-spacing:-0.015em;color:#E9EBF0">Android 17 developer preview drops the legacy storage API</a>
+        <div class="m" style="font-size:10.5px;color:#69728A">ANDROID POLICE &#183; <span style="color:#E9A94A">4 SRC</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:16px 34px;border-top:1px solid #1E2430;display:flex;justify-content:space-between;align-items:center">
+    <a href="#" class="m" style="font-size:10.5px">&#8592; 18 AUGUST</a>
+    <span class="m" style="font-size:10.5px;color:#4E566A">DIGEST 174 OF 178</span>
+    <a href="#" class="m" style="font-size:10.5px">20 AUGUST &#8594;</a>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}a:hover{color:#F0BE72}
+    h1,h2,h3{margin:0}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#69728A}
+    .card{background:#0E121A;border:1px solid #1E2430;border-radius:4px}
+    .tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;color:#69728A;border:1px solid #1E2430;border-radius:2px;padding:2px 7px}
+  </style>
+</helmet>
+<div style="min-height:900px;padding:0 0 34px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 34px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="width:7px;height:7px;background:#E9A94A;border-radius:50%;display:inline-block"></span>
+      <span style="font-size:18px;font-weight:600;letter-spacing:-0.022em">Tech News Agent</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <a href="#" style="color:#98A1B5">Archive</a>
+      <a href="#" style="color:#98A1B5">Tags</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Saved</span>
+      <a href="#" style="color:#98A1B5">Sources</a>
+      <a href="#" style="color:#98A1B5">Dashboard</a>
+    </div>
+  </div>
+  <div style="padding:24px 34px 0;display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:32px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between">
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <h1 style="font-size:25px;font-weight:700;letter-spacing:-0.03em">Saved</h1>
+          <p style="margin:0;font-size:13.5px;color:#98A1B5">31 stories kept for later. Nothing here expires.</p>
+        </div>
+        <div style="display:flex;gap:7px">
+          <span class="m" style="font-size:10.5px;padding:5px 11px;background:#E9A94A;color:#0A0D12;border-radius:2px">ALL 31</span>
+          <a href="#" class="m" style="font-size:10.5px;padding:5px 11px;border:1px solid #1E2430;color:#98A1B5;border-radius:2px">UNREAD 12</a>
+        </div>
+      </div>
+
+      <span class="lbl">Saved this week</span>
+      <div class="card" style="overflow:hidden">
+        <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #141922;align-items:flex-start">
+          <span class="m" style="font-size:10.5px;color:#69728A;padding-top:3px;flex:none;width:44px">23 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <a href="#" style="font-size:16px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+            <div class="m" style="font-size:10.5px;color:#69728A"><span style="color:#E9A94A">os</span> &#183; phoronix &#183; 3 src</div>
+            <div style="display:flex;gap:6px;padding-top:2px"><span class="tag">kernel</span><span class="tag">scheduler</span></div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #141922;align-items:flex-start">
+          <span class="m" style="font-size:10.5px;color:#69728A;padding-top:3px;flex:none;width:44px">22 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <a href="#" style="font-size:16px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">ServeTheHome benchmarks the first 128-core Arm server board</a>
+            <div class="m" style="font-size:10.5px;color:#69728A"><span style="color:#E9A94A">hardware</span> &#183; servethehome</div>
+            <div style="display:flex;gap:6px;padding-top:2px"><span class="tag">arm</span><span class="tag">homelab</span></div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 16px;align-items:flex-start">
+          <span class="m" style="font-size:10.5px;color:#69728A;padding-top:3px;flex:none;width:44px">19 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <a href="#" style="font-size:16px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">GNOME 50 lands explicit sync by default</a>
+            <div class="m" style="font-size:10.5px;color:#69728A"><span style="color:#E9A94A">os</span> &#183; phoronix &#183; 3 src</div>
+            <div style="display:flex;gap:6px;padding-top:2px"><span class="tag">wayland</span><span class="tag">gnome</span></div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+      </div>
+
+      <span class="lbl">Earlier</span>
+      <div class="card" style="overflow:hidden">
+        <div style="display:flex;gap:16px;padding:14px 16px;border-bottom:1px solid #141922;align-items:flex-start">
+          <span class="m" style="font-size:10.5px;color:#69728A;padding-top:3px;flex:none;width:44px">11 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <a href="#" style="font-size:16px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">KDE Plasma 6.6 makes the Wayland session the only option</a>
+            <div class="m" style="font-size:10.5px;color:#69728A"><span style="color:#E9A94A">os</span> &#183; linuxiac</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+        <div style="display:flex;gap:16px;padding:14px 16px;align-items:flex-start">
+          <span class="m" style="font-size:10.5px;color:#69728A;padding-top:3px;flex:none;width:44px">04 Aug</span>
+          <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+            <a href="#" style="font-size:16px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">A protocol for HDR passthrough merges into wayland-protocols</a>
+            <div class="m" style="font-size:10.5px;color:#69728A"><span style="color:#E9A94A">os</span> &#183; lwn.net</div>
+          </div>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#E9A94A" stroke="#E9A94A" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:3px"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:10px">
+        <span class="lbl">By lane</span>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#E9A94A">Operating Systems</span><span class="m" style="color:#98A1B5">17</span></div><div style="height:5px;background:#141922;border-radius:1px"><div style="width:100%;height:5px;background:#E9A94A;border-radius:1px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#E9A94A">Hardware</span><span class="m" style="color:#98A1B5">9</span></div><div style="height:5px;background:#141922;border-radius:1px"><div style="width:53%;height:5px;background:#E9A94A;border-radius:1px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#E9A94A">Technology</span><span class="m" style="color:#98A1B5">5</span></div><div style="height:5px;background:#141922;border-radius:1px"><div style="width:29%;height:5px;background:#E9A94A;border-radius:1px"></div></div></div>
+        </div>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:10px">
+        <span class="lbl">Most saved tags</span>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="#" class="tag" style="color:#E9A94A;border-color:#2E3646">kernel 8</a>
+          <a href="#" class="tag" style="color:#98A1B5">wayland 6</a>
+          <a href="#" class="tag" style="color:#98A1B5">arm 4</a>
+          <a href="#" class="tag" style="color:#98A1B5">homelab 3</a>
+          <a href="#" class="tag" style="color:#98A1B5">gpu 3</a>
+        </div>
+      </div>
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:7px">
+        <span class="lbl">Export</span>
+        <p style="margin:0;font-size:12.5px;color:#98A1B5;line-height:1.5">Your saved list is its own feed &#8212; readable anywhere.</p>
+        <a href="#" class="m" style="font-size:11px">/feed/saved.xml &#8594;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

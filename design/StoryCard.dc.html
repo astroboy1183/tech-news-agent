@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}a:hover{color:#F0BE72}
+    h1,h2,h3,h4{margin:0}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#69728A}
+    .badge{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:#E9A94A;color:#0A0D12;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:500;flex:none}
+    .card{background:#0E121A;border:1px solid #1E2430;border-radius:4px;padding:17px 19px;display:flex;flex-direction:column;gap:10px}
+    .tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;color:#69728A;border:1px solid #1E2430;border-radius:2px;padding:2px 7px}
+    .btn{display:flex;align-items:center;gap:5px;border:1px solid #1E2430;border-radius:3px;padding:6px 11px;background:#0A0D12;font-size:12.5px;color:#98A1B5}
+  </style>
+</helmet>
+
+<div style="padding:28px 32px;display:flex;flex-direction:column;gap:20px;min-height:880px">
+
+  <div style="display:flex;flex-direction:column;gap:5px">
+    <span class="lbl" style="color:#E9A94A">Anatomy</span>
+    <h2 style="font-size:23px;font-weight:700;letter-spacing:-0.03em">A story has two states</h2>
+    <p style="margin:0;font-size:13.5px;color:#98A1B5;max-width:78ch">Only ~350 of the ~3,500 articles collected each day get an AI summary. The other ~90% still appear immediately &#8212; they are just more compact. <strong style="color:#E9EBF0">Nothing is hidden for want of budget.</strong></p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:18px;align-items:start">
+
+    <!-- COMPACT -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="m" style="font-size:10.5px;border:1px solid #1E2430;color:#98A1B5;border-radius:2px;padding:3px 9px">DEFAULT</span>
+        <span style="font-size:14px;font-weight:600">Compact &#8212; no summary</span>
+        <span class="m" style="font-size:10.5px;color:#4E566A;margin-left:auto">~90%</span>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;gap:9px">
+          <span class="badge">1</span>
+          <a href="#" style="font-size:16.5px;font-weight:600;line-height:1.28;letter-spacing:-0.018em;color:#E9EBF0">MSI lists three Zen 6 motherboards in a support-page leak</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span class="badge">2</span>
+          <div class="m" style="font-size:10.5px;color:#69728A;display:flex;align-items:center;gap:7px">
+            <span style="color:#98A1B5">videocardz</span><span>&#183;</span><span>4m</span><span>&#183;</span><span style="color:#E9A94A">hardware</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span class="badge">5</span>
+          <div style="display:flex;gap:6px"><span class="tag">amd</span><span class="tag">motherboards</span></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1E2430;padding-top:11px">
+          <div style="display:flex;align-items:center;gap:9px">
+            <span class="badge">7</span>
+            <div style="display:flex;gap:6px">
+              <span class="btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#98A1B5" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>Save</span>
+              <span class="btn">&#128077;</span><span class="btn">&#128078;</span>
+            </div>
+          </div>
+          <span class="m" style="font-size:10.5px;color:#4E566A">score 38</span>
+        </div>
+      </div>
+      <p style="margin:0;font-size:12.5px;color:#69728A;line-height:1.5">Everything here comes from the feed itself plus keyword rules. No AI call, so it costs nothing and appears within seconds of publication.</p>
+    </div>
+
+    <!-- SUMMARIZED -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="m" style="font-size:10.5px;border:1px solid #2E3646;color:#E9A94A;background:#221A0E;border-radius:2px;padding:3px 9px">EARNED IT</span>
+        <span style="font-size:14px;font-weight:600">Summarized</span>
+        <span class="m" style="font-size:10.5px;color:#4E566A;margin-left:auto">~10%</span>
+      </div>
+      <div class="card" style="border-color:#2E3646">
+        <div style="display:flex;align-items:flex-start;gap:9px">
+          <span class="badge">1</span>
+          <a href="#" style="font-size:19px;font-weight:600;line-height:1.24;letter-spacing:-0.022em;color:#E9EBF0">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <span class="badge">2</span>
+          <div class="m" style="font-size:10.5px;color:#69728A;display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+            <span style="color:#98A1B5">phoronix</span><span>&#183;</span><span>2m</span><span>&#183;</span><span style="color:#E9A94A">os</span>
+            <span style="border:1px solid #2E3646;border-radius:2px;padding:1px 6px;color:#E9A94A">3 sources</span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px">
+          <span class="badge">3</span>
+          <p style="margin:0;font-size:14px;line-height:1.55;color:#98A1B5">After three cycles in -next, the new scheduler is merged. Early benchmarks show gains on high-core-count desktops and a regression on one NUMA-heavy database workload.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px">
+          <span class="badge">4</span>
+          <p style="margin:0;font-size:13px;line-height:1.5;color:#E9EBF0;border-left:2px solid #E9A94A;padding-left:11px"><span class="m" style="font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#E9A94A;display:block;margin-bottom:2px">Why it matters</span>The first scheduler replacement since CFS in 2007 &#8212; it will land in every distro by spring.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span class="badge">5</span>
+          <div style="display:flex;gap:6px"><span class="tag">kernel</span><span class="tag">scheduler</span><span class="tag">performance</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px;border-top:1px solid #1E2430;padding-top:11px">
+          <span class="badge">6</span>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span class="lbl" style="font-size:9.5px">Also covered by</span>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <a href="#" style="font-size:13px">LWN.net &#8212; &ldquo;The new scheduler merged for 6.19&rdquo;</a>
+              <a href="#" style="font-size:13px">Linuxiac &#8212; &ldquo;What the 6.19 merge window brings&rdquo;</a>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1E2430;padding-top:11px">
+          <div style="display:flex;align-items:center;gap:9px">
+            <span class="badge">7</span>
+            <div style="display:flex;gap:6px">
+              <span class="btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#98A1B5" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>Save</span>
+              <span class="btn">&#128077;</span><span class="btn">&#128078;</span>
+            </div>
+          </div>
+          <span class="m" style="font-size:10.5px;color:#4E566A">score 91</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- legend -->
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:0 26px;border-top:1px solid #1E2430;padding-top:14px">
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">1</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Headline</span><span style="font-size:12.5px;color:#98A1B5">Links straight to the publisher. Never a copy on our site.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">2</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Source, age, lane, cluster</span><span style="font-size:12.5px;color:#98A1B5">Lane comes from keyword rules instantly, confirmed by AI later.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">3</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Summary <span class="m" style="font-size:9.5px;color:#E9A94A">AI</span></span><span style="font-size:12.5px;color:#98A1B5">Written only from the fetched text. The excerpt is stored alongside it.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">4</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Why it matters <span class="m" style="font-size:9.5px;color:#E9A94A">AI</span></span><span style="font-size:12.5px;color:#98A1B5">Only when the story warrants it &#8212; not on every card.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">5</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Tags</span><span style="font-size:12.5px;color:#98A1B5">Keyword-derived at first, refined by AI where it ran.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">6</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Also covered by <span class="m" style="font-size:9.5px;color:#E9A94A">AI</span></span><span style="font-size:12.5px;color:#98A1B5">Five outlets on one story become one card &#8212; each its own link.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0"><span class="badge">7</span><div style="display:flex;flex-direction:column"><span style="font-size:13px;font-weight:600">Feedback</span><span style="font-size:12.5px;color:#98A1B5">Teaches the ranking, and decides what earns a summary tomorrow.</span></div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;align-items:center"><span style="width:17px;flex:none"></span><span style="font-size:12.5px;color:#69728A;font-style:italic">Parts 3, 4 and 6 are the only ones that cost money.</span></div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

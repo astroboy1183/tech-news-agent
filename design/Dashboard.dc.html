@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}
+    a:hover{color:#F0BE72;text-decoration:underline}
+    h1,h2,h3{margin:0}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:0.11em;text-transform:uppercase;color:#69728A}
+    .card{background:#0E121A;border:1px solid #1E2430;border-radius:3px}
+    .num{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  </style>
+</helmet>
+
+<div style="min-height:1220px;padding:0 0 36px">
+
+  <!-- top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 40px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:21px;font-weight:600">Tech News Agent</span>
+      <span class="lbl" style="letter-spacing:0.06em">DASHBOARD</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;font-size:13.5px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <a href="#" style="color:#98A1B5">Archive</a>
+      <a href="#" style="color:#98A1B5">Saved</a>
+      <a href="#" style="color:#98A1B5">Sources</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Dashboard</span>
+      <div style="display:flex;gap:0;border:1px solid #1E2430;border-radius:3px;overflow:hidden;background:#0A0D12">
+        <span title="Wire, light" style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;padding:5px 9px;color:#69728A;border-right:1px solid #1E2430">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69728A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"></path></svg>WIRE</span>
+        <span title="Console, dark" style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;padding:5px 9px;background:#E9A94A;color:#0A0D12">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0D12" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 019.5 3.5a8.5 8.5 0 1011 11z"></path></svg>CONSOLE</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:26px 40px;display:flex;flex-direction:column;gap:22px">
+
+    <!-- range filter row -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <h2 style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:22px;font-weight:600">How the agent is doing</h2>
+      <div style="display:flex;gap:0;border:1px solid #1E2430;border-radius:3px;overflow:hidden;background:#0E121A">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;padding:6px 13px;color:#98A1B5;border-right:1px solid #1E2430">24h</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;padding:6px 13px;background:#E9A94A;color:#0E121A;border-right:1px solid #1E2430">7d</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;padding:6px 13px;color:#98A1B5;border-right:1px solid #1E2430">30d</span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;padding:6px 13px;color:#98A1B5">All</span>
+      </div>
+    </div>
+
+    <!-- KPI TILES -->
+    <div style="display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:8px">
+        <span class="lbl">Live today</span>
+        <div style="display:flex;align-items:baseline;gap:7px">
+          <span class="num" style="font-size:32px;font-weight:500;line-height:1">7,912</span>
+        </div>
+        <div style="display:flex;gap:2px;height:5px;border-radius:1px;overflow:hidden">
+          <div style="width:27%;background:#E9A94A"></div><div style="width:21%;background:#E9A94A"></div><div style="width:18%;background:#E9A94A"></div><div style="width:13%;background:#E9A94A"></div><div style="width:12%;background:#E9A94A"></div><div style="width:9%;background:#E9A94A"></div>
+        </div>
+        <span class="num" style="font-size:10px;color:#69728A">ACROSS 6 CATEGORIES</span>
+      </div>
+
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:8px;border-color:#E9A94A">
+        <span class="lbl" style="color:#E9A94A">Median latency</span>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <span class="num" style="font-size:32px;font-weight:500;line-height:1;color:#E9A94A">3m12s</span>
+        </div>
+        <span style="font-size:12px;color:#98A1B5;line-height:1.4">Publication to visible on the feed.</span>
+        <span class="num" style="font-size:10px;color:#69728A">WEBSUB PATH: 11s</span>
+      </div>
+
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:8px">
+        <span class="lbl">Signal ratio</span>
+        <div style="display:flex;align-items:baseline;gap:7px">
+          <span class="num" style="font-size:32px;font-weight:500;line-height:1">38%</span>
+          <span class="num" style="font-size:12px;color:#E9A94A">&#9650; 6</span>
+        </div>
+        <span style="font-size:12px;color:#98A1B5;line-height:1.4">Of what you were shown, how much you opened.</span>
+        <svg width="100%" height="18" viewBox="0 0 160 18" preserveAspectRatio="none" aria-label="Signal ratio, last 7 days">
+          <polyline points="0,13 26,12 53,14 80,10 106,9 133,7 160,4" fill="none" stroke="#E9A94A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <circle cx="158" cy="4" r="2.6" fill="#E9A94A" stroke="#0E121A" stroke-width="1.6"></circle>
+        </svg>
+      </div>
+
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:8px">
+        <span class="lbl">AI budget today</span>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <span class="num" style="font-size:32px;font-weight:500;line-height:1">$0.31</span>
+          <span style="font-size:12px;color:#69728A">/ $0.45</span>
+        </div>
+        <div style="height:6px;background:#141922;border-radius:1px;display:flex"><div style="width:69%;background:#E9A94A"></div></div>
+        <span class="num" style="font-size:10px;color:#69728A">312 SUMMARIZED &#183; $12.40 MTD</span>
+      </div>
+
+      <div class="card" style="padding:15px 16px;display:flex;flex-direction:column;gap:8px">
+        <span class="lbl">Sources polling</span>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <span class="num" style="font-size:32px;font-weight:500;line-height:1">298<span style="font-size:17px;color:#69728A">/302</span></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="2" stroke-linecap="round"><path d="M12 3l9 16H3z"></path><path d="M12 9v4.5"></path></svg>
+          <span style="font-size:12px;color:#D9A441">4 need attention</span>
+        </div>
+        <span class="num" style="font-size:10px;color:#69728A">64 VIA WEBSUB PUSH</span>
+      </div>
+    </div>
+
+    <!-- FUNNEL + LANE SPLIT -->
+    <div style="display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:14px">
+
+      <!-- funnel -->
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <h3 style="font-size:14.5px;font-weight:600">Today&#39;s funnel</h3>
+          <span class="lbl">Articles &#183; 29 Aug</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:grid;grid-template-columns:186px minmax(0,1fr) 84px;gap:12px;align-items:center"><span style="font-size:13px;color:#98A1B5;font-weight:400">Feed items seen</span><div style="display:flex;align-items:center;gap:8px"><div style="width:420px;max-width:100%;height:19px;background:#E9A94A;border-radius:0 3px 3px 0"></div></div><span class="num" style="font-size:13px;text-align:right;color:#98A1B5;font-weight:400">8,204</span></div>
+          <div style="display:grid;grid-template-columns:186px minmax(0,1fr) 84px;gap:12px;align-items:center"><span style="font-size:13px;color:#98A1B5;font-weight:400">New after URL dedupe</span><div style="display:flex;align-items:center;gap:8px"><div style="width:146px;max-width:100%;height:19px;background:#E9A94A;border-radius:0 3px 3px 0"></div><span class="num" style="font-size:11px;color:#69728A">35%</span></div><span class="num" style="font-size:13px;text-align:right;color:#98A1B5;font-weight:400">2,847</span></div>
+          <div style="display:grid;grid-template-columns:186px minmax(0,1fr) 84px;gap:12px;align-items:center"><span style="font-size:13px;color:#98A1B5;font-weight:400">Unique after clustering</span><div style="display:flex;align-items:center;gap:8px"><div style="width:112px;max-width:100%;height:19px;background:#E9A94A;border-radius:0 3px 3px 0"></div><span class="num" style="font-size:11px;color:#69728A">27%</span></div><span class="num" style="font-size:13px;text-align:right;color:#98A1B5;font-weight:400">2,180</span></div>
+          <div style="display:grid;grid-template-columns:186px minmax(0,1fr) 84px;gap:12px;align-items:center"><span style="font-size:13px;color:#98A1B5;font-weight:400">Selected for a summary</span><div style="display:flex;align-items:center;gap:8px"><div style="width:16px;max-width:100%;height:19px;background:#E9A94A;border-radius:0 3px 3px 0"></div><span class="num" style="font-size:11px;color:#69728A">4%</span></div><span class="num" style="font-size:13px;text-align:right;color:#98A1B5;font-weight:400">312</span></div>
+          <div style="display:grid;grid-template-columns:186px minmax(0,1fr) 84px;gap:12px;align-items:center"><span style="font-size:13px;color:#E9EBF0;font-weight:600">Into the daily digest</span><div style="display:flex;align-items:center;gap:8px"><div style="width:2px;max-width:100%;height:19px;background:#E9A94A;border-radius:0 3px 3px 0"></div><span class="num" style="font-size:11px;color:#69728A">0.3%</span></div><span class="num" style="font-size:13px;text-align:right;color:#E9EBF0;font-weight:600">24</span></div>
+        </div>
+
+        <p style="margin:0;font-size:12.5px;color:#69728A;border-top:1px solid #141922;padding-top:11px;line-height:1.45">667 stories collapsed into clusters, and 5,357 feed items were already-seen repeats caught by conditional GET and URL hashing. Only 11% of what was collected earned an AI summary &#8212; the rest is all still on the feed.</p>
+      </div>
+
+      <!-- lane split -->
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <h3 style="font-size:14.5px;font-weight:600">Summaries by category</h3>
+          <span class="lbl">Today &#183; floor 60 each</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">AI &amp; ML</span><span class="num" style="color:#98A1B5;font-size:11.5px">118 of 2,140</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:100%;background:#E9A94A;border-radius:2px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">Software &amp; Dev</span><span class="num" style="color:#98A1B5;font-size:11.5px">94 of 1,687</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:80%;background:#E9A94A;border-radius:2px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">Hardware</span><span class="num" style="color:#98A1B5;font-size:11.5px">86 of 1,402</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:73%;background:#E9A94A;border-radius:2px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">Operating Systems</span><span class="num" style="color:#98A1B5;font-size:11.5px">74 of 1,046</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:63%;background:#E9A94A;border-radius:2px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">Security &amp; Privacy</span><span class="num" style="color:#98A1B5;font-size:11.5px">72 of 934</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:61%;background:#E9A94A;border-radius:2px"></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px"><span style="color:#E9A94A;font-weight:600">Industry &amp; Policy</span><span class="num" style="color:#98A1B5;font-size:11.5px">64 of 703</span></div><div style="height:6px;background:#141922;border-radius:2px;display:flex"><div style="width:54%;background:#E9A94A;border-radius:2px"></div></div></div>
+        </div>
+        <p style="margin:0;font-size:12px;color:#69728A;border-top:1px solid #161B24;padding-top:11px;line-height:1.5">Every category cleared its floor of 60. The merit pool above that follows what you read &#8212; AI takes the largest share because you open the most of it, not because it publishes the most.</p>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD + SPEND -->
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px">
+
+      <!-- source leaderboard -->
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:13px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <h3 style="font-size:14.5px;font-weight:600">Which sources earn their place</h3>
+          <span class="lbl">Last 7 days</span>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#98A1B5"><span style="width:11px;height:11px;background:#E9A94A;border-radius:1px;display:inline-block"></span>You opened</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#98A1B5"><span style="width:11px;height:11px;background:#5A4A28;border-radius:1px;display:inline-block"></span>Shown, not opened</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">Phoronix</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:120px;background:#E9A94A;border-radius:1px"></div><div style="width:60px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">4/6</span>
+          </div>
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">Ars Technica</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:90px;background:#E9A94A;border-radius:1px"></div><div style="width:60px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">3/5</span>
+          </div>
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">LWN.net</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:90px;background:#E9A94A;border-radius:1px"></div><div style="width:30px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">3/4</span>
+          </div>
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">Hacker News</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:60px;background:#E9A94A;border-radius:1px"></div><div style="width:60px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">2/4</span>
+          </div>
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">The Verge</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:30px;background:#E9A94A;border-radius:1px"></div><div style="width:120px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">1/5</span>
+          </div>
+          <div style="display:grid;grid-template-columns:118px minmax(0,1fr) 46px;gap:11px;align-items:center">
+            <span style="font-size:13px;color:#98A1B5">Windows Central</span>
+            <div style="display:flex;gap:2px;height:16px"><div style="width:90px;background:#5A4A28;border-radius:1px"></div></div>
+            <span class="num" style="font-size:12px;color:#69728A;text-align:right">0/3</span>
+          </div>
+        </div>
+        <p style="margin:0;font-size:12.5px;color:#69728A;border-top:1px solid #141922;padding-top:11px;line-height:1.45">The Verge publishes the most and you open the least of it. Next week's preference pass will lower its weight.</p>
+      </div>
+
+      <!-- AI spend -->
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:13px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <h3 style="font-size:14.5px;font-weight:600">AI spend per day</h3>
+          <span class="lbl">Last 30 days</span>
+        </div>
+        <div style="position:relative;padding-top:4px">
+          <svg width="100%" height="76" viewBox="0 0 430 76" preserveAspectRatio="none" aria-label="Daily AI spend, last 30 days">
+            <polygon points="0,64 0,37.6 14.8,41.4 29.7,33.9 44.5,35.8 59.3,30.1 74.1,39.5 89,43.3 103.8,32 118.6,28.2 133.4,37.6 148.3,41.4 163.1,35.8 177.9,22.6 192.8,33.9 207.6,39.5 222.4,43.3 237.2,37.6 252.1,30.1 266.9,26.4 281.7,35.8 296.6,41.4 311.4,37.6 326.2,33.9 341,39.5 355.9,32 370.7,28.2 385.5,37.6 400.3,41.4 415.2,35.8 430,33.9 430,64" fill="#221A0E"></polygon>
+            <line x1="0" y1="7.5" x2="430" y2="7.5" stroke="#D9A441" stroke-width="1.5" stroke-dasharray="4 3"></line>
+            <polyline points="0,37.6 14.8,41.4 29.7,33.9 44.5,35.8 59.3,30.1 74.1,39.5 89,43.3 103.8,32 118.6,28.2 133.4,37.6 148.3,41.4 163.1,35.8 177.9,22.6 192.8,33.9 207.6,39.5 222.4,43.3 237.2,37.6 252.1,30.1 266.9,26.4 281.7,35.8 296.6,41.4 311.4,37.6 326.2,33.9 341,39.5 355.9,32 370.7,28.2 385.5,37.6 400.3,41.4 415.2,35.8 430,33.9" fill="none" stroke="#E9A94A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline>
+            <line x1="0" y1="64" x2="430" y2="64" stroke="#1E2430" stroke-width="1"></line>
+            <circle cx="430" cy="33.9" r="3.5" fill="#E9A94A" stroke="#0E121A" stroke-width="2"></circle>
+          </svg>
+          <div style="display:flex;justify-content:space-between;padding-top:5px">
+            <span class="num" style="font-size:10.5px;color:#69728A">25 Jul</span>
+            <span class="num" style="font-size:10.5px;color:#D9A441">&#183; &#183; &#183; $0.30 daily cap</span>
+            <span class="num" style="font-size:10.5px;color:#69728A">23 Aug</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:10px;border-top:1px solid #141922;padding-top:12px">
+          <div style="display:flex;flex-direction:column;gap:2px"><span class="lbl">Peak day</span><span class="num" style="font-size:16px">$0.22</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span class="lbl">Tokens in / out</span><span class="num" style="font-size:16px">4.1M / 0.7M</span></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span class="lbl">Batch savings</span><span class="num" style="font-size:16px;color:#E9A94A">&#8722;$4.51</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIPELINE + FAILING -->
+    <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px">
+
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:13px">
+        <h3 style="font-size:14.5px;font-weight:600">Polling tiers</h3>
+        <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:10px">
+          <div style="border:1px solid #141922;border-radius:3px;padding:11px 12px;display:flex;flex-direction:column;gap:5px;background:#0A0D12"><div style="display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;font-weight:600">Tier A</span></div><span class="num" style="font-size:11px;color:#69728A">every 2–5 min</span><span class="num" style="font-size:11px;color:#98A1B5">41 sources &#183; 9 due</span></div>
+          <div style="border:1px solid #141922;border-radius:3px;padding:11px 12px;display:flex;flex-direction:column;gap:5px;background:#0A0D12"><div style="display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;font-weight:600">Tier B</span></div><span class="num" style="font-size:11px;color:#69728A">every 15 min</span><span class="num" style="font-size:11px;color:#98A1B5">118 sources &#183; 22 due</span></div>
+          <div style="border:1px solid #141922;border-radius:3px;padding:11px 12px;display:flex;flex-direction:column;gap:5px;background:#0A0D12"><div style="display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;font-weight:600">Tier C</span></div><span class="num" style="font-size:11px;color:#69728A">every 1 hour</span><span class="num" style="font-size:11px;color:#98A1B5">97 sources &#183; 4 due</span></div>
+          <div style="border:1px solid #141922;border-radius:3px;padding:11px 12px;display:flex;flex-direction:column;gap:5px;background:#0A0D12"><div style="display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E9A94A" stroke-width="3" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"></path></svg><span style="font-size:12.5px;font-weight:600">Tier D</span></div><span class="num" style="font-size:11px;color:#69728A">every 6–24 h</span><span class="num" style="font-size:11px;color:#98A1B5">46 sources &#183; 1 due</span></div>
+        </div>
+        <p style="margin:0;font-size:12.5px;color:#69728A;border-top:1px solid #141922;padding-top:11px;line-height:1.45">1,284 fetches in the last hour, 71% of them 304 Not Modified &#8212; those cost almost nothing. Intervals adapt on their own: 3 sources moved up a tier this week, 7 moved down.</p>
+      </div>
+
+      <div class="card" style="padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D9A441" stroke-width="2" stroke-linecap="round"><path d="M12 3l9 16H3z"></path><path d="M12 9v4.5"></path><circle cx="12" cy="16.4" r="0.9" fill="#D9A441" stroke="none"></circle></svg>
+          <h3 style="font-size:14.5px;font-weight:600">Feeds needing attention</h3>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #141922">
+            <div style="display:flex;flex-direction:column"><span style="font-size:13px">AnandTech</span><span class="num" style="font-size:10.5px;color:#E0685C">No items in 412 days</span></div>
+            <a href="#" style="font-size:12px">Remove</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #141922">
+            <div style="display:flex;flex-direction:column"><span style="font-size:13px">The Elec</span><span class="num" style="font-size:10.5px;color:#E0685C">404 for 3 days</span></div>
+            <a href="#" style="font-size:12px">Find new URL</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #141922">
+            <div style="display:flex;flex-direction:column"><span style="font-size:13px">Six Colors</span><span class="num" style="font-size:10.5px;color:#D9A441">TLS handshake failed &#183; 2d</span></div>
+            <a href="#" style="font-size:12px">Retry</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0">
+            <div style="display:flex;flex-direction:column"><span style="font-size:13px">r/gadgets</span><span class="num" style="font-size:10.5px;color:#D9A441">Rate limited &#183; backing off</span></div>
+            <span style="font-size:12px;color:#69728A">Auto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}
+    a:hover{color:#F0BE72;text-decoration:underline}
+    h1,h2,h3,h4{margin:0}
+  </style>
+</helmet>
+
+<div style="min-height:1180px;padding:0 0 40px">
+
+  <!-- top bar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 44px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:21px;font-weight:600;letter-spacing:-0.01em">Tech News Agent</span>
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#69728A;letter-spacing:0.06em">SUN 23 AUG 2026 · 08:00 IST</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:22px;font-size:13.5px">
+      <a href="#" style="color:#98A1B5">Live</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Digest</span>
+      <a href="#" style="color:#98A1B5">Archive</a>
+      <a href="#" style="color:#98A1B5">Saved</a>
+      <a href="#" style="color:#98A1B5">Sources</a>
+      <a href="#" style="color:#98A1B5">Dashboard</a>
+      <div style="display:flex;gap:0;border:1px solid #1E2430;border-radius:3px;overflow:hidden;background:#0A0D12">
+        <span title="Wire, light" style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;padding:5px 9px;color:#69728A;border-right:1px solid #1E2430">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#69728A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"></path></svg>WIRE</span>
+        <span title="Console, dark" style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;padding:5px 9px;background:#E9A94A;color:#0A0D12">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A0D12" stroke-width="2" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 019.5 3.5a8.5 8.5 0 1011 11z"></path></svg>CONSOLE</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;border:1px solid #1E2430;border-radius:3px;padding:6px 10px;background:#0A0D12;min-width:190px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#69728A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <span style="font-size:13px;color:#69728A">Search 4,182 stories</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- digest intro -->
+  <div style="padding:30px 44px 22px;border-bottom:1px solid #1E2430">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:9px">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;color:#E9A94A;font-weight:500">Today&#39;s digest</span>
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">24 stories · from 247 collected</span>
+    </div>
+    <p style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:19.5px;line-height:1.5;color:#98A1B5;margin:0;max-width:88ch;text-wrap:pretty">A heavy morning for kernels — the Linux 6.19 merge window opened with the scheduler rewrite finally landing, and Microsoft moved Recall's index fully on-device. In hardware, AMD&#39;s Zen 6 desktop parts leaked with a 12-channel memory controller. The EU began enforcing the AI Act against general-purpose models.</p>
+  </div>
+
+  <!-- three lane columns -->
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:0;border-bottom:1px solid #1E2430">
+
+    <!-- GADGETS -->
+    <div style="display:flex;flex-direction:column;gap:0;border-right:1px solid #1E2430;padding:0 26px 30px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;border-top:3px solid #E9A94A;margin-top:0">
+        <div style="display:flex;align-items:baseline;gap:9px">
+          <h2 style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;color:#E9A94A">Gadgets &amp; Hardware</h2>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">8</span>
+        </div>
+        <a href="#" style="font-size:12.5px;color:#98A1B5">View all</a>
+      </div>
+
+      <!-- hero -->
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:20px;border-bottom:1px solid #141922">
+        <div style="height:132px;background:#141922;border:1px solid #1E2430;border-radius:2px;display:flex;align-items:center;justify-content:center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A434F" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg>
+        </div>
+        <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;line-height:1.24;color:#E9EBF0;text-wrap:balance">Zen 6 desktop silicon leaks with a 12-channel memory controller</a>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">
+          <span style="color:#98A1B5;font-weight:500">TechPowerUp</span><span>·</span><span>3h ago</span>
+        </div>
+        <p style="font-size:14px;line-height:1.55;color:#98A1B5;margin:0">Slides put the top part at 24 cores on a new socket. If the channel count is real it is the biggest desktop memory jump in a decade.</p>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:2px">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:#69728A">Also covered by</span>
+          <a href="#" style="font-size:12px">Tom&#39;s Hardware</a>
+          <a href="#" style="font-size:12px">VideoCardz</a>
+          <a href="#" style="font-size:12px">Chips and Cheese</a>
+        </div>
+      </div>
+
+      <!-- secondary items -->
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">ServeTheHome benchmarks the first 128-core Arm server board</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">ServeTheHome</span> · 5h ago</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">Idle draw is the surprise — 41W for the whole board, which changes the homelab maths.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Sony&#39;s compact drops the mechanical shutter entirely</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">DPReview</span> · 7h ago</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">Readout is fast enough that rolling-shutter skew stays under a millisecond.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Teardown finds a user-replaceable battery in the new Pixel Watch</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">iFixit</span> · 9h ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECHNOLOGY -->
+    <div style="display:flex;flex-direction:column;gap:0;border-right:1px solid #1E2430;padding:0 26px 30px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;border-top:3px solid #E9A94A">
+        <div style="display:flex;align-items:baseline;gap:9px">
+          <h2 style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;color:#E9A94A">Technology</h2>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">9</span>
+        </div>
+        <a href="#" style="font-size:12.5px;color:#98A1B5">View all</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:20px;border-bottom:1px solid #141922">
+        <div style="height:132px;background:#141922;border:1px solid #1E2430;border-radius:2px;display:flex;align-items:center;justify-content:center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A434F" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg>
+        </div>
+        <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;line-height:1.24;color:#E9EBF0;text-wrap:balance">EU begins enforcing the AI Act against general-purpose models</a>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">
+          <span style="color:#98A1B5;font-weight:500">Reuters</span><span>·</span><span>2h ago</span>
+          <span style="border:1px solid #1E2430;border-radius:2px;padding:1px 5px;color:#E9A94A;background:#221A0E">5 sources</span>
+        </div>
+        <p style="font-size:14px;line-height:1.55;color:#98A1B5;margin:0">First compliance deadlines apply to models above the compute threshold. Two providers have filed for the transitional extension.</p>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:2px">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:#69728A">Also covered by</span>
+          <a href="#" style="font-size:12px">The Register</a>
+          <a href="#" style="font-size:12px">Wired</a>
+          <a href="#" style="font-size:12px">TechCrunch</a>
+          <a href="#" style="font-size:12px">Ars Technica</a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Cloudflare open-sources its edge inference scheduler</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">Hacker News</span> · 4h ago · 312 points</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">Handles cold-start placement across regions; the scheduling heuristic is the interesting part.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Postgres 19 beta lands with native columnar storage</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">Postgres Weekly</span> · 6h ago</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">Analytical queries no longer need a separate column store for most workloads.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Security researchers disclose a supply-chain flaw in a popular CI action</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">Bleeping Computer</span> · 8h ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATING SYSTEMS -->
+    <div style="display:flex;flex-direction:column;gap:0;padding:0 26px 30px">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;border-top:3px solid #E9A94A">
+        <div style="display:flex;align-items:baseline;gap:9px">
+          <h2 style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;color:#E9A94A">Operating Systems</h2>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">7</span>
+        </div>
+        <a href="#" style="font-size:12.5px;color:#98A1B5">View all</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:20px;border-bottom:1px solid #141922">
+        <div style="height:132px;background:#141922;border:1px solid #1E2430;border-radius:2px;display:flex;align-items:center;justify-content:center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A434F" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg>
+        </div>
+        <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:20px;font-weight:600;line-height:1.24;color:#E9EBF0;text-wrap:balance">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A">
+          <span style="color:#98A1B5;font-weight:500">Phoronix</span><span>·</span><span>1h ago</span>
+          <span style="border:1px solid #1E2430;border-radius:2px;padding:1px 5px;color:#E9A94A;background:#221A0E">3 sources</span>
+        </div>
+        <p style="font-size:14px;line-height:1.55;color:#98A1B5;margin:0">After three cycles in -next, the new scheduler is merged. Early benchmarks show gains on high-core-count desktops and a regression on one NUMA workload.</p>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:2px">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:#69728A">Also covered by</span>
+          <a href="#" style="font-size:12px">LWN.net</a>
+          <a href="#" style="font-size:12px">Linuxiac</a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Windows 11 26H1 moves the Recall index fully on-device</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">Windows Central</span> · 4h ago</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">No cloud round-trip for the semantic index; the feature still ships off by default.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0;border-bottom:1px solid #141922">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">macOS 27.2 beta rewrites the window manager</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">MacRumors</span> · 6h ago</div>
+          <p style="font-size:13.5px;line-height:1.5;color:#98A1B5;margin:0">Tiling is now first-party, with keyboard-driven zones borrowed from the Rectangle model.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;padding:15px 0">
+          <a href="#" style="font-family:Archivo,system-ui,sans-serif;letter-spacing:-0.022em;font-size:16.5px;font-weight:500;line-height:1.3;color:#E9EBF0">Fedora 44 proposes dropping X11 session entirely</a>
+          <div style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#69728A"><span style="color:#98A1B5">Fedora Magazine</span> · 11h ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:20px 44px;display:flex;justify-content:space-between;align-items:center">
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#69728A">Press <span style="border:1px solid #1E2430;border-radius:2px;padding:1px 5px;background:#0E121A">j</span> <span style="border:1px solid #1E2430;border-radius:2px;padding:1px 5px;background:#0E121A">k</span> to move between stories</span>
+    <a href="#" style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px">Show the 14 stories below the cut →</a>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

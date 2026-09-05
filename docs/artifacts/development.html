@@ -1,0 +1,397 @@
+<title>Tech News Portal Build Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ground:#FBFAF7; --surface:#FFFFFF; --sunken:#EFEDE7;
+    --ink:#15171C; --ink-2:#454A58; --ink-3:#6E7382; --ink-4:#9CA1AE;
+    --rule:#DFDAD0; --rule-soft:#EBE7E0;
+    --accent:#9A5B00; --accent-soft:#F6EDE0; --accent-ink:#9A5B00;
+    --warn:#8A5A15; --warn-soft:#F2E6D2;
+    --ok:#1F6B4F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+      --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+      --rule:#1E2430; --rule-soft:#161B24;
+      --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+      --warn:#D9A441; --warn-soft:#2A2113;
+      --ok:#5BC48A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+    --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+    --rule:#1E2430; --rule-soft:#161B24;
+    --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+    --warn:#D9A441; --warn-soft:#2A2113;
+    --ok:#5BC48A;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:Archivo,system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:940px; margin:0 auto; padding:0 26px 90px}
+  h1,h2,h3,h4{margin:0}
+  a{color:var(--accent)}
+  code{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.86em; background:var(--sunken); padding:.1em .35em; border-radius:2px}
+  .m{font-family:"JetBrains Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+  .lbl{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+
+  /* masthead */
+  header.mast{padding:60px 0 28px; border-bottom:2px solid var(--ink)}
+  h1{font-family:Literata,Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.05rem); font-weight:700; letter-spacing:-.038em; line-height:1.03; text-wrap:balance}
+  .sub{font-size:1.08rem; color:var(--ink-2); max-width:62ch; margin:15px 0 0; text-wrap:pretty}
+  .stats{display:flex; flex-wrap:wrap; gap:0; margin-top:28px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); overflow:hidden}
+  .stat{flex:1 1 150px; padding:13px 16px; border-right:1px solid var(--rule); display:flex; flex-direction:column; gap:2px}
+  .stat:last-child{border-right:none}
+  .stat .v{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.42rem; font-variant-numeric:tabular-nums}
+
+  section{padding-top:52px}
+  h2{font-family:Literata,Georgia,serif; font-size:1.5rem; font-weight:700; letter-spacing:-.028em; margin-bottom:6px}
+  .lead{color:var(--ink-2); max-width:66ch; margin:8px 0 0}
+  p{margin:12px 0; max-width:66ch}
+
+  pre{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.76rem; line-height:1.7;
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+    padding:18px 20px; overflow-x:auto; margin:20px 0; color:var(--ink-2);
+  }
+  pre b{color:var(--accent-ink); font-weight:500}
+
+  /* phase */
+  .phase{border:1px solid var(--rule); border-radius:4px; background:var(--surface); margin:16px 0; overflow:hidden}
+  .phead{display:flex; gap:16px; align-items:flex-start; padding:16px 20px; border-bottom:1px solid var(--rule); background:var(--sunken)}
+  .pnum{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.6rem; font-weight:500;
+    color:var(--accent-ink); line-height:1; flex:none; padding-top:2px; font-variant-numeric:tabular-nums;
+  }
+  .ptitle{display:flex; flex-direction:column; gap:5px; flex:1; min-width:0}
+  .ptitle h3{font-family:Literata,Georgia,serif; font-size:1.14rem; font-weight:700; letter-spacing:-.02em}
+  .goal{font-size:.9rem; color:var(--ink-2)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:3px}
+  .chip{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.05em; border:1px solid var(--rule); border-radius:2px; padding:3px 8px; color:var(--ink-3); background:var(--ground)}
+  .chip.eff{border-color:var(--accent); color:var(--accent-ink)}
+  .chip.gate{border-color:var(--warn); color:var(--warn)}
+  .pbody{padding:16px 20px; display:flex; flex-direction:column; gap:15px}
+
+  .sub-h{font-size:.82rem; font-weight:700; letter-spacing:-.005em; color:var(--ink); margin-bottom:-6px}
+  ol.tasks{margin:0; padding-left:22px; display:flex; flex-direction:column; gap:6px}
+  ol.tasks li{font-size:.9rem; color:var(--ink-2); padding-left:2px}
+  ol.tasks li b, ol.tasks li strong{color:var(--ink); font-weight:600}
+  ul.plain{margin:0; padding-left:19px; display:flex; flex-direction:column; gap:5px}
+  ul.plain li{font-size:.88rem; color:var(--ink-2)}
+
+  .files{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.73rem; color:var(--ink-3); line-height:1.85; border-top:1px dashed var(--rule); padding-top:12px}
+  .done{border-left:3px solid var(--accent); background:var(--accent-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .done .lbl{color:var(--accent-ink); display:block; margin-bottom:3px}
+  .done p{margin:0; font-size:.89rem; color:var(--ink); max-width:none}
+  .watch{border-left:3px solid var(--warn); background:var(--warn-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .watch .lbl{color:var(--warn); display:block; margin-bottom:4px}
+  .watch ul{margin:0; padding-left:17px; display:flex; flex-direction:column; gap:4px}
+  .watch li, .watch p{font-size:.88rem; color:var(--ink); margin:0}
+
+  .tw{overflow-x:auto; margin:18px 0; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:.875rem}
+  th,td{text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--sunken); border-bottom:1px solid var(--rule); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.ms{font-family:"JetBrains Mono",ui-monospace,monospace; color:var(--accent-ink); white-space:nowrap}
+
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--rule); font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.72rem; color:var(--ink-4); display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+  .stackrow{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:.87rem}
+  .stackrow b{font-weight:600}
+  .keyidea{border:1px solid var(--accent);border-radius:5px;background:var(--accent-soft);padding:17px 19px;display:flex;flex-direction:column;gap:8px;margin:20px 0}
+  .keyidea .k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .keyidea h3{font-size:1.05rem;font-weight:700;letter-spacing:-.018em;margin:0}
+  .keyidea p{margin:0;font-size:.9rem;color:var(--ink);max-width:none}
+  .cons{border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+  .cons .n{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;color:var(--accent-ink)}
+  .cons h4{font-size:.92rem;font-weight:700;letter-spacing:-.014em;margin:0}
+  .cons p{margin:0;font-size:.85rem;color:var(--ink-2);max-width:none}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div class="lbl" style="color:var(--accent-ink)">Tech News Portal · execution</div>
+  <h1>Build Order</h1>
+  <p class="sub">Ten sections, unlimited sources, an editorial system that composes the front page — under a hard $20 a month.</p>
+  <div class="stats">
+    <div class="stat"><span class="lbl">Phases</span><span class="v">10</span></div>
+    <div class="stat"><span class="lbl">Focused days</span><span class="v">26–33</span></div>
+    <div class="stat"><span class="lbl">Sections</span><span class="v">10</span></div>
+    <div class="stat"><span class="lbl">Articles/day</span><span class="v">~7,900</span></div>
+    <div class="stat"><span class="lbl">Screens</span><span class="v">18</span></div>
+    <div class="stat"><span class="lbl">Ceiling</span><span class="v">$20</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>The one structural change</h2>
+  <div class="keyidea">
+    <span class="k">Phase 1 now ends with an ugly, real front page</span>
+    <h3>The layout meets a real headline on day 4, not day 14</h3>
+    <p>The earlier plan built the website at Phase 4. That meant the design would not touch live data for two weeks — and real headlines are ragged: 24 to 190 characters, colons, CVE numbers, appended outlet names, ALL-CAPS. <strong>Every front page that has ever broken, broke there.</strong></p>
+    <p>So Phase 1 now ends with <code>/raw</code> — the composition slots filled with live feed data and no CSS at all. It exists to answer one question early: does this hold up? A <strong>headline census</strong> over 500 real headlines then sets the clamps and type sizes from measured numbers rather than placeholder copy. Everything downstream is designed against what that shows.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The four constraints</h2>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:16px">
+    <div class="cons"><span class="n">01</span><h4>Unlimited sources, $20 a month</h4><p>Collection is nearly free; only AI scales with volume. The AI half is budget-governed, so <strong>adding a source costs nothing</strong>.</p></div>
+    <div class="cons"><span class="n">02</span><h4>~510 summaries from ~7,900</h4><p>That is 6%. The other 94% must read as complete, not degraded. The compact card is the <em>normal</em> card.</p></div>
+    <div class="cons"><span class="n">03</span><h4>Every section fed daily</h4><p>AI &amp; ML would eat the whole budget on volume. A floor per section, then a merit pool.</p></div>
+    <div class="cons"><span class="n">04</span><h4>Nobody edits the front page</h4><p>So the rules that fill it must be good, inspectable, and overridable by hand in three seconds.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Tech stack</h2>
+  <p class="lead">All Cloudflare. One platform, no servers, and the pieces the portal grew into — images and backups — are native to it.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><b>Compute</b></td><td>Workers — fetch, scheduled, queue</td><td>One runtime for site, cron and pipeline</td></tr>
+      <tr><td><b>Database</b></td><td>D1 (SQLite) + FTS5</td><td>Relational, with full-text search and no second service</td></tr>
+      <tr><td><b>Queues</b></td><td>Cloudflare Queues</td><td>Decouples collect → cluster → enrich</td></tr>
+      <tr><td><b>Vectors</b></td><td>Vectorize + Workers AI <code>bge-small</code></td><td>Semantic clustering; embeddings inside the free 10k neurons/day</td></tr>
+      <tr><td><b>Cache</b></td><td>KV</td><td>Etags, spend ledger, the composed front page</td></tr>
+      <tr><td><b>Objects</b></td><td>R2</td><td>Thumbnail cache for hotlink-blocked sources, nightly D1 backups</td></tr>
+      <tr><td><b>Web</b></td><td>Hono + JSX, hand-written CSS</td><td>Server-rendered, no SPA tax, instant paint</td></tr>
+      <tr><td><b>Identity</b></td><td>Cloudflare Access</td><td>Free to 50 users, zero auth code</td></tr>
+      <tr><td><b>AI</b></td><td><code>claude-haiku-4-5</code></td><td>Summaries and cluster adjudication, budget-capped</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Rejected, and why.</strong> <em>Postgres + pgvector</em> — better archive ceiling and real FTS, but adds a vendor, connection pooling and ~$20/mo the AI budget needs more. <em>A VPS</em> — no platform limits, but you own uptime and patching. <em>Next.js on Vercel</em> — good DX, worse cron, and a $20/mo Pro tier for what Workers does at $5. Revisit Postgres only if D1's 10&nbsp;GB ceiling actually bites, which retention should prevent for three years.</p>
+
+  <h3 style="font-size:.95rem;font-weight:700;margin-top:26px">What $20 buys</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Item</th><th class="num">Monthly</th></tr></thead>
+    <tbody>
+      <tr><td>Workers Paid — Queues, D1, KV, Vectorize access</td><td class="num">$5.00</td></tr>
+      <tr><td>D1 rows written — ~24K/day</td><td class="num">$0.72</td></tr>
+      <tr><td>Vectorize — clustering only</td><td class="num">~$0.50</td></tr>
+      <tr><td>R2 — thumbnail cache + backups</td><td class="num">~$0.30</td></tr>
+      <tr><td>Workers AI embeddings</td><td class="num">$0.00</td></tr>
+      <tr class="total"><td>Claude Haiku — everything left</td><td class="num">$13.50</td></tr>
+    </tbody>
+  </table></div>
+  <p>~510 cluster summaries a day, and only because of three decisions taken together: summaries capped at ~130 output tokens (<em>output is 70% of the cost</em>), summarizing the <strong>cluster</strong> rather than each article, and 85% through the Batch API.</p>
+</section>
+
+<section>
+  <h2>Dependency map</h2>
+<pre><b>P0</b> Scaffold
+ └─► <b>P1</b> Collector + REALITY CHECK ──► <b>P2</b> Cluster ──► <b>P3</b> Summarizer
+                                                       │
+                                          <b>P4</b> Editorial engine
+                                                       │
+                          ┌────────────────────────────┼──────────────┐
+                          ▼                            ▼              ▼
+                     <b>P5</b> Website ──► <b>P9</b> Hardening   <b>P6</b> Slack      <b>P7</b> Email
+                          │                            │         (needs domain)
+                          └──────────┬─────────────────┘
+                                     ▼
+                              <b>P8</b> Agent loop</pre>
+</section>
+
+<section>
+  <h2>The phases</h2>
+
+  <div class="phase"><div class="phead"><span class="pnum">00</span><div class="ptitle">
+    <h3>Scaffold</h3><span class="goal">An empty but deployed Worker with a real database behind it.</span>
+    <div class="chips"><span class="chip eff">0.5 DAY</span><span class="chip">BLOCKS EVERYTHING</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li><strong>Upgrade to Workers Paid.</strong> Hard prerequisite.</li>
+      <li>Create D1, KV, an R2 bucket, the <code>collect</code> and <code>enrich</code> queues, and a Vectorize index (<code>bge-small</code>, 384 dims).</li>
+      <li><code>migrations/0001_init.sql</code> — full schema including <code>articles_fts</code> and its sync triggers. Write them now; backfilling FTS later is miserable.</li>
+      <li><code>GET /health</code> across D1, KV, R2, Vectorize and last run per stage.</li>
+      <li><code>sources.seed.json</code> — ~200 feeds across ten sections. Seed, deploy.</li>
+    </ol>
+    <div class="done"><span class="lbl">Done when</span><p><code>/health</code> is green in production and <code>sources</code> counts ~200.</p></div></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">01</span><div class="ptitle">
+    <h3>Collector, ending in a reality check</h3><span class="goal">The feed fills itself — and the layout meets real headlines.</span>
+    <div class="chips"><span class="chip eff">4 DAYS</span><span class="chip">BLOCKS P2</span><span class="chip">COSTS $0</span></div></div></div>
+    <div class="pbody">
+      <div class="sub-h">Fetching</div>
+      <ol class="tasks">
+        <li><strong>Tiered scheduler</strong> — cron every minute picks sources whose poll is due. A 2–5 min, B 15 min, C hourly, D 6–24 h; intervals adapt.</li>
+        <li><strong>Conditional GET</strong> — a 304 costs almost nothing. Content-hash fallback for feeds with no validators.</li>
+        <li><strong>WebSub</strong> at <code>POST /websub</code> — the only genuinely real-time path.</li>
+        <li><strong>Politeness</strong> — per-domain floor, honour <code>Retry-After</code>, hard 429 backoff, real User-Agent with a contact URL.</li>
+      </ol>
+      <div class="sub-h" style="margin-top:6px">Parsing</div>
+      <ol class="tasks" start="5">
+        <li>Parsers to one shape: RSS 2.0, Atom, JSON Feed. Adapters for HN Algolia, Reddit, GitHub releases, <strong>arXiv</strong>, Google News, Lobste.rs.</li>
+        <li><strong>Bulk OPML import</strong> — what makes &ldquo;unlimited sources&rdquo; true rather than aspirational.</li>
+        <li><strong>Headline normalisation on ingest</strong> — strip appended outlet names, collapse ALL-CAPS to sentence case, straighten quotes, drop trailing ellipses, lift <em>EXCLUSIVE —</em> prefixes into a badge. Store raw and normalised.</li>
+        <li><strong>Rule-based section and topic classification</strong> plus a heuristic score at insert. No AI, so every article is usable the moment it lands.</li>
+      </ol>
+      <div class="sub-h" style="margin-top:6px">The reality check — the point of the phase</div>
+      <ol class="tasks" start="9">
+        <li><code>GET /raw</code> — composition slots filled with live data. <strong>No CSS.</strong></li>
+        <li><strong>Headline census</strong> over 500 real headlines: length distribution, longest token, how many arrive ALL-CAPS, how many carry the outlet name, how many have no thumbnail.</li>
+        <li><strong>Feed the census back into the design</strong> — lead clamp, row clamp and thumbnail fallback set from measured numbers.</li>
+      </ol>
+      <div class="done"><span class="lbl">Done when</span><p>24 hours unattended yields ~7,900 rows each with a section and a score; re-running adds <strong>zero</strong>; and <code>/raw</code> shows a front page you can read, built from real headlines, with the census written down.</p></div>
+      <div class="watch"><span class="lbl">Watch out for</span><p>Feeds that lie about encoding, use six date formats, or omit GUIDs. Wrap every source so one bad feed cannot fail a run.</p></div>
+    </div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">02</span><div class="ptitle">
+    <h3>Cluster</h3><span class="goal">Eight outlets on one story become one entry, with an arrival timeline.</span>
+    <div class="chips"><span class="chip eff">2 DAYS</span><span class="chip">BLOCKS P3</span><span class="chip">COSTS ~$0</span></div></div></div>
+    <div class="pbody">
+      <p style="margin:0;font-size:.9rem;color:var(--ink-2)">Before summarizing, because we summarize clusters rather than articles. That ordering is most of why $20 works.</p>
+      <ol class="tasks">
+        <li><strong>Title-trigram similarity</strong> in a 48-hour window flags candidates. Pure SQL.</li>
+        <li><strong>Embeddings only for the ambiguous ones</strong> — ~600–800/day, inside the free allocation. Vector search resolves them. No LLM call anywhere in this phase.</li>
+        <li>Cluster records — primary by source weight and completeness; members keep their own headlines and links.</li>
+        <li><strong>Arrival timeline</strong> per cluster: first-seen plus per-source offsets. This is what the story page renders.</li>
+        <li>Corroboration and <strong>velocity</strong> — sources per hour, not just total.</li>
+      </ol>
+      <div class="done"><span class="lbl">Done when</span><p>Clusters average &gt;1.8 members on genuinely duplicated stories, 30 spot-checked show no false merges, and the timeline reads correctly.</p></div>
+      <div class="watch"><span class="lbl">Watch out for</span><p><strong>Over-merging.</strong> Two Nvidia announcements on one day are not one story. A missed merge is an annoyance; a false merge hides news.</p></div>
+    </div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">03</span><div class="ptitle">
+    <h3>Summarizer</h3><span class="goal">~510 cluster summaries a day, every section fed, under a hard cap.</span>
+    <div class="chips"><span class="chip eff">2.5 DAYS</span><span class="chip gate">THE WHOLE BUDGET</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li><strong>Per-section allocation</strong> — a floor of ~40 per section per day, then a merit pool of ~110 by your read rate, recomputed nightly.</li>
+      <li><strong>Merit selection</strong> within a section: corroboration, velocity, score, recency. A cron every 10 minutes enqueues what the allocation affords.</li>
+      <li><strong>Summarize the cluster.</strong> One call covers every member.</li>
+      <li>Cost discipline together: system prompt above <strong>1,024 tokens</strong> so caching engages; <code>max_tokens</code> ~130; 85% Batch API.</li>
+      <li><strong>Spend ledger in KV.</strong> At the cap, selection stops; the fast path is untouched.</li>
+    </ol>
+    <div class="done"><span class="lbl">Done when</span><p>~510 summaries daily, every section clears its floor, a week of ledger under $0.45/day. Verify <code>cache_read_input_tokens &gt; 0</code>.</p></div>
+    <div class="watch"><span class="lbl">Watch out for</span><p>Anything in a summary not in the source excerpt — store the excerpt each came from. Batch results arrive out of order; key by <code>custom_id</code>.</p></div></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">04</span><div class="ptitle">
+    <h3>Editorial engine</h3><span class="goal">What makes this a portal rather than a ranked list.</span>
+    <div class="chips"><span class="chip eff">2.5 DAYS</span><span class="chip">NEW PHASE</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li><strong>The five lead gates</strong> — 3+ independent sources; has a summary; under 6 hours <em>or still gaining sources</em>; not the same section as yesterday's lead unless it wins by 25%; not muted by preferences.</li>
+      <li><strong>Manual pin</strong> — one click pins any story as lead for 12 hours, overriding all five, with a visible marker that the page is not running on rules.</li>
+      <li><strong>Slot filler</strong> — lead → 2 hero secondaries → 4 across → 10 section blocks × 5 → 12 latest → 4 most covered. Each slot removes its picks from the pool below. <strong>No story appears twice.</strong></li>
+      <li><strong>Empty states</strong> — no story clears the gates → lead collapses and four-across promotes; quiet section shows what it has and says so; no image → thumbnail dropped, not greyed.</li>
+      <li><strong>Image pipeline</strong> — extract <code>media:thumbnail</code>/<code>og:image</code>, validate dimensions and content-type, hotlink with <code>loading="lazy"</code>, cache to R2 only for sources that block hotlinking.</li>
+      <li><strong>Composition cache</strong> — recompose every 10 minutes into KV, so a page view is one KV read rather than fifteen D1 queries.</li>
+    </ol>
+    <div class="done"><span class="lbl">Done when</span><p><code>/api/frontpage.json</code> returns 73 stories with no duplicates, every slot filled or correctly collapsed, and the pin works.</p></div></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">05</span><div class="ptitle">
+    <h3>Website</h3><span class="goal">Eighteen screens, built against the Phase 1 census.</span>
+    <div class="chips"><span class="chip eff">6–7 DAYS</span><span class="chip gate">GATE: IDENTITY</span></div></div></div>
+    <div class="pbody">
+      <div class="sub-h">5a — Shell and front page <span class="m" style="font-weight:400;color:var(--ink-3);font-size:.78rem">· 2.5 days</span></div>
+      <ol class="tasks"><li>Token CSS for Paper (default) and Ink, all three theme states.</li><li>The front page; the two-state story card, line-clamped everywhere; <code>j</code>/<code>k</code> navigation.</li></ol>
+      <div class="sub-h" style="margin-top:6px">5b — Sections and stories <span class="m" style="font-weight:400;color:var(--ink-3);font-size:.78rem">· 2 days</span></div>
+      <ol class="tasks" start="3"><li><code>/section/:s</code> for all ten with topic chips.</li><li><strong><code>/story/:id</code></strong> — the cluster page with the arrival timeline.</li><li><code>/live</code> and <code>/digest</code>.</li></ol>
+      <div class="sub-h" style="margin-top:6px">5c — Finding and keeping <span class="m" style="font-weight:400;color:var(--ink-3);font-size:.78rem">· 1.5 days</span></div>
+      <ol class="tasks" start="6"><li><strong>Decide identity first</strong> — Cloudflare Access is free to 50 users and means zero auth code.</li><li><code>/search</code> with <code>bm25()</code>, <code>/topic/:t</code>, <code>/archive</code>, <code>/d/:date</code>, <code>/saved</code>, RSS per section and topic.</li></ol>
+      <div class="sub-h" style="margin-top:6px">5d — Ops and mobile <span class="m" style="font-weight:400;color:var(--ink-3);font-size:.78rem">· 1 day</span></div>
+      <ol class="tasks" start="8"><li><code>/sources</code> with OPML import; <code>/dashboard</code>; the phone at 390px — front page, not a feed.</li></ol>
+      <div class="done"><span class="lbl">Done when</span><p>Every route renders with real data, the theme survives a reload, and <strong>you read it in the morning by choice</strong>.</p></div>
+    </div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">06</span><div class="ptitle">
+    <h3>Slack</h3><span class="goal">The digest arrives without you touching anything.</span>
+    <div class="chips"><span class="chip eff">1.5 DAYS</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li>Manifest and a single bot token — your own workspace, no OAuth flow.</li>
+      <li><strong>v0 HMAC over the raw body</strong>, 5-minute replay window. Read the body before any JSON parsing or the HMAC never matches.</li>
+      <li><strong>3-second ack</strong> — respond immediately, work in <code>ctx.waitUntil()</code>, post via <code>response_url</code>.</li>
+      <li>Block Kit digest by section; breaking pushes to a separate channel at 3+ sources within an hour.</li>
+    </ol></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">07</span><div class="ptitle">
+    <h3>Email</h3><span class="goal">The digest arrives in your inbox.</span>
+    <div class="chips"><span class="chip eff">1 DAY</span><span class="chip gate">NEEDS A DOMAIN</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li>Domain onboarded, SPF and DKIM, <code>send_email</code> binding.</li>
+      <li>Table layout, inline styles, plain-text alternative. Email clients are not browsers.</li>
+      <li>Subscriber table, double opt-in, one-click unsubscribe.</li>
+    </ol></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">08</span><div class="ptitle">
+    <h3>Agent loop</h3><span class="goal">Ranking, budget and lead contention shift toward what you read.</span>
+    <div class="chips"><span class="chip eff">2 DAYS</span><span class="chip">NEEDS P5 OR P6</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li>Feedback aggregated per source, section and topic.</li>
+      <li><strong>Weekly preference pass</strong> rewrites a preferences document that feeds the scoring prompt, shifts the per-section budget, <em>and can mute a topic out of lead contention</em>.</li>
+      <li>Source weights move within 0.3–2.0 bounds. <strong>Weekly gap sweep</strong> proposes new sources as Slack approve/reject buttons. Self-repair after three failures.</li>
+    </ol>
+    <div class="watch"><span class="lbl">Watch out for</span><p><strong>Feedback loops eat themselves.</strong> Reserve 2 slots per section for high-scoring stories your preferences do <em>not</em> favour, or the portal narrows to nothing.</p></div></div>
+  </div>
+
+  <div class="phase"><div class="phead"><span class="pnum">09</span><div class="ptitle">
+    <h3>Hardening</h3><span class="goal">It survives you ignoring it for a month.</span>
+    <div class="chips"><span class="chip eff">2 DAYS</span></div></div></div>
+    <div class="pbody"><ol class="tasks">
+      <li>Nightly D1 export to R2 with <strong>one verified restore</strong>.</li>
+      <li>Unit tests on parsers, canonicalizer, normaliser, classifier, scorer and slot filler — the six places a silent bug corrupts data.</li>
+      <li><strong>Retention: keep summaries and metadata, drop raw excerpts after 90 days.</strong> D1 caps at 10&nbsp;GB and 7,900/day reaches it in about three years otherwise.</li>
+      <li>Rate limiting, error budget on <code>/health</code>, and a runbook.</li>
+    </ol></div>
+  </div>
+</section>
+
+<section>
+  <h2>Milestones</h2>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>After</th><th>You have</th></tr></thead>
+    <tbody>
+      <tr><td class="ms">M1</td><td class="ms">P1</td><td>~7,900 articles/day arriving — <strong>and a real front page proving the layout</strong></td></tr>
+      <tr><td class="ms">M2</td><td class="ms">P2</td><td>Duplicates collapsed, arrival timelines — still $0 of AI</td></tr>
+      <tr><td class="ms">M3</td><td class="ms">P3</td><td>Summaries on what matters, every section fed, under cap</td></tr>
+      <tr><td class="ms">M4</td><td class="ms">P4</td><td>A front page that composes itself, with a pin for when it's wrong</td></tr>
+      <tr><td class="ms">M5</td><td class="ms">P5</td><td>The portal you read every morning</td></tr>
+      <tr><td class="ms">M6</td><td class="ms">P6 / P7</td><td>It comes to you</td></tr>
+      <tr><td class="ms">M7</td><td class="ms">P8</td><td>It learns what you read</td></tr>
+      <tr><td class="ms">M8</td><td class="ms">P9</td><td>You can stop thinking about it</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Decisions and when they block</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Decision</th><th>Needed by</th></tr></thead>
+    <tbody>
+      <tr><td>Workers Paid upgrade</td><td class="ms">P0 — hard prerequisite</td></tr>
+      <tr><td>Public, or behind Cloudflare Access</td><td class="ms">P5c — determines how <code>/saved</code> knows you</td></tr>
+      <tr><td>Digest time (assumed 08:00 IST)</td><td class="ms">P6</td></tr>
+      <tr><td>Domain, or not</td><td class="ms">P7 — everything else ships without one</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Explicitly not in v1</h2>
+  <p class="lead">Full-text scraping beyond excerpt fetch · multi-user accounts · a native mobile app · push notifications · comments · translation · podcast and video sources · semantic search across the whole archive (embeddings are for clustering only, to stay inside the free allocation).</p>
+</section>
+
+<footer>
+  <span>Tech News Portal · build order</span>
+  <span>docs/DEVELOPMENT.md</span>
+</footer>
+</div>

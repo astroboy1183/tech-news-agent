@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,600;0,7..72,700;1,7..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#FBFAF7;color:#15171C;font-family:Archivo,system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#15171C;text-decoration:none}
+    h1,h2,h3{margin:0}
+    .ser{font-family:Literata,Georgia,serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .sec{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:#9A5B00}
+    .secq{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;color:#6E7382}
+    .meta{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9px;color:#6E7382}
+    .th{background:#EDE9E1;border:1px solid #E2DCD2;border-radius:3px;display:flex;align-items:center;justify-content:center;flex:none}
+    .row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #EBE7E0;align-items:flex-start}
+    .chip{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:9.5px;padding:6px 11px;border-radius:3px;flex:none;min-height:30px;display:flex;align-items:center}
+  </style>
+</helmet>
+
+<div style="min-height:844px;display:flex;flex-direction:column;background:#FBFAF7">
+
+  <!-- header -->
+  <div style="padding:12px 16px 0;background:#FBFAF7;border-bottom:1px solid #DFDAD0">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:9px">
+      <span class="ser" style="font-size:19px;font-weight:700;letter-spacing:-0.03em">Tech News Agent</span>
+      <div style="display:flex;align-items:center;gap:2px">
+        <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#454A58" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        </div>
+        <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin-right:-11px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#454A58" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:7px;overflow-x:auto;padding-bottom:9px">
+      <span class="chip" style="background:#15171C;color:#FBFAF7;font-weight:500">FRONT PAGE</span>
+      <span class="chip" style="border:1px solid #DFDAD0;color:#454A58;background:#FFFFFF">AI &amp; ML</span>
+      <span class="chip" style="border:1px solid #DFDAD0;color:#454A58;background:#FFFFFF">SOFTWARE</span>
+      <span class="chip" style="border:1px solid #DFDAD0;color:#454A58;background:#FFFFFF">HARDWARE</span>
+      <span class="chip" style="border:1px solid #DFDAD0;color:#454A58;background:#FFFFFF">SECURITY</span>
+    </div>
+  </div>
+
+  <div style="flex:1;padding:0 16px;display:flex;flex-direction:column">
+
+    <!-- lead -->
+    <div style="padding:14px 0 15px;border-bottom:1px solid #DFDAD0;display:flex;flex-direction:column;gap:9px">
+      <div class="th" style="height:176px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.3"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <span style="width:5px;height:5px;border-radius:50%;background:#9A5B00"></span>
+        <span class="sec">Developing · AI &amp; ML</span>
+        <span class="meta" style="margin-left:auto">6 SRC · 2m</span>
+      </div>
+      <a href="#" class="ser" style="font-size:24px;font-weight:700;line-height:1.16;letter-spacing:-0.026em;text-wrap:balance">A single vision transformer matches specialist models across twelve benchmarks</a>
+      <p class="ser" style="margin:0;font-size:14.5px;line-height:1.5;color:#454A58;font-style:italic">One backbone, no per-task heads. The claim that matters is sample efficiency, not accuracy.</p>
+    </div>
+
+    <!-- rows with thumbs -->
+    <div class="row">
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <span class="secq">Security</span>
+        <a href="#" class="ser" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.014em">Signal ships a post-quantum ratchet to every client</a>
+        <span class="meta">signal blog · 48m · <span style="color:#9A5B00">4 src</span></span>
+      </div>
+      <div class="th" style="width:86px;height:66px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+    </div>
+
+    <div class="row">
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <span class="secq">Industry &amp; Policy</span>
+        <a href="#" class="ser" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.014em">EU begins enforcing the AI Act against general-purpose models</a>
+        <span class="meta">reuters · 11m · <span style="color:#9A5B00">5 src</span></span>
+      </div>
+      <div class="th" style="width:86px;height:66px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+    </div>
+
+    <div class="row">
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <span class="secq">Hardware</span>
+        <a href="#" class="ser" style="font-size:16.5px;font-weight:600;line-height:1.26;letter-spacing:-0.014em">Zen 6 silicon leaks with a 12-channel memory controller</a>
+        <span class="meta">techpowerup · 3h · <span style="color:#9A5B00">4 src</span></span>
+      </div>
+      <div class="th" style="width:86px;height:66px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C4BEB2" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1.5"></rect><circle cx="8.5" cy="9.5" r="1.8"></circle><path d="M3 16l5-4 4 3 3-2 6 5"></path></svg></div>
+    </div>
+
+    <!-- section strip -->
+    <div style="padding:16px 0 8px;display:flex;align-items:baseline;justify-content:space-between;border-top:2px solid #15171C;margin-top:6px">
+      <span class="sec">Operating Systems</span>
+      <a href="#" class="m" style="font-size:8.5px;color:#9CA1AE;letter-spacing:0.1em">ALL →</a>
+    </div>
+    <div style="padding:9px 0;border-bottom:1px solid #EBE7E0;display:flex;flex-direction:column;gap:3px">
+      <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.32">Linux 6.19 merge window opens with the scheduler rewrite landing</a>
+      <span class="meta">phoronix · 19m · <span style="color:#9A5B00">3 src</span></span>
+    </div>
+    <div style="padding:9px 0;display:flex;flex-direction:column;gap:3px">
+      <a href="#" style="font-size:14.5px;font-weight:600;line-height:1.32">Windows 11 26H1 moves the Recall index fully on-device</a>
+      <span class="meta">windows central · 52m · <span style="color:#9A5B00">4 src</span></span>
+    </div>
+  </div>
+
+  <!-- bottom nav -->
+  <div style="display:flex;border-top:1px solid #DFDAD0;background:#FFFFFF;padding:6px 0 10px">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;justify-content:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9A5B00" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v14H4z"></path><path d="M4 10h16M10 10v9"></path></svg>
+      <span style="font-size:10px;color:#9A5B00;font-weight:600">Front</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;justify-content:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E7382" stroke-width="1.9" stroke-linecap="round"><path d="M4 11a9 9 0 019 9"></path><path d="M4 4a16 16 0 0116 16"></path><circle cx="5" cy="19" r="1.6" fill="#6E7382" stroke="none"></circle></svg>
+      <span style="font-size:10px;color:#6E7382">Live</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;justify-content:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E7382" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h7v6H4zM13 5h7v6h-7zM4 13h7v6H4zM13 13h7v6h-7z"></path></svg>
+      <span style="font-size:10px;color:#6E7382">Sections</span>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;justify-content:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E7382" stroke-width="1.9" stroke-linejoin="round"><path d="M6 3h12a1 1 0 011 1v17l-7-4.5L5 21V4a1 1 0 011-1z"></path></svg>
+      <span style="font-size:10px;color:#6E7382">Saved</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

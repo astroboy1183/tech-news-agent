@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><script src="./support.js"></script></head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#0A0D12;color:#E9EBF0;font-family:Archivo,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:#E9A94A;text-decoration:none}a:hover{color:#F0BE72}
+    h1,h2,h3{margin:0}
+    .m{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+    .lbl{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#69728A}
+    .card{background:#0E121A;border:1px solid #1E2430;border-radius:4px}
+    .day{display:flex;flex-direction:column;gap:3px;padding:6px 5px;border-radius:2px;background:#0E121A;border:1px solid #141922;min-height:44px}
+    .dn{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;color:#69728A;font-variant-numeric:tabular-nums}
+    .dc{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;color:#E9EBF0;font-variant-numeric:tabular-nums}
+    .bars{display:flex;gap:1px;height:3px}
+  </style>
+</helmet>
+<div style="min-height:1000px;padding:0 0 34px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 34px;border-bottom:1px solid #1E2430;background:#0E121A">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="width:7px;height:7px;background:#E9A94A;border-radius:50%;display:inline-block"></span>
+      <span style="font-size:18px;font-weight:600;letter-spacing:-0.022em">Tech News Agent</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px">
+      <a href="#" style="color:#98A1B5">Today</a>
+      <span style="color:#E9EBF0;font-weight:600;border-bottom:2px solid #E9A94A;padding-bottom:2px">Archive</span>
+      <a href="#" style="color:#98A1B5">Tags</a>
+      <a href="#" style="color:#98A1B5">Saved</a>
+      <a href="#" style="color:#98A1B5">Sources</a>
+      <a href="#" style="color:#98A1B5">Dashboard</a>
+    </div>
+  </div>
+  <div style="padding:24px 34px 0;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <h1 style="font-size:25px;font-weight:700;letter-spacing:-0.03em">Archive</h1>
+        <p style="margin:0;font-size:13.5px;color:#98A1B5">Every digest since launch. Bar height under each day is the lane split.</p>
+      </div>
+      <div style="display:flex;gap:0;border:1px solid #1E2430;border-radius:3px;overflow:hidden;flex:none">
+        <a href="#" class="m" style="font-size:11px;padding:6px 12px;color:#98A1B5;border-right:1px solid #1E2430">&#8592; 2025</a>
+        <span class="m" style="font-size:11px;padding:6px 14px;background:#E9A94A;color:#0A0D12">2026</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:12px">
+      <div class="card" style="padding:13px 15px;display:flex;flex-direction:column;gap:3px"><span class="lbl">Digests</span><span class="m" style="font-size:24px">178</span></div>
+      <div class="card" style="padding:13px 15px;display:flex;flex-direction:column;gap:3px"><span class="lbl">Stories kept</span><span class="m" style="font-size:24px">4,182</span></div>
+      <div class="card" style="padding:13px 15px;display:flex;flex-direction:column;gap:3px"><span class="lbl">You opened</span><span class="m" style="font-size:24px;color:#E9A94A">1,466</span></div>
+      <div class="card" style="padding:13px 15px;display:flex;flex-direction:column;gap:3px"><span class="lbl">Longest streak</span><span class="m" style="font-size:24px">41 days</span></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px">
+      <div class="card" style="padding:14px 15px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:14px;font-weight:600;letter-spacing:-0.015em">June 2026</span><span class="m" style="font-size:10.5px;color:#69728A">30 digests</span></div>
+        <div style="display:grid;grid-template-columns:repeat(7, minmax(0,1fr));gap:3px">
+          <span class="dn" style="text-align:center;font-size:9px">M</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">W</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">F</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <a href="#" class="day"><span class="dn">1</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">2</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">3</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">4</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">5</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">6</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">7</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">8</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">9</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">10</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">11</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">12</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">13</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">14</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">15</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">16</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">17</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">18</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">19</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">20</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">21</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">22</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">23</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">24</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">25</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">26</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">27</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">28</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">29</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">30</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+        </div>
+      </div>
+      <div class="card" style="padding:14px 15px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:14px;font-weight:600;letter-spacing:-0.015em">July 2026</span><span class="m" style="font-size:10.5px;color:#69728A">31 digests</span></div>
+        <div style="display:grid;grid-template-columns:repeat(7, minmax(0,1fr));gap:3px">
+          <span class="dn" style="text-align:center;font-size:9px">M</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">W</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">F</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <span></span>
+          <span></span>
+          <a href="#" class="day"><span class="dn">1</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">2</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">3</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">4</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">5</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">6</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">7</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">8</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">9</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">10</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">11</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">12</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">13</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">14</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">15</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">16</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">17</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">18</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">19</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">20</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">21</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">22</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">23</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">24</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">25</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">26</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">27</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">28</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">29</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">30</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">31</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+        </div>
+      </div>
+      <div class="card" style="padding:14px 15px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:14px;font-weight:600;letter-spacing:-0.015em">August 2026</span><span class="m" style="font-size:10.5px;color:#69728A">23 digests</span></div>
+        <div style="display:grid;grid-template-columns:repeat(7, minmax(0,1fr));gap:3px">
+          <span class="dn" style="text-align:center;font-size:9px">M</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">W</span>
+          <span class="dn" style="text-align:center;font-size:9px">T</span>
+          <span class="dn" style="text-align:center;font-size:9px">F</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <span class="dn" style="text-align:center;font-size:9px">S</span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <a href="#" class="day"><span class="dn">1</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">2</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">3</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">4</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">5</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">6</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">7</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">8</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">9</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">10</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">11</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">12</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">13</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">14</span><span class="dc">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">15</span><span class="dc">26</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:10;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">16</span><span class="dc">24</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">17</span><span class="dc">22</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">18</span><span class="dc">20</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">19</span><span class="dc">18</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">20</span><span class="dc">25</span><span class="bars"><span style="flex:8;background:#E9A94A"></span><span style="flex:8;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">21</span><span class="dc">23</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:9;background:#E9A94A"></span></span></a>
+          <a href="#" class="day"><span class="dn">22</span><span class="dc">21</span><span class="bars"><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+          <a href="#" class="day" style="border-color:#E9A94A;background:#221A0E"><span class="dn" style="color:#E9A94A">23</span><span class="dc" style="color:#E9A94A">19</span><span class="bars"><span style="flex:6;background:#E9A94A"></span><span style="flex:6;background:#E9A94A"></span><span style="flex:7;background:#E9A94A"></span></span></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:18px;padding-top:2px">
+      <span class="lbl">Lane split</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#98A1B5"><span style="width:10px;height:10px;background:#E9A94A;border-radius:1px"></span>Hardware</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#98A1B5"><span style="width:10px;height:10px;background:#E9A94A;border-radius:1px"></span>Technology</span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#98A1B5"><span style="width:10px;height:10px;background:#E9A94A;border-radius:1px"></span>Operating Systems</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

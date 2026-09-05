@@ -1,0 +1,664 @@
+<title>Tech News Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --paper:#F1F3EF; --surface:#FBFBF8; --sunken:#E8EBE5;
+    --ink:#14191A; --ink-2:#56615F; --ink-3:#7C8785;
+    --rule:#D9DDD5; --rule-soft:#E6E9E2;
+    --accent:#0D6560; --accent-soft:#D9E8E5;
+    --hardware:#A0522B; --tech:#38559C; --os:#4A7628;
+    --warn-bg:#F6E9DC; --warn-ink:#8A4416; --warn-rule:#DFC0A2;
+    --shadow:0 1px 2px rgba(20,25,26,.05),0 8px 24px -16px rgba(20,25,26,.22);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F1413; --surface:#161C1B; --sunken:#1B2220;
+      --ink:#E7E9E4; --ink-2:#98A29F; --ink-3:#78827F;
+      --rule:#28302E; --rule-soft:#212827;
+      --accent:#57C2B6; --accent-soft:#16302E;
+      --hardware:#D38A5E; --tech:#8AA6E4; --os:#93C264;
+      --warn-bg:#2A1D13; --warn-ink:#E0A472; --warn-rule:#55361F;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F1413; --surface:#161C1B; --sunken:#1B2220;
+    --ink:#E7E9E4; --ink-2:#98A29F; --ink-3:#78827F;
+    --rule:#28302E; --rule-soft:#212827;
+    --accent:#57C2B6; --accent-soft:#16302E;
+    --hardware:#D38A5E; --tech:#8AA6E4; --os:#93C264;
+    --warn-bg:#2A1D13; --warn-ink:#E0A472; --warn-rule:#55361F;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px 96px}
+
+  /* ---- masthead ---- */
+  .masthead{padding:64px 0 34px; border-bottom:1px solid var(--rule)}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+  }
+  h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.4rem,6vw,3.5rem); line-height:1.06; letter-spacing:-.02em;
+    margin:14px 0 0; text-wrap:balance;
+  }
+  .standfirst{
+    font-family:Newsreader,Georgia,serif; font-size:1.22rem; line-height:1.5;
+    color:var(--ink-2); max-width:60ch; margin:16px 0 0;
+  }
+  .meta{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:26px;
+    font-family:"IBM Plex Mono",monospace; font-size:.76rem;
+  }
+  .chip{
+    border:1px solid var(--rule); border-radius:2px; padding:5px 10px;
+    color:var(--ink-2); background:var(--surface);
+  }
+  .chip b{color:var(--ink); font-weight:500}
+
+  /* ---- layout ---- */
+  nav.toc{display:none}
+  .cols{display:grid; grid-template-columns:minmax(0,1fr); gap:0}
+  @media(min-width:1000px){
+    .cols{grid-template-columns:186px minmax(0,1fr); gap:56px; align-items:start}
+    nav.toc{display:block; grid-column:1; position:sticky; top:32px; padding-top:52px}
+    main{grid-column:2}
+  }
+  nav.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+  nav.toc a{
+    display:flex; gap:9px; text-decoration:none; color:var(--ink-2);
+    font-size:.815rem; line-height:1.35; padding:4px 0; border-radius:2px;
+  }
+  nav.toc a:hover{color:var(--accent)}
+  nav.toc a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  nav.toc .n{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3);
+    font-variant-numeric:tabular-nums; padding-top:1px;
+  }
+
+  main{min-width:0}
+  section{padding-top:52px; scroll-margin-top:24px}
+  h2{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.72rem;
+    letter-spacing:-.01em; line-height:1.2; margin:0 0 4px; text-wrap:balance;
+    display:flex; align-items:baseline; gap:12px;
+  }
+  h2 .num{
+    font-family:"IBM Plex Mono",monospace; font-size:.78rem; font-weight:500;
+    color:var(--accent); letter-spacing:.06em; flex:none;
+    font-variant-numeric:tabular-nums; position:relative; top:-.25em;
+  }
+  h3{
+    font-size:.95rem; font-weight:600; margin:30px 0 8px; letter-spacing:-.005em;
+  }
+  p{margin:12px 0; max-width:68ch}
+  a{color:var(--accent)}
+  strong{font-weight:600}
+  em{font-style:italic}
+  code{
+    font-family:"IBM Plex Mono",monospace; font-size:.855em;
+    background:var(--sunken); padding:.1em .35em; border-radius:2px;
+  }
+  .lead{color:var(--ink-2); max-width:68ch; margin:10px 0 4px}
+
+  /* ---- tables ---- */
+  .tw{overflow-x:auto; margin:20px 0; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:.875rem}
+  th,td{text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:500;
+    letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3);
+    background:var(--sunken); border-bottom:1px solid var(--rule); white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+  tr.total td{background:var(--sunken); font-weight:600; border-top:1px solid var(--rule)}
+
+  /* ---- code / pre ---- */
+  pre{
+    font-family:"IBM Plex Mono",monospace; font-size:.79rem; line-height:1.62;
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+    padding:16px 18px; overflow-x:auto; margin:20px 0; color:var(--ink-2);
+  }
+  pre b{color:var(--ink); font-weight:500}
+  pre .c{color:var(--ink-3)}
+  pre .k{color:var(--accent)}
+
+  /* ---- lane cards ---- */
+  .lanes{display:grid; gap:14px; margin:22px 0; grid-template-columns:1fr}
+  @media(min-width:700px){.lanes{grid-template-columns:repeat(3,1fr)}}
+  .lane{
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+    padding:16px 18px; border-top:3px solid var(--lc);
+  }
+  .lane.g{--lc:var(--hardware)} .lane.t{--lc:var(--tech)} .lane.o{--lc:var(--os)}
+  .lane h4{margin:0; font-size:1.02rem; font-weight:600; color:var(--lc)}
+  .lane .slug{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3);
+    display:block; margin-top:2px;
+  }
+  .lane p{font-size:.86rem; color:var(--ink-2); margin:10px 0 0}
+
+  /* ---- architecture diagram ---- */
+  .arch{
+    margin:24px 0; border:1px solid var(--rule); border-radius:3px;
+    background:var(--surface); padding:22px 20px; display:flex;
+    flex-direction:column; gap:0; align-items:center;
+  }
+  .band{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; width:100%}
+  .node{
+    border:1px solid var(--rule); border-radius:3px; background:var(--paper);
+    padding:10px 14px; min-width:126px; text-align:center;
+  }
+  .node .t{font-size:.82rem; font-weight:600}
+  .node .s{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-3); display:block; margin-top:2px; line-height:1.5}
+  .core{
+    border:1.5px solid var(--accent); background:var(--accent-soft);
+    border-radius:3px; padding:16px 22px; text-align:center; max-width:420px; width:100%;
+  }
+  .core .t{font-family:"IBM Plex Mono",monospace; font-size:.86rem; font-weight:500; color:var(--accent); letter-spacing:.02em}
+  .core .h{
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:11px;
+    font-family:"IBM Plex Mono",monospace; font-size:.71rem;
+  }
+  .core .h span{border:1px solid var(--rule); border-radius:2px; padding:3px 7px; background:var(--surface); color:var(--ink-2)}
+  .conn{width:1px; height:20px; background:var(--rule)}
+  .bandlabel{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-3); width:100%; text-align:center; margin-bottom:8px;
+  }
+
+  /* ---- pipeline ---- */
+  .pipe{display:grid; gap:12px; margin:22px 0; grid-template-columns:1fr}
+  @media(min-width:820px){.pipe{grid-template-columns:repeat(4,1fr)}}
+  .stage{
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:15px 16px;
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .stage .sn{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--accent);
+    letter-spacing:.08em; font-weight:500;
+  }
+  .stage h4{margin:0; font-size:.97rem; font-weight:600}
+  .stage .when{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3);
+    border-top:1px dashed var(--rule); padding-top:7px;
+  }
+  .stage p{margin:0; font-size:.845rem; color:var(--ink-2); max-width:none}
+
+  /* ---- callout ---- */
+  .callout{
+    background:var(--warn-bg); border:1px solid var(--warn-rule); border-left:3px solid var(--warn-ink);
+    border-radius:3px; padding:16px 20px; margin:22px 0;
+  }
+  .callout .ct{
+    font-family:"IBM Plex Mono",monospace; font-size:.71rem; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--warn-ink); font-weight:500;
+  }
+  .callout p{margin:8px 0 0; color:var(--ink); font-size:.9rem}
+  .callout p:first-of-type{margin-top:9px}
+
+  /* ---- phases ---- */
+  .phases{display:flex; flex-direction:column; gap:0; margin:22px 0; border:1px solid var(--rule); border-radius:3px; background:var(--surface); overflow:hidden}
+  .phase{display:grid; grid-template-columns:64px minmax(0,1fr); border-bottom:1px solid var(--rule-soft)}
+  .phase:last-child{border-bottom:none}
+  .phase .pn{
+    background:var(--sunken); border-right:1px solid var(--rule-soft);
+    font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--accent);
+    display:flex; align-items:flex-start; justify-content:center; padding:16px 0; font-weight:500;
+  }
+  .phase .pb{padding:15px 18px}
+  .phase h4{margin:0 0 5px; font-size:.97rem; font-weight:600}
+  .phase p{margin:0; font-size:.87rem; color:var(--ink-2); max-width:66ch}
+  .phase .done{
+    display:block; margin-top:8px; font-size:.82rem; color:var(--ink-2);
+    border-left:2px solid var(--accent); padding-left:10px;
+  }
+  .phase .done b{color:var(--accent); font-weight:500; font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; display:block; margin-bottom:1px}
+
+  ul{margin:12px 0; padding-left:20px; max-width:68ch}
+  li{margin:6px 0}
+  ol.decisions{margin:14px 0; padding-left:20px; max-width:68ch}
+  ol.decisions li{margin:10px 0}
+  ol.decisions b{font-weight:600}
+
+  footer{
+    margin-top:64px; padding-top:22px; border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-3);
+    display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between;
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">Build plan · v1</div>
+  <h1>Tech News Agent</h1>
+  <p class="standfirst">An agent that continuously sweeps 300+ sources for hardware, technology and operating-system news, shows everything within seconds, and spends a capped AI budget summarizing what matters.</p>
+  <div class="meta">
+    <span class="chip"><b>Cloudflare Workers</b> + D1 + Queues</span>
+    <span class="chip">Claude <b>Haiku 4.5</b></span>
+    <span class="chip">Website · Slack · RSS · Email</span>
+    <span class="chip">≈ <b>$18–21</b>/month</span>
+    <span class="chip"><b>7</b> phases</span>
+  </div>
+</header>
+
+<div class="cols">
+
+<nav class="toc" aria-label="Contents">
+  <ol>
+    <li><a href="#lanes"><span class="n">01</span><span>The three lanes</span></a></li>
+    <li><a href="#arch"><span class="n">02</span><span>Architecture</span></a></li>
+    <li><a href="#sources"><span class="n">03</span><span>Sources</span></a></li>
+    <li><a href="#data"><span class="n">04</span><span>Data model</span></a></li>
+    <li><a href="#dedupe"><span class="n">05</span><span>Deduplication</span></a></li>
+    <li><a href="#rank"><span class="n">06</span><span>Ranking</span></a></li>
+    <li><a href="#ai"><span class="n">07</span><span>AI &amp; cost</span></a></li>
+    <li><a href="#bill"><span class="n">08</span><span>Running costs</span></a></li>
+    <li><a href="#web"><span class="n">09</span><span>Website</span></a></li>
+    <li><a href="#slack"><span class="n">10</span><span>Slack bot</span></a></li>
+    <li><a href="#email"><span class="n">11</span><span>Email digest</span></a></li>
+    <li><a href="#agent"><span class="n">12</span><span>The agent loops</span></a></li>
+    <li><a href="#obs"><span class="n">13</span><span>Observability</span></a></li>
+    <li><a href="#repo"><span class="n">14</span><span>Repo layout</span></a></li>
+    <li><a href="#phases"><span class="n">15</span><span>Build phases</span></a></li>
+    <li><a href="#risks"><span class="n">16</span><span>Risks</span></a></li>
+    <li><a href="#open"><span class="n">17</span><span>Open decisions</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="lanes">
+  <h2><span class="num">01</span>The three lanes</h2>
+  <p class="lead">Every article gets exactly one primary lane. Lanes drive collection, ranking, site navigation, Slack commands and per-lane feeds — they are the spine of the whole system, not just a tag.</p>
+  <div class="lanes">
+    <div class="lane g"><h4>Gadgets &amp; Hardware</h4><span class="slug">lane: hardware</span><p>Phones, laptops, wearables, audio, cameras. CPUs, GPUs, storage, PC building, homelab, silicon. Launches, reviews, benchmarks.</p></div>
+    <div class="lane t"><h4>Technology</h4><span class="slug">lane: tech</span><p>AI and ML, software, big tech, startups, security, policy, science-adjacent research.</p></div>
+    <div class="lane o"><h4>Operating Systems</h4><span class="slug">lane: os</span><p>Windows, macOS, Linux, Android, iOS, ChromeOS, BSD. Releases, updates, kernels, desktop environments.</p></div>
+  </div>
+</section>
+
+<section id="arch">
+  <h2><span class="num">02</span>Architecture</h2>
+  <p>One Cloudflare Worker holds the entire system. The site, the API, the Slack endpoints and the cron pipeline all read the same D1 database — splitting them into separate services would mean service bindings and duplicated schema access for no benefit at this scale.</p>
+
+  <div class="arch">
+    <div class="bandlabel">Triggers</div>
+    <div class="band">
+      <div class="node"><span class="t">Cron</span><span class="s">every 3h · 02:00 · 02:30</span></div>
+      <div class="node"><span class="t">HTTPS</span><span class="s">browser · Slack · readers</span></div>
+    </div>
+    <div class="conn"></div>
+    <div class="core">
+      <div class="t">tech-news-agent</div>
+      <div class="h"><span>fetch()</span><span>scheduled()</span><span>queue()</span><span>assets</span></div>
+    </div>
+    <div class="conn"></div>
+    <div class="bandlabel">Storage &amp; services</div>
+    <div class="band">
+      <div class="node"><span class="t">D1</span><span class="s">articles · digests<br>sources · feedback</span></div>
+      <div class="node"><span class="t">KV</span><span class="s">etags · spend<br>rate limits</span></div>
+      <div class="node"><span class="t">Queues</span><span class="s">enrichment<br>jobs</span></div>
+      <div class="node"><span class="t">External</span><span class="s">Claude · Slack<br>Email Sending</span></div>
+    </div>
+  </div>
+
+  <h3>The pipeline runs at two speeds</h3>
+  <p>The central design decision: <strong>comprehensiveness is nearly free; only AI summarization scales with volume.</strong> So the two are decoupled. Everything collected appears on the site within seconds at no cost, and AI is spent — under a hard budget — only on stories that earn it. If the budget runs out, the fast path keeps running: you get a complete feed with fewer summaries, never an empty one.</p>
+  <div class="pipe">
+    <div class="stage"><span class="sn">FAST · FREE</span><h4>Schedule &amp; collect</h4><p>Every minute, pick the sources whose poll is due. Conditional GET, parse, canonicalize, dedupe, classify lane by keyword rules, score. <strong>The article is on the site now.</strong> No AI, no cost.</p><span class="when">cron · every minute</span></div>
+    <div class="stage"><span class="sn">FAST · FREE</span><h4>WebSub push</h4><p>Supported feeds notify us the moment they publish. Same path, zero polling latency — the only genuinely real-time route.</p><span class="when">POST /websub</span></div>
+    <div class="stage"><span class="sn">BUDGETED</span><h4>Select &amp; enrich</h4><p>Rank live articles by merit — corroborated by 2+ sources, high score, a lane you read — and summarize as many as the day's remaining budget affords. Cards gain summaries minutes after appearing.</p><span class="when">cron · every 10 min</span></div>
+    <div class="stage"><span class="sn">BUDGETED</span><h4>Curate &amp; deliver</h4><p>Assemble the daily digest from the day's enriched stories, then push to Slack and email, plus breaking alerts above threshold.</p><span class="when">cron · 07:30 &amp; 08:00 IST</span></div>
+  </div>
+</section>
+
+<section id="sources">
+  <h2><span class="num">03</span>Sources</h2>
+  <p><strong>Target: 300+ feeds</strong>, stored in D1 and editable at runtime. The list below is the launch seed — roughly 90 sources. Getting to 300 is the job of the weekly gap sweep plus bulk OPML import, not hand-curation. Expect <strong>~3,500 articles a day</strong> at that scale.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Lane</th><th>Feeds</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Gadgets&nbsp;&amp;&nbsp;Hardware</strong></td><td><em>Consumer devices</em> — The Verge · Engadget · Ars Technica (Gadgets) · Notebookcheck · GSMArena · Android Authority · XDA · 9to5Mac · 9to5Google · Liliputing · DPReview · iFixit · r/gadgets<br><em>PC &amp; components</em> — Tom's Hardware · TechPowerUp · VideoCardz · Gamers Nexus · Hardware Unboxed · Level1Techs · r/hardware · r/buildapc<br><em>Silicon &amp; deep analysis</em> — Chips and Cheese · SemiAnalysis · The Chip Letter · IEEE Spectrum · AMD / Intel / NVIDIA newsrooms<br><em>Servers &amp; homelab</em> — ServeTheHome · r/homelab</td></tr>
+      <tr><td><strong>Technology</strong></td><td>Hacker News · Ars Technica · TechCrunch · Wired · The Register · MIT Technology Review · Reuters Technology · Slashdot · Lobste.rs · Simon Willison · r/technology</td></tr>
+      <tr><td><strong>Operating&nbsp;Systems</strong></td><td><em>Linux</em> — Phoronix · LWN.net · OMG! Ubuntu · It's FOSS · Linuxiac · 9to5Linux · Fedora Magazine · Arch news · Debian news · kernel.org releases · DistroWatch Weekly · GitHub releases (linux, systemd, mesa, GNOME, KDE, Wayland) · r/linux · r/linux_gaming<br><em>Windows</em> — Windows Central · Neowin · Microsoft Windows blog · Windows Insider blog · r/windows<br><em>macOS &amp; iOS</em> — MacRumors · Apple Newsroom · Six Colors · Michael Tsai · Eclectic Light · r/macos<br><em>Android &amp; ChromeOS</em> — Android Police · Android Developers blog · About Chromebooks · r/android<br><em>BSD &amp; other</em> — Undeadly · FreeBSD news · Haiku activity reports</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Because the Operating Systems lane now overlaps the other two — 9to5Mac covers both new hardware and macOS releases — the <code>lane</code> column on a source is only a <strong>default hint</strong>. Enrichment scores every article against all three lanes and assigns the primary lane per article, so a MacRumors post about an iPhone lands in Gadgets &amp; Hardware while one about an iOS 27 build lands in Operating Systems. The same goes for Phoronix, whose hardware benchmarks belong to Hardware even though the feed is seeded as Operating Systems.</p>
+
+  <h3>&ldquo;Everywhere on the internet&rdquo; — what that actually means</h3>
+  <p>RSS covers roughly 85% of what matters. The remaining 15% needs a mix of methods, and the honest answer is that no crawler reaches everything — so the system audits its own blind spots weekly and asks to add sources.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Method</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RSS / Atom / JSON Feed</strong></td><td>The backbone. Cheap, polite, well-structured</td></tr>
+      <tr><td><strong>Hacker News Algolia API</strong></td><td>Keyword queries beyond the front page — <code>kernel</code>, <code>RISC-V</code>, your saved terms</td></tr>
+      <tr><td><strong>Reddit RSS</strong></td><td>Subreddit feeds carry upvote counts, useful as an engagement signal</td></tr>
+      <tr><td><strong>GitHub Releases Atom</strong></td><td>Catches releases that never get press coverage</td></tr>
+      <tr><td><strong>Google News RSS queries</strong></td><td>A catch-all net over outlets we don't feed directly</td></tr>
+      <tr><td><strong>Claude web search, weekly</strong></td><td>A &ldquo;what did we miss?&rdquo; sweep that proposes new sources for your approval</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="data">
+  <h2><span class="num">04</span>Data model</h2>
+  <p>D1 (SQLite) holds everything durable. KV holds only volatile things: conditional-GET etags, the rolling AI spend counter, rate-limit buckets and Slack OAuth state.</p>
+<pre><b>sources</b>        id, name, homepage, feed_url, kind, lane, weight, active,
+               last_fetched_at, last_status, etag, last_modified,
+               consecutive_failures
+
+<b>articles</b>       id, url_canonical, url_hash <span class="k">UNIQUE</span>, source_id, title, author,
+               published_at, fetched_at, excerpt, image_url, lane,
+               status, engagement_score
+
+<b>enrichments</b>    article_id <span class="k">PK</span>, summary, why_it_matters, tags_json,
+               lane_scores_json, score, model, tokens_in, tokens_out
+
+<b>clusters</b>       id, digest_id, primary_article_id, member_ids_json, headline
+
+<b>digests</b>        id, date, lane, intro, status, published_at
+<b>digest_items</b>   digest_id, article_id, cluster_id, rank, lane
+<b>deliveries</b>     id, digest_id, channel, target, status, sent_at, error
+
+<b>feedback</b>       id, article_id, signal (up|down|save|click), source, created_at
+<b>preferences</b>    id, doc_json, updated_at        <span class="c">-- learned, one live row</span>
+<b>runs</b>           id, stage, started_at, ended_at, counts_json, error
+
+<b>subscribers</b>    id, email, lanes_json, cadence, verified, unsub_token
+<b>slack_install</b>  team_id, channel_id, bot_token, installed_at
+
+<b>articles_fts</b>   <span class="c">-- FTS5 virtual table over title + summary, powers /search</span></pre>
+</section>
+
+<section id="dedupe">
+  <h2><span class="num">05</span>Deduplication</h2>
+  <p>Three layers, cheapest first, so AI is only ever spent on genuinely ambiguous pairs.</p>
+  <ul>
+    <li><strong>URL canonicalization.</strong> Strip <code>utm_*</code>, <code>ref</code>, <code>fbclid</code>; unwrap AMP and aggregator redirects; lowercase host; drop trailing slash → SHA-256 → unique index. Catches exact re-posts for free.</li>
+    <li><strong>Title similarity.</strong> Normalized-title trigram Jaccard within a rolling 48-hour window flags candidate pairs. Pure SQL and string work, no AI.</li>
+    <li><strong>AI adjudication.</strong> Only flagged candidates get one Haiku call: <em>same underlying story?</em> Confirmed matches join a cluster.</li>
+  </ul>
+  <p>The site then shows one card per cluster — the best-written version, with <em>&ldquo;also covered by The Verge, Engadget +3&rdquo;</em> underneath. This is the single biggest quality difference between this and a raw feed reader.</p>
+</section>
+
+<section id="rank">
+  <h2><span class="num">06</span>Ranking</h2>
+  <p>A composite score from 0 to 100, followed by a diversity pass that allows at most one story per source per lane in the top eight — so a prolific outlet can't dominate your morning.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Component</th><th class="num">Weight</th><th>Where it comes from</th></tr></thead>
+    <tbody>
+      <tr><td>Lane relevance</td><td class="num">40</td><td>Haiku scores 0–1 against your lane definitions and learned preferences</td></tr>
+      <tr><td>Recency</td><td class="num">20</td><td>Exponential decay, 18-hour half-life</td></tr>
+      <tr><td>Source weight</td><td class="num">15</td><td>Per-source trust, hand-set at seed, adjusted by your feedback</td></tr>
+      <tr><td>Corroboration</td><td class="num">15</td><td>Cluster size — three outlets covering it means it matters</td></tr>
+      <tr><td>Engagement</td><td class="num">10</td><td>HN points and Reddit upvotes where available, normalized</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="ai">
+  <h2><span class="num">07</span>AI &amp; cost</h2>
+  <p>Model is <code>claude-haiku-4-5</code> at $1.00 per million input tokens and $5.00 per million output. Two controls keep the bill small:</p>
+  <ul>
+    <li><strong>A heuristic prefilter</strong> cuts ~250 collected articles per day down to ~120 before any AI call — lane keyword match, source weight floor, age cutoff.</li>
+    <li><strong>The Batch API</strong> at half price. Enrichment runs at 22:00 UTC and the digest is built at 02:00 UTC, a four-hour buffer that batch comfortably fits. Anything still pending at digest time falls back to synchronous calls.</li>
+  </ul>
+  <div class="tw"><table>
+    <thead><tr><th>Cost of one enrichment</th><th class="num">Sync</th><th class="num">Batch</th></tr></thead>
+    <tbody>
+      <tr><td>System prompt, cached read — 1,200 tok</td><td class="num">$0.00012</td><td class="num">$0.00006</td></tr>
+      <tr><td>Article excerpt, fresh — ~800 tok</td><td class="num">$0.00080</td><td class="num">$0.00040</td></tr>
+      <tr><td>Output — ~200 tok</td><td class="num">$0.00100</td><td class="num">$0.00050</td></tr>
+      <tr class="total"><td>Per story · blended 30% sync / 70% batch</td><td class="num">—</td><td class="num">$0.00125</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two controls compound to get there. <strong>Prompt caching</strong> — keep the shared system prompt above <strong>1,024 tokens</strong> or it silently does nothing, then cached input reads at $0.10/MTok instead of $1.00. <strong>Batch API</strong> at half price for the ~70% of enrichment that is not breaking.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Daily AI budget</th><th class="num">Stories summarized/day</th><th class="num">Monthly</th></tr></thead>
+    <tbody>
+      <tr><td>Minimal</td><td class="num">~100</td><td class="num">$4</td></tr>
+      <tr class="total"><td>Chosen setting</td><td class="num">~320</td><td class="num">$12</td></tr>
+      <tr><td>Generous</td><td class="num">~400</td><td class="num">$15</td></tr>
+      <tr><td>Near-total coverage</td><td class="num">~1,000</td><td class="num">$39</td></tr>
+    </tbody>
+  </table></div>
+  <p>Set at <strong>$12–15/month</strong>, summarizing roughly <strong>300–400 of the ~3,500 articles collected daily</strong>. The other ~3,100 still appear immediately with headline, source, timestamp, lane and tags — they simply have no AI summary. Selection is by merit, not arrival order, and a hard cap in KV stops enrichment when the day's budget is spent.</p>
+</section>
+
+<section id="bill">
+  <h2><span class="num">08</span>Running costs</h2>
+  <div class="callout">
+    <div class="ct">Read this before we start</div>
+    <p><strong>The Cloudflare free tier will not carry this project</strong>, for two concrete reasons. Free Workers allow <strong>50 subrequests per invocation</strong> against 10,000 on paid — one collect run hits ~60 feeds, so it breaks on the very first stage. And free allows <strong>10ms of CPU per invocation</strong> against 30 seconds on paid; parsing 60 XML feeds is far past 10ms of real CPU work.</p>
+    <p>Queues also requires the paid plan. So Workers Paid at $5/month is a hard prerequisite, not an upgrade we grow into.</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Item</th><th class="num">Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Workers Paid — includes Queues, D1 and KV allowances</td><td class="num">$5.00/mo</td></tr>
+      <tr><td>D1 rows written — ~10K/day at $1/M</td><td class="num">~$0.30/mo</td></tr>
+      <tr><td>D1 storage, reads, KV, requests</td><td class="num">$0 <span style="color:var(--ink-3)">(within allowance)</span></td></tr>
+      <tr><td>Claude Haiku 4.5 — budget-capped</td><td class="num">$12–15/mo</td></tr>
+      <tr><td>Domain — only needed for email and a nice URL</td><td class="num">~$10/yr</td></tr>
+      <tr class="total"><td>Total</td><td class="num">$18–21/mo</td></tr>
+    </tbody>
+  </table></div>
+  <p>Without a domain the site lives at <code>tech-news-agent.&lt;you&gt;.workers.dev</code> and everything except email works.</p>
+  <p><strong>Continuous polling does not move this.</strong> Roughly 1,300 fetches an hour is ~31K subrequests a day against a limit of 10,000 per <em>invocation</em> with no daily cap, and the scheduler is 1,440 invocations a day against 10M included monthly requests. Comprehensiveness is genuinely close to free — the AI line is the whole bill, and it is capped by design.</p>
+  <p><strong>D1 growth is the thing to watch.</strong> At ~3,500 articles a day you cross the 5&nbsp;GB included storage in about two years and the 10&nbsp;GB per-database ceiling in four. Phase 7 sets a retention policy: keep summaries and metadata, drop raw excerpts after 90 days.</p>
+</section>
+
+<section id="web">
+  <h2><span class="num">09</span>Website</h2>
+  <p>Server-rendered on the Worker with Hono and JSX, hand-written CSS, static assets served alongside. No SPA framework — these pages are read once and should paint instantly.</p>
+  <p><strong>The front page is the live feed.</strong> Reverse-chronological, everything collected, updating as it arrives. The curated daily digest moves to <code>/digest</code> and still drives Slack and email — so you can graze all day or read once in the morning.</p>
+  <p>At ~3,500 items a day the firehose is only usable with strong filtering, so one control row sits above it: lane, minimum score, source, <strong>corroborated only</strong> (2+ outlets on the same story), and <strong>summarized only</strong>. Updates arrive by polling <code>/api/latest</code> every 45 seconds and prepending behind a <em>&ldquo;12 new stories&rdquo;</em> pill, so nothing jumps while you read.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Route</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td><strong>The live feed</strong> — everything, newest first, auto-updating, with filters</td></tr>
+      <tr><td><code>/digest</code></td><td>Today's curated digest — three lane sections, a hero story each</td></tr>
+      <tr><td><code>/lane/hardware</code> <code>/lane/tech</code> <code>/lane/os</code></td><td>Full lane view, more depth than the digest</td></tr>
+      <tr><td><code>/d/2026-08-23</code></td><td>Any past day, with previous/next navigation</td></tr>
+      <tr><td><code>/archive</code></td><td>Year of month calendars — per-day count and lane split</td></tr>
+      <tr><td><code>/search?q=</code></td><td>Full-text over titles and summaries, D1 FTS5</td></tr>
+      <tr><td><code>/tag/:tag</code></td><td>Everything tagged, with activity over time and a follow action</td></tr>
+      <tr><td><code>/saved</code></td><td>Your read-later list</td></tr>
+      <tr><td><code>/sources</code></td><td>Per-feed table — status, items/week, published, your open rate, weight</td></tr>
+      <tr><td><code>/dashboard</code></td><td>KPIs, collection funnel, source leaderboard, AI spend</td></tr>
+      <tr><td><code>/feed.xml</code> <code>/feed/:lane.xml</code> <code>/feed/tag/:tag.xml</code> <code>/feed/saved.xml</code></td><td>RSS and Atom output</td></tr>
+      <tr><td><code>/api/latest?since=</code></td><td>Live-feed cursor endpoint the front page polls</td></tr>
+      <tr><td><code>/api/digest/today.json</code></td><td>Public JSON API</td></tr>
+      <tr><td><code>/health</code></td><td>Pipeline status for monitoring</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong><code>/dashboard</code> and <code>/sources</code> split the same data deliberately.</strong> The dashboard carries the summary — KPI tiles, the funnel, the leaderboard, spend — and tells you <em>that</em> four feeds need attention. <code>/sources</code> is the deep table of all 65 feeds where you act on them: retry, re-point, re-weight, remove.</p>
+
+  <h3>What a story card contains</h3>
+  <p>Every story, on every channel, links out to the original. Nothing is a dead end.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Element</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Headline</strong></td><td>Links directly to the original article at the publisher</td></tr>
+      <tr><td><strong>Source + time</strong></td><td>e.g. <em>Phoronix · 3h ago</em> — the outlet is always named</td></tr>
+      <tr><td><strong>Summary</strong></td><td>Two to three lines, generated only from the fetched text</td></tr>
+      <tr><td><strong>Why it matters</strong></td><td>One line of context, where the story warrants it</td></tr>
+      <tr><td><strong>Tags</strong></td><td>Clickable — <code>kernel</code>, <code>apple</code>, <code>risc-v</code></td></tr>
+      <tr><td><strong>Also covered by</strong></td><td>Each outlet in the cluster is its <strong>own link</strong> to that outlet's version, so you can pick whose write-up you prefer</td></tr>
+      <tr><td><strong>Actions</strong></td><td>Save for later, 👍 / 👎</td></tr>
+    </tbody>
+  </table></div>
+  <p>The same rule holds across every channel: Slack section blocks link the headline and list cluster members as links; the RSS <code>&lt;link&gt;</code> element points at the original article, never back at your own site; the email digest links every headline and source. Summaries exist to help you decide what to open — the link is the point.</p>
+
+  <p><strong>Reading features:</strong> cluster cards showing multi-source coverage, read and unread state, save for later, <code>j</code>/<code>k</code> keyboard navigation, dark and light themes, mobile-first layout.</p>
+</section>
+
+<section id="slack">
+  <h2><span class="num">10</span>Slack bot</h2>
+  <p>A daily push at 08:00 IST: one Block Kit message per lane, each story a section block with title link, two-line summary, source, and 👍 / 👎 / 🔖 buttons that feed the preference loop.</p>
+  <p><strong>Breaking pushes, sparingly.</strong> Three thousand items a day cannot go to Slack, so a story is pushed the moment it lands only if it clears a high bar: corroborated by 3+ sources within an hour, or above a score threshold you set from the dashboard. Expect a handful a day, in its own channel, so the daily digest stays calm.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Command</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td><code>/technews</code></td><td>Today's digest, all three lanes</td></tr>
+      <tr><td><code>/technews os</code> <code>/technews hardware</code></td><td>A single lane</td></tr>
+      <tr><td><code>/technews search wayland</code></td><td>Full-text search over the archive</td></tr>
+      <tr><td><code>/technews sources</code></td><td>Feed health</td></tr>
+      <tr><td><code>/technews more</code></td><td>The next ten stories below the digest cut</td></tr>
+      <tr><td><code>/technews live</code></td><td>The last ten items from the live feed, any lane</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Two things that are easy to get wrong</h3>
+  <ul>
+    <li>Verify every request with the Slack <strong>v0 HMAC signature</strong> and reject timestamps older than five minutes.</li>
+    <li>Slack demands a response within <strong>3 seconds</strong>. Acknowledge immediately, do the real work in <code>ctx.waitUntil()</code>, and post back via <code>response_url</code>.</li>
+  </ul>
+  <p>Scopes needed are <code>chat:write</code>, <code>commands</code> and <code>incoming-webhook</code>. It ships with an app manifest so setup is paste-and-go.</p>
+</section>
+
+<section id="email">
+  <h2><span class="num">11</span>Email digest</h2>
+  <p>Cloudflare Email Sending through the Worker's <code>send_email</code> binding — no API keys, no third-party service. Daily HTML with a plain-text alternative, per-lane sections, one-click unsubscribe, and a subscriber table so you can add other recipients later.</p>
+  <div class="callout">
+    <div class="ct">Prerequisite</div>
+    <p>This needs a domain onboarded with <code>wrangler email sending enable yourdomain.com</code>, plus SPF and DKIM records. If you don't have a domain yet, email is the one feature that has to wait — everything else ships without it, which is why it's phased late.</p>
+  </div>
+</section>
+
+<section id="agent">
+  <h2><span class="num">12</span>The agent loops</h2>
+  <p class="lead">Three feedback loops are what make this an agent rather than an aggregator. Each one changes the system's own behavior over time.</p>
+  <h3>Preference learning</h3>
+  <p>Every 👍, 👎, save and click writes to the <code>feedback</code> table. A weekly cron feeds the last seven days of signals to Claude, which rewrites a preferences document: topics you actually read, sources to boost or demote, keywords to mute. That document is injected into the scoring prompt, so ranking adapts to <em>you</em> rather than to a fixed rubric.</p>
+  <h3>Gap sweeps</h3>
+  <p>Weekly, Claude runs with the web search tool and asks: <em>what significant news in these three areas did my sources miss this week?</em> It proposes new feeds, which arrive in Slack as approve/reject buttons. Approved ones are written to the <code>sources</code> table. The system grows its own coverage.</p>
+  <h3>Self-repair</h3>
+  <p>Sources that fail three consecutive fetches get flagged, and the agent tries to find a replacement feed URL before deactivating them.</p>
+</section>
+
+<section id="obs">
+  <h2><span class="num">13</span>Observability</h2>
+  <ul>
+    <li>A <code>runs</code> table records every stage execution with counts, duration and errors.</li>
+    <li><code>/health</code> and <code>/sources</code> expose that as readable pages.</li>
+    <li>Slack alerts on pipeline failure, a source dead more than three days, or daily AI spend over budget.</li>
+    <li>A soft spend cap in KV: when the day's AI spend crosses it, enrichment degrades to headline-only rather than silently running up a bill.</li>
+  </ul>
+</section>
+
+<section id="repo">
+  <h2><span class="num">14</span>Repo layout</h2>
+<pre>tech-news-agent/
+├── wrangler.jsonc              <span class="c"># bindings, crons, queues</span>
+├── package.json
+├── sources.seed.json           <span class="c"># the source list</span>
+├── migrations/
+│   └── 0001_init.sql
+├── src/
+│   ├── index.ts                <span class="c"># fetch + scheduled + queue handlers</span>
+│   ├── collect/                <span class="c"># feed parsers, canonicalize, dedupe</span>
+│   ├── enrich/                 <span class="c"># Claude client, prompts, batch runner</span>
+│   ├── rank/                   <span class="c"># scoring, clustering, diversity</span>
+│   ├── deliver/                <span class="c"># slack, email, rss</span>
+│   ├── routes/                 <span class="c"># web, api, slack, feeds</span>
+│   ├── db/                     <span class="c"># queries + migration helpers</span>
+│   └── views/                  <span class="c"># JSX components</span>
+├── public/                     <span class="c"># css, icons</span>
+└── docs/PLAN.md</pre>
+</section>
+
+<section id="phases">
+  <h2><span class="num">15</span>Build phases</h2>
+  <p class="lead">Every phase ends with something deployed and working, so there's never a long stretch with nothing to show.</p>
+  <div class="phases">
+    <div class="phase"><div class="pn">00</div><div class="pb">
+      <h4>Scaffold</h4>
+      <p>Repo, <code>wrangler.jsonc</code>, D1 database and schema migration, Hono skeleton, seeded sources, local dev running.</p>
+      <span class="done"><b>Done when</b><code>/health</code> returns green locally and in production.</span>
+    </div></div>
+    <div class="phase"><div class="pn">01</div><div class="pb">
+      <h4>Collector <span style="font-weight:400;color:var(--ink-3);font-size:.85rem">— no AI yet</span></h4>
+      <p>RSS, Atom and JSON Feed parsing; URL canonicalization; conditional GET with etag caching; D1 writes; dedupe layers one and two; cron every three hours.</p>
+      <span class="done"><b>Done when</b>The articles table fills up on its own and <code>/sources</code> is green across the board.</span>
+    </div></div>
+    <div class="phase"><div class="pn">02</div><div class="pb">
+      <h4>Enrichment &amp; ranking</h4>
+      <p>Heuristic prefilter, Haiku batch enrichment, scoring, clustering, digest assembly.</p>
+      <span class="done"><b>Done when</b><code>/api/digest/today.json</code> returns a digest you'd actually read.</span>
+    </div></div>
+    <div class="phase"><div class="pn">03</div><div class="pb">
+      <h4>Website</h4>
+      <p>All routes, FTS5 search, RSS output, styling, dark mode, keyboard navigation.</p>
+      <span class="done"><b>Done when</b>The site is live and you read it in the morning by choice.</span>
+    </div></div>
+    <div class="phase"><div class="pn">04</div><div class="pb">
+      <h4>Slack</h4>
+      <p>Manifest, OAuth install, signature verification, slash commands, daily scheduled push, feedback buttons.</p>
+      <span class="done"><b>Done when</b>The digest lands in your channel at 08:00 without you touching anything.</span>
+    </div></div>
+    <div class="phase"><div class="pn">05</div><div class="pb">
+      <h4>Email <span style="font-weight:400;color:var(--ink-3);font-size:.85rem">— needs a domain</span></h4>
+      <p>Domain onboarding, SPF and DKIM, HTML template, subscriber table, unsubscribe flow.</p>
+      <span class="done"><b>Done when</b>The digest arrives in your inbox.</span>
+    </div></div>
+    <div class="phase"><div class="pn">06</div><div class="pb">
+      <h4>The agent loop</h4>
+      <p>Preference learning, weekly gap sweeps, source auto-discovery, self-repair, alerting, spend caps.</p>
+      <span class="done"><b>Done when</b>The ranking visibly shifts toward what you actually click.</span>
+    </div></div>
+  </div>
+</section>
+
+<section id="risks">
+  <h2><span class="num">16</span>Risks</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Free tier won't work</strong></td><td>Budget $5/mo for Workers Paid. Non-negotiable — see §08</td></tr>
+      <tr><td><strong>Truncated feeds</strong> — many outlets publish excerpt-only RSS</td><td>Optional full-text fetch, robots.txt-respecting, per-domain allowlist, polite rate limits. Summaries from excerpts are thinner but still useful</td></tr>
+      <tr><td><strong>Copyright and ToS</strong></td><td>Summarize and link with clear attribution — never republish full articles. That's the standard aggregator posture. Keep the site personal-use or behind Cloudflare Access if unsure</td></tr>
+      <tr><td><strong>Hallucination in summaries</strong></td><td>Prompt hard for &ldquo;summarize only from the provided text, no outside knowledge&rdquo;; store the exact excerpt each summary came from; always show the source link</td></tr>
+      <tr><td><strong>Feed rot</strong></td><td>Health dashboard, self-repair, and the weekly gap sweep</td></tr>
+      <tr><td><strong>Cron runs in UTC</strong></td><td>All schedules written in UTC with the IST equivalent in a comment. 08:00 IST = 02:30 UTC</td></tr>
+      <tr><td><strong>Slack's 3-second timeout</strong></td><td>Acknowledge first, do the work in <code>ctx.waitUntil()</code></td></tr>
+      <tr><td><strong>Email deliverability</strong></td><td>Needs a domain and DNS records — not instant, which is why it's phased last</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="open">
+  <h2><span class="num">17</span>Open decisions</h2>
+  <p class="lead">None of these block phases 0 through 3 — we can start building immediately and answer them as we go.</p>
+  <ol class="decisions">
+    <li><b>Domain.</b> Do you own one, or want one? Gates phase 5 and gives the site a real URL.</li>
+    <li><b>Slack workspace.</b> Personal, or somewhere shared? Decides whether we build the full OAuth install flow or just hardcode a single bot token.</li>
+    <li><b>Site visibility.</b> Public, or behind Cloudflare Access? Affects the copyright posture in §16.</li>
+    <li><b>Digest time.</b> The plan assumes 08:00 IST. Easy to change.</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Tech News Agent · build plan v1</span>
+  <span>Drafted 2026-08-23 · docs/PLAN.md</span>
+</footer>
+
+</main>
+</div>
+</div>

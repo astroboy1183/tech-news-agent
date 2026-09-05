@@ -1,0 +1,218 @@
+{
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Portal"
+    },
+    {
+      "id": "page-2",
+      "name": "Reader"
+    },
+    {
+      "id": "page-3",
+      "name": "Ops & system"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Front page \u00b7 Paper (default)",
+      "page": "page-1",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 3400
+    },
+    {
+      "file": "ThemeWire.dc.html",
+      "title": "Front page \u00b7 Ink",
+      "page": "page-1",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 3400
+    },
+    {
+      "file": "Section.dc.html",
+      "title": "/section/ai",
+      "page": "page-1",
+      "x": 0,
+      "y": 3560,
+      "w": 1440,
+      "h": 1280
+    },
+    {
+      "file": "LiveFeed.dc.html",
+      "title": "/live",
+      "page": "page-1",
+      "x": 1560,
+      "y": 3560,
+      "w": 1440,
+      "h": 1540
+    },
+    {
+      "file": "Mobile.dc.html",
+      "title": "Phone \u00b7 front page",
+      "page": "page-1",
+      "x": 3120,
+      "y": 0,
+      "w": 390,
+      "h": 844
+    },
+    {
+      "file": "Digest.dc.html",
+      "title": "/digest",
+      "page": "page-2",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1300
+    },
+    {
+      "file": "PastDay.dc.html",
+      "title": "/d/:date",
+      "page": "page-2",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 1120
+    },
+    {
+      "file": "Archive.dc.html",
+      "title": "/archive",
+      "page": "page-2",
+      "x": 0,
+      "y": 1440,
+      "w": 1440,
+      "h": 1040
+    },
+    {
+      "file": "SearchArchive.dc.html",
+      "title": "/search",
+      "page": "page-2",
+      "x": 1560,
+      "y": 1440,
+      "w": 1440,
+      "h": 1000
+    },
+    {
+      "file": "TagView.dc.html",
+      "title": "/topic/:t",
+      "page": "page-2",
+      "x": 0,
+      "y": 2620,
+      "w": 1440,
+      "h": 1000
+    },
+    {
+      "file": "Saved.dc.html",
+      "title": "/saved",
+      "page": "page-2",
+      "x": 1560,
+      "y": 2620,
+      "w": 1440,
+      "h": 960
+    },
+    {
+      "file": "Dashboard.dc.html",
+      "title": "/dashboard",
+      "page": "page-3",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1420
+    },
+    {
+      "file": "Sources.dc.html",
+      "title": "/sources",
+      "page": "page-3",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 1200
+    },
+    {
+      "file": "Tokens.dc.html",
+      "title": "Ink & Paper",
+      "page": "page-3",
+      "x": 0,
+      "y": 1560,
+      "w": 1060,
+      "h": 1280
+    },
+    {
+      "file": "StoryCard.dc.html",
+      "title": "Story card \u00b7 2 states",
+      "page": "page-3",
+      "x": 1180,
+      "y": 1560,
+      "w": 1180,
+      "h": 940
+    },
+    {
+      "file": "SlackDigest.dc.html",
+      "title": "Slack",
+      "page": "page-3",
+      "x": 2460,
+      "y": 1560,
+      "w": 760,
+      "h": 1200
+    },
+    {
+      "file": "Story.dc.html",
+      "title": "/story/:id \u00b7 cluster",
+      "page": "page-1",
+      "x": 3120,
+      "y": 1000,
+      "w": 1440,
+      "h": 1480
+    },
+    {
+      "file": "Composition.dc.html",
+      "title": "Editorial system",
+      "page": "page-3",
+      "x": 3300,
+      "y": 1560,
+      "w": 1120,
+      "h": 1560
+    }
+  ],
+  "annotations": [
+    {
+      "id": "portal-note",
+      "x": 0,
+      "y": -300,
+      "w": 760,
+      "page": "page-1",
+      "text": "FIVE FIXES\n\n1. Images throughout \u2014 lead, secondaries, section leads, phone. Shown as placeholder blocks; in production these come free from each feed's media:thumbnail or og:image.\n2. Phone rebuilt as the portal front page, not a stale feed.\n3. 70 stories on the front page, up from 26.\n4. Nav cut to 5 sections + More, utilities moved right.\n5. Paper is now the default \u2014 you read news in daylight."
+    },
+    {
+      "id": "colour-note",
+      "x": 1560,
+      "y": -300,
+      "w": 760,
+      "page": "page-1",
+      "text": "INK IS STILL THERE\n\nSame page, dark theme, one toggle away. Identical layout and type scale \u2014 only ground, ink and accent flip.\n\nStill no per-section colour: past six, categorical hues stop separating reliably. Section identity is the name and its place in the nav, which is what lets the portal run ten sections instead of six."
+    },
+    {
+      "id": "ops-note",
+      "x": 0,
+      "y": -230,
+      "w": 720,
+      "page": "page-3",
+      "text": "OPS & SYSTEM\n\nEditorial system is the important one here. Nobody edits the front page, so the rules have to be good and inspectable \u2014 five gates for the lead, a manual pin that overrides them, a slot map for all 73 stories, and a headline stress test against the shapes that actually break a layout.\n\nInk & Paper is the full palette and type spec."
+    },
+    {
+      "id": "story-note",
+      "x": 3120,
+      "y": 890,
+      "w": 700,
+      "page": "page-1",
+      "text": "THE CLUSTER PAGE\n\nWhen six outlets cover one story, this is where it lives. Each keeps its own headline and its own link, ordered by when they picked it up \u2014 so you can see a story spread in real time, and pick whose write-up to read."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "page-1"
+  }
+}

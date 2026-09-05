@@ -1,0 +1,345 @@
+<title>Stack Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ground:#FBFAF7; --surface:#FFFFFF; --sunken:#EFEDE7;
+    --ink:#15171C; --ink-2:#454A58; --ink-3:#6E7382; --ink-4:#9CA1AE;
+    --rule:#DFDAD0; --rule-soft:#EBE7E0;
+    --accent:#9A5B00; --accent-soft:#F6EDE0; --accent-ink:#9A5B00;
+    --warn:#8A5A15; --warn-soft:#F2E6D2;
+    --ok:#1F6B4F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+      --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+      --rule:#1E2430; --rule-soft:#161B24;
+      --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+      --warn:#D9A441; --warn-soft:#2A2113;
+      --ok:#5BC48A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0A0D12; --surface:#0E121A; --sunken:#141922;
+    --ink:#E9EBF0; --ink-2:#98A1B5; --ink-3:#69728A; --ink-4:#4E566A;
+    --rule:#1E2430; --rule-soft:#161B24;
+    --accent:#E9A94A; --accent-soft:#221A0E; --accent-ink:#E9A94A;
+    --warn:#D9A441; --warn-soft:#2A2113;
+    --ok:#5BC48A;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:Archivo,system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:940px; margin:0 auto; padding:0 26px 90px}
+  h1,h2,h3,h4{margin:0}
+  a{color:var(--accent)}
+  code{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.86em; background:var(--sunken); padding:.1em .35em; border-radius:2px}
+  .m{font-family:"JetBrains Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+  .lbl{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+
+  /* masthead */
+  header.mast{padding:60px 0 28px; border-bottom:2px solid var(--ink)}
+  h1{font-family:Literata,Georgia,serif; font-size:clamp(2.1rem,5.5vw,3.05rem); font-weight:700; letter-spacing:-.038em; line-height:1.03; text-wrap:balance}
+  .sub{font-size:1.08rem; color:var(--ink-2); max-width:62ch; margin:15px 0 0; text-wrap:pretty}
+  .stats{display:flex; flex-wrap:wrap; gap:0; margin-top:28px; border:1px solid var(--rule); border-radius:3px; background:var(--surface); overflow:hidden}
+  .stat{flex:1 1 150px; padding:13px 16px; border-right:1px solid var(--rule); display:flex; flex-direction:column; gap:2px}
+  .stat:last-child{border-right:none}
+  .stat .v{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.42rem; font-variant-numeric:tabular-nums}
+
+  section{padding-top:52px}
+  h2{font-family:Literata,Georgia,serif; font-size:1.5rem; font-weight:700; letter-spacing:-.028em; margin-bottom:6px}
+  .lead{color:var(--ink-2); max-width:66ch; margin:8px 0 0}
+  p{margin:12px 0; max-width:66ch}
+
+  pre{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.76rem; line-height:1.7;
+    background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+    padding:18px 20px; overflow-x:auto; margin:20px 0; color:var(--ink-2);
+  }
+  pre b{color:var(--accent-ink); font-weight:500}
+
+  /* phase */
+  .phase{border:1px solid var(--rule); border-radius:4px; background:var(--surface); margin:16px 0; overflow:hidden}
+  .phead{display:flex; gap:16px; align-items:flex-start; padding:16px 20px; border-bottom:1px solid var(--rule); background:var(--sunken)}
+  .pnum{
+    font-family:"JetBrains Mono",ui-monospace,monospace; font-size:1.6rem; font-weight:500;
+    color:var(--accent-ink); line-height:1; flex:none; padding-top:2px; font-variant-numeric:tabular-nums;
+  }
+  .ptitle{display:flex; flex-direction:column; gap:5px; flex:1; min-width:0}
+  .ptitle h3{font-family:Literata,Georgia,serif; font-size:1.14rem; font-weight:700; letter-spacing:-.02em}
+  .goal{font-size:.9rem; color:var(--ink-2)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:3px}
+  .chip{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.66rem; letter-spacing:.05em; border:1px solid var(--rule); border-radius:2px; padding:3px 8px; color:var(--ink-3); background:var(--ground)}
+  .chip.eff{border-color:var(--accent); color:var(--accent-ink)}
+  .chip.gate{border-color:var(--warn); color:var(--warn)}
+  .pbody{padding:16px 20px; display:flex; flex-direction:column; gap:15px}
+
+  .sub-h{font-size:.82rem; font-weight:700; letter-spacing:-.005em; color:var(--ink); margin-bottom:-6px}
+  ol.tasks{margin:0; padding-left:22px; display:flex; flex-direction:column; gap:6px}
+  ol.tasks li{font-size:.9rem; color:var(--ink-2); padding-left:2px}
+  ol.tasks li b, ol.tasks li strong{color:var(--ink); font-weight:600}
+  ul.plain{margin:0; padding-left:19px; display:flex; flex-direction:column; gap:5px}
+  ul.plain li{font-size:.88rem; color:var(--ink-2)}
+
+  .files{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.73rem; color:var(--ink-3); line-height:1.85; border-top:1px dashed var(--rule); padding-top:12px}
+  .done{border-left:3px solid var(--accent); background:var(--accent-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .done .lbl{color:var(--accent-ink); display:block; margin-bottom:3px}
+  .done p{margin:0; font-size:.89rem; color:var(--ink); max-width:none}
+  .watch{border-left:3px solid var(--warn); background:var(--warn-soft); padding:11px 14px; border-radius:0 3px 3px 0}
+  .watch .lbl{color:var(--warn); display:block; margin-bottom:4px}
+  .watch ul{margin:0; padding-left:17px; display:flex; flex-direction:column; gap:4px}
+  .watch li, .watch p{font-size:.88rem; color:var(--ink); margin:0}
+
+  .tw{overflow-x:auto; margin:18px 0; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:.875rem}
+  th,td{text-align:left; padding:9px 14px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); background:var(--sunken); border-bottom:1px solid var(--rule); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.ms{font-family:"JetBrains Mono",ui-monospace,monospace; color:var(--accent-ink); white-space:nowrap}
+
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--rule); font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.72rem; color:var(--ink-4); display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+  .stackrow{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid var(--rule-soft);font-size:.87rem}
+  .stackrow b{font-weight:600}
+  .keyidea{border:1px solid var(--accent);border-radius:5px;background:var(--accent-soft);padding:17px 19px;display:flex;flex-direction:column;gap:8px;margin:20px 0}
+  .keyidea .k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .keyidea h3{font-size:1.05rem;font-weight:700;letter-spacing:-.018em;margin:0}
+  .keyidea p{margin:0;font-size:.9rem;color:var(--ink);max-width:none}
+  .cons{border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+  .cons .n{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;color:var(--accent-ink)}
+  .cons h4{font-size:.92rem;font-weight:700;letter-spacing:-.014em;margin:0}
+  .cons p{margin:0;font-size:.85rem;color:var(--ink-2);max-width:none}
+</style>
+<style>
+  .opt{border:1px solid var(--rule);border-radius:5px;background:var(--surface);margin:14px 0;overflow:hidden}
+  .ohead{display:flex;gap:15px;align-items:flex-start;padding:15px 18px;border-bottom:1px solid var(--rule);background:var(--sunken)}
+  .oletter{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:1.5rem;font-weight:500;color:var(--accent-ink);line-height:1;flex:none;padding-top:2px}
+  .otitle{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+  .otitle h3{font-family:Literata,Georgia,serif;font-size:1.08rem;font-weight:700;letter-spacing:-.018em}
+  .ocost{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.82rem;color:var(--accent-ink);flex:none;text-align:right;padding-top:3px}
+  .obody{padding:14px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px}
+  .obody .pro,.obody .con{display:flex;flex-direction:column;gap:5px}
+  .obody h5{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 3px;color:var(--ink-3)}
+  .obody ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px}
+  .obody li{font-size:.85rem;color:var(--ink-2)}
+  .stackline{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.72rem;color:var(--ink-3);padding:10px 18px;border-top:1px dashed var(--rule);line-height:1.8}
+  .verdict{grid-column:1 / -1;border-top:1px solid var(--rule-soft);margin-top:11px;padding-top:11px;font-size:.87rem;color:var(--ink)}
+  .verdict b{color:var(--accent-ink)}
+  .swap{width:100%;border-collapse:collapse;font-size:.85rem}
+  .swap td,.swap th{padding:8px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  .swap td:first-child{font-weight:600;white-space:nowrap}
+  .pick{border:1px solid var(--accent);border-radius:5px;background:var(--accent-soft);padding:16px 18px;margin:18px 0;display:flex;flex-direction:column;gap:7px}
+  .pick .k{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+  .pick p{margin:0;font-size:.9rem;color:var(--ink);max-width:none}
+</style>
+
+<div class="wrap">
+<header class="mast">
+  <div class="lbl" style="color:var(--accent-ink)">Tech News Portal · decision</div>
+  <h1>Stack Options</h1>
+  <p class="sub">Eleven complete stacks that would all build this portal, with honest costs and trade-offs — then a component-level menu if you want to mix.</p>
+  <div class="stats">
+    <div class="stat"><span class="lbl">Bundles</span><span class="v">11</span></div>
+    <div class="stat"><span class="lbl">Cheapest</span><span class="v">$0</span></div>
+    <div class="stat"><span class="lbl">Budget</span><span class="v">$20</span></div>
+    <div class="stat"><span class="lbl">Frontend</span><span class="v">RRv7</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>What actually decides this</h2>
+  <p class="lead">Every option below can build the portal. They differ on four things, and only four:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Question</th><th>Why it matters here</th></tr></thead>
+    <tbody>
+      <tr><td><b>Who owns uptime?</b></td><td>Serverless means nobody patches anything. A VPS is cheaper and you are the sysadmin.</td></tr>
+      <tr><td><b>How much is left for AI?</b></td><td>Hosting and summaries compete for the same $20. Every dollar of hosting is ~37 fewer summaries a day.</td></tr>
+      <tr><td><b>Does the archive outgrow it?</b></td><td>~7,900 articles a day is 2.9M rows a year. SQLite has a ceiling; Postgres effectively does not.</td></tr>
+      <tr><td><b>Invocation limits, or a process?</b></td><td>Serverless means CPU budgets and timeouts to design around. A persistent process removes that entire class of problem.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Frontend is settled either way: <b>React Router v7</b>, server-rendered then hydrated, runs on every option here.</p>
+</section>
+
+<section>
+  <h2>The eleven stacks</h2>
+  
+  <div class="opt">
+    <div class="ohead"><span class="oletter">A</span>
+      <div class="otitle"><h3>All-Cloudflare</h3></div>
+      <span class="ocost">~$20/mo</span>
+    </div>
+    <div class="stackline">Workers · D1 + FTS5 · KV · R2 · Queues · Vectorize · Workers AI · Access &nbsp;+&nbsp; React Router v7 · Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>One platform, one bill, one dashboard — nothing to wire between vendors</li><li>No servers, no patching, no uptime to own</li><li>Edge-rendered globally; cron, queues and vectors all native</li><li>Cheapest path that meets every requirement — leaves $13.50 for AI</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>D1 caps at 10 GB per database — about three years at this volume</li><li>SQLite FTS5 is good, not Postgres-good</li><li>Deepest vendor lock-in of any option here</li><li>Vectorize is younger than pgvector</li></ul></div>
+      <div class="verdict"><b>Recommended.</b> The only option where the whole $20 budget survives, and the pieces the portal grew into — image caching, backups, vectors — are all native rather than bolted on.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">B</span>
+      <div class="otitle"><h3>Cloudflare + Neon Postgres</h3></div>
+      <span class="ocost">~$25–40/mo</span>
+    </div>
+    <div class="stackline">Workers · Neon Postgres + pgvector + tsvector · Hyperdrive · KV · R2 · Queues &nbsp;+&nbsp; React Router v7 · Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Real Postgres: proper full-text, window functions, no storage ceiling</li><li>pgvector replaces Vectorize — one store for rows and vectors</li><li>Neon branches give you a real staging database</li><li>Portable — Postgres runs anywhere if you ever leave</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Two vendors and connection pooling to reason about</li><li>Neon's free tier is 0.5 GB; the paid tier eats most of the AI budget</li><li>Extra network hop from Worker to database</li><li>More moving parts for a one-person project</li></ul></div>
+      <div class="verdict"><b>The upgrade path.</b> Right if the archive matters long-term or search quality is the point. Take it when D1's ceiling actually bites, not before.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">C</span>
+      <div class="otitle"><h3>Vercel + Neon + Upstash</h3></div>
+      <span class="ocost">~$40–60/mo</span>
+    </div>
+    <div class="stackline">Next.js or RRv7 on Vercel · Neon Postgres · Upstash QStash + Redis · Vercel Blob &nbsp;+&nbsp; Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Best-in-class developer experience and preview deployments</li><li>React Router and Next both first-class</li><li>Huge ecosystem and documentation</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Vercel Pro is ~$20/mo before anything else runs</li><li>Cron granularity is worse than Workers; Hobby is once-daily</li><li>Three vendors minimum, four with AI</li><li>Function timeouts make long collection runs awkward</li></ul></div>
+      <div class="verdict">Great for a product with a team and a budget. For a solo $20/mo portal it spends most of the money on hosting rather than on summaries.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">D</span>
+      <div class="otitle"><h3>Railway — one PaaS</h3></div>
+      <span class="ocost">~$10–25/mo</span>
+    </div>
+    <div class="stackline">Node or Bun service · Railway Postgres + pgvector · Railway Redis · Volume storage &nbsp;+&nbsp; React Router v7 · Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li><strong>Persistent process</strong> — real cron, real background workers, no invocation limits</li><li>Long-running jobs are trivial; no 30-second ceilings anywhere</li><li>One dashboard, one bill, genuinely simple</li><li>Postgres and Redis provisioned in a click</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Not edge — a single region, so latency varies by where you are</li><li>Usage-based billing can drift upward as volume grows</li><li>You still own the app process and its memory</li></ul></div>
+      <div class="verdict"><b>The best non-serverless option.</b> If fighting invocation limits and CPU budgets sounds tedious, this removes that entire class of problem for roughly the same money.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">E</span>
+      <div class="otitle"><h3>Fly.io</h3></div>
+      <span class="ocost">~$10–25/mo</span>
+    </div>
+    <div class="stackline">Bun or Node on Fly Machines · Fly Postgres + pgvector · Upstash Redis · Tigris object storage &nbsp;+&nbsp; React Router v7</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Real machines that can scale to zero, placed near you</li><li>Postgres in the same private network — very low latency</li><li>Full control over the runtime and process model</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>You own Postgres backups and failover unless you pay for managed</li><li>More operational surface than Railway for the same shape of app</li><li>Machine sizing and scaling are yours to tune</li></ul></div>
+      <div class="verdict">A better fit than Railway if you want multi-region or plan to outgrow one box. More knobs than this project needs today.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">F</span>
+      <div class="otitle"><h3>VPS + Docker Compose</h3></div>
+      <span class="ocost">~$5–8/mo</span>
+    </div>
+    <div class="stackline">Hetzner CX22 or DO droplet · Node/Bun · Postgres + pgvector · Redis · Caddy · Docker Compose &nbsp;+&nbsp; React Router v7</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Cheapest compute by a distance — €4/mo buys more than any serverless tier</li><li>No platform limits at all: parse what you like, run what you like</li><li>Everything in one place, easy to reason about</li><li>pgvector, Meilisearch, anything you want to add is just another container</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>You own uptime, patching, TLS renewal, backups and monitoring</li><li>One box is one point of failure</li><li>No edge distribution</li><li>The hours you spend on ops are hours not spent on the portal</li></ul></div>
+      <div class="verdict">Objectively the most capability per rupee. The question is whether you want to be the sysadmin — a news portal that dies because a disk filled up is worse than one that costs $15 more.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">G</span>
+      <div class="otitle"><h3>Supabase-centric</h3></div>
+      <span class="ocost">~$25–35/mo</span>
+    </div>
+    <div class="stackline">Supabase Postgres + pgvector + pg_cron + Storage + Auth · Edge Functions &nbsp;+&nbsp; RRv7 on Cloudflare Pages · Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Batteries included: database, auth, storage, realtime and cron in one product</li><li>pgvector and full-text native; excellent dashboard and SQL editor</li><li>Row-level security if the portal ever gets multiple users</li><li>pg_cron means scheduling lives next to the data</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Edge Functions are less suited to heavy, long collection runs</li><li>Free tier pauses after a week of inactivity; Pro is $25/mo</li><li>You'd likely still host the frontend elsewhere</li></ul></div>
+      <div class="verdict">Strong if you expect real user accounts later. The auth and RLS story is the best here by some margin.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">H</span>
+      <div class="otitle"><h3>Deno Deploy</h3></div>
+      <span class="ocost">~$0–20/mo</span>
+    </div>
+    <div class="stackline">Deno · Deno KV · Deno Cron · Deno Queues &nbsp;+&nbsp; Fresh or RRv7 · Claude Haiku</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Generous free tier; cron, KV and queues are built into the runtime</li><li>TypeScript-native with no build step</li><li>Genuinely simple deployment model</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Deno KV is key-value, not relational — awkward for clusters and joins</li><li>You would need an external Postgres for anything relational</li><li>Smaller ecosystem than Node or Workers</li></ul></div>
+      <div class="verdict">Elegant for small services. The data model here is relational enough that KV-only becomes a fight.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">I</span>
+      <div class="otitle"><h3>Python stack</h3></div>
+      <span class="ocost">~$10–25/mo</span>
+    </div>
+    <div class="stackline">FastAPI · Postgres + pgvector · Celery + Redis · on Railway, Fly or a VPS &nbsp;+&nbsp; React Router v7 frontend</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li><strong>Best ecosystem for this exact problem</strong> — feedparser, trafilatura, readability, dateutil</li><li><strong>sentence-transformers runs embeddings locally for free</strong> — removes the Vectorize line entirely</li><li>Celery is a mature, honest background-job system</li><li>If you ever want real ML on top, you are already there</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Two languages in one project — Python backend, TypeScript frontend</li><li>Not serverless; you own a process and its deployment</li><li>Slower to first response than Workers, though irrelevant here</li></ul></div>
+      <div class="verdict"><b>The dark horse.</b> Python's feed and text-extraction libraries are markedly better than anything in the JS ecosystem, and free local embeddings genuinely change the budget. Costs you language uniformity.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">J</span>
+      <div class="otitle"><h3>Oracle Cloud Always Free</h3></div>
+      <span class="ocost">$0 infra + AI</span>
+    </div>
+    <div class="stackline">Oracle ARM VM — 4 cores, 24 GB RAM · Docker Compose · Postgres + pgvector · Caddy &nbsp;+&nbsp; React Router v7</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li><strong>Genuinely free forever</strong> — 4 ARM cores and 24 GB RAM, no trial clock</li><li>Vastly more compute than any paid tier discussed here</li><li>Whole $20 goes to AI, roughly tripling summary coverage</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Oracle reclaims idle Always Free instances with little warning</li><li>Account approval is notoriously unreliable</li><li>All the VPS ops burden, with a vendor that owes you nothing</li><li>No SLA of any kind</li></ul></div>
+      <div class="verdict">Unbeatable on paper. The risk is real though: a portal that vanishes because Oracle reclaimed the instance is a bad trade for $5/mo.</div>
+    </div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oletter">K</span>
+      <div class="otitle"><h3>AWS serverless</h3></div>
+      <span class="ocost">~$15–40/mo</span>
+    </div>
+    <div class="stackline">Lambda · Aurora Serverless or DynamoDB · SQS · S3 · EventBridge · OpenSearch &nbsp;+&nbsp; RRv7 on CloudFront</div>
+    <div class="obody">
+      <div class="pro"><h5>For</h5><ul><li>Scales further than this project will ever need</li><li>Every component is mature and battle-tested</li><li>Skills transfer to most employers</li></ul></div>
+      <div class="con"><h5>Against</h5><ul><li>Most complex option by a wide margin — IAM, VPC, cold starts</li><li>Cost is genuinely hard to predict at small scale</li><li>OpenSearch alone can cost more than the entire budget</li></ul></div>
+      <div class="verdict">Right answer at a thousand times this scale. At this one, the complexity tax is not repaid.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Or mix your own</h2>
+  <p class="lead">Every layer swaps independently. Pick a row from each and I will tell you honestly whether the combination fights itself.</p>
+  <div class="tw"><table class="swap">
+    <thead><tr><th>Layer</th><th>Options</th></tr></thead>
+    <tbody>
+      <tr><td>Runtime</td><td>Cloudflare Workers · Node on a VPS · Bun · Deno · AWS Lambda · Railway · Fly Machines · Oracle ARM</td></tr>
+      <tr><td>Frontend</td><td><b>React Router v7</b> · Next.js · Astro + React islands · SvelteKit · Nuxt · SolidStart · Hono JSX</td></tr>
+      <tr><td>Database</td><td>Cloudflare D1 · Neon · Supabase · Turso · PlanetScale · self-hosted Postgres · CockroachDB</td></tr>
+      <tr><td>Search</td><td>SQLite FTS5 · Postgres tsvector · Meilisearch · Typesense · Elasticsearch · Algolia</td></tr>
+      <tr><td>Vectors</td><td>Vectorize · pgvector · Qdrant · Turso vector · Pinecone · Weaviate</td></tr>
+      <tr><td>Embeddings</td><td>Workers AI bge · <b>sentence-transformers, local and free</b> · OpenAI · Voyage · Cohere</td></tr>
+      <tr><td>Queue</td><td>Cloudflare Queues · BullMQ + Redis · pg-boss · Upstash QStash · AWS SQS · Celery</td></tr>
+      <tr><td>Objects</td><td>R2 · S3 · Backblaze B2 · Tigris · Supabase Storage</td></tr>
+      <tr><td>Summaries</td><td><b>Claude Haiku 4.5</b> · Claude Sonnet · GPT-mini class · Gemini Flash · local Llama via Ollama</td></tr>
+      <tr><td>Auth</td><td>Cloudflare Access · Clerk · Auth.js · Supabase Auth · Lucia · none, if it stays private</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>If you want one answer</h2>
+  <div class="pick">
+    <span class="k">Recommendation</span>
+    <p><b>A — All-Cloudflare, with React Router v7.</b> It is the only stack where the whole $20 survives to become summaries, and every piece the portal grew into is native rather than bolted on. The plan is already written against it, so it starts today.</p>
+    <p><b>D — Railway</b> is the one I would pick instead if invocation limits and CPU budgets sound like a fight you would rather not have. A persistent process makes the collector trivially simple, for roughly the same money.</p>
+    <p><b>I — Python</b> deserves a real look if you are comfortable with two languages. Its feed and text-extraction libraries are genuinely better, and free local embeddings would meaningfully increase how many stories get summarized.</p>
+  </div>
+  <p>Everything except the runtime is reversible later. The database is the one choice that is expensive to change, which is the only reason D1's ceiling is worth thinking about now rather than in year three.</p>
+</section>
+
+<footer>
+  <span>Tech News Portal · stack options</span>
+  <span>docs/artifacts/stack.html</span>
+</footer>
+</div>

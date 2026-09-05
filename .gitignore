@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+.react-router/
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+coverage/
