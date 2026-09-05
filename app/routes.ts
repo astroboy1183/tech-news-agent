@@ -5,4 +5,5 @@ export default [
   route("health", "routes/health.ts"),
   route("raw", "routes/raw.tsx"),
   route("census", "routes/census.tsx"),
+  route("websub", "routes/websub.ts"),
 ] satisfies RouteConfig;

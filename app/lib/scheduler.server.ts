@@ -1,3 +1,4 @@
+import { reconcileSubscriptions } from "./feeds/websub.server";
 import { recordRun } from "./runs.server";
 
 /**
@@ -5,13 +6,15 @@ import { recordRun } from "./runs.server";
  * work rather than performing it, so no single invocation can exceed its CPU
  * budget however far behind the queue falls.
  */
+const CALLBACK_BASE = "https://tech-news-agent.jayanthapalla.workers.dev";
+
 export async function runScheduled(cron: string, env: Env): Promise<void> {
   switch (cron) {
     case "* * * * *":
       return dispatchDueSources(env);
     case "*/10 * * * *":
-      // v0.4.0 — select what the remaining daily budget can afford.
-      return;
+      // Keep hub subscriptions alive; v0.4.0 adds budget selection here too.
+      return reconcileSubscriptions(env, CALLBACK_BASE);
     case "0 2 * * *":
       // v0.5.0 — compose the daily digest.
       return;

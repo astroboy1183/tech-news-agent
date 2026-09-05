@@ -16,7 +16,8 @@
     "db:migrate:local": "wrangler d1 migrations apply tech-news --local",
     "db:migrate:remote": "wrangler d1 migrations apply tech-news --remote",
     "seed:local": "tsx scripts/seed.ts --local",
-    "seed:remote": "tsx scripts/seed.ts --remote"
+    "seed:remote": "tsx scripts/seed.ts --remote",
+    "opml:import": "tsx scripts/import-opml.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.124.0",

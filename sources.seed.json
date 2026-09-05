@@ -1,9 +1,9 @@
 [
   {
     "name": "arXiv cs.LG",
-    "feed_url": "http://export.arxiv.org/rss/cs.LG",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=40",
     "section": "ai",
-    "kind": "arxiv",
+    "kind": "atom",
     "tier": "C",
     "poll_interval": 3600,
     "weight": 1.3,
@@ -11,9 +11,9 @@
   },
   {
     "name": "arXiv cs.CV",
-    "feed_url": "http://export.arxiv.org/rss/cs.CV",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CV&sortBy=submittedDate&sortOrder=descending&max_results=40",
     "section": "ai",
-    "kind": "arxiv",
+    "kind": "atom",
     "tier": "C",
     "poll_interval": 3600,
     "weight": 1.3,
@@ -21,9 +21,9 @@
   },
   {
     "name": "arXiv cs.CL",
-    "feed_url": "http://export.arxiv.org/rss/cs.CL",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=40",
     "section": "ai",
-    "kind": "arxiv",
+    "kind": "atom",
     "tier": "C",
     "poll_interval": 3600,
     "weight": 1.2,

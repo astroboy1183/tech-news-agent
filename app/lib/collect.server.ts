@@ -66,6 +66,40 @@ export async function runCollectBatch(
   });
 }
 
+/**
+ * Handle a WebSub push. Same parse-and-store path as a poll, minus the fetch —
+ * the hub already handed us the body.
+ */
+export async function collectFromPush(
+  env: Env,
+  sourceId: number,
+  body: string,
+  contentType: string | null,
+): Promise<number> {
+  const source = await env.DB.prepare(
+    `SELECT id, name, feed_url, section, weight, poll_interval,
+            etag, last_modified, content_hash, consecutive_failures, last_fetched_at
+       FROM sources WHERE id = ?`,
+  )
+    .bind(sourceId)
+    .first<SourceRow>();
+  if (!source) return 0;
+
+  const now = Math.floor(Date.now() / 1000);
+  const feed = parseFeed(body, contentType ?? "");
+  const inserted = await storeItems(env, source, feed.items, now, source.last_fetched_at === null);
+
+  await env.DB.prepare(
+    `UPDATE sources SET last_fetched_at = ?, last_status = 'push', consecutive_failures = 0
+      WHERE id = ?`,
+  )
+    .bind(now, sourceId)
+    .run();
+
+  await recordRun(env, { stage: "websub-push", startedAt: Date.now(), counts: { inserted } });
+  return inserted;
+}
+
 async function collectSource(
   env: Env,
   sourceId: number,

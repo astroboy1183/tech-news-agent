@@ -9,13 +9,25 @@ Systems · Security · Cloud & Infra · Science · Gaming · Industry & Policy
 
 ---
 
-## Status — v0.1.0 deployed
+## Status — v0.2.0 deployed
 
 **Live:** https://tech-news-agent.jayanthapalla.workers.dev ·
 [/health](https://tech-news-agent.jayanthapalla.workers.dev/health)
 
-Foundation is done: the Worker serves pages, the schema is live in production,
-102 sources are seeded, and lint, typecheck and tests all pass in CI.
+The collector runs continuously. ~2,400 articles from 85 working sources
+across all ten sections, with WebSub push confirmed active on hubs that
+support it.
+
+| Endpoint | |
+|---|---|
+| [`/health`](https://tech-news-agent.jayanthapalla.workers.dev/health) | every binding, last run per stage |
+| [`/raw`](https://tech-news-agent.jayanthapalla.workers.dev/raw) | the composition check — real headlines, no styling |
+| [`/census`](https://tech-news-agent.jayanthapalla.workers.dev/census) | headline measurements; findings in [docs/CENSUS.md](docs/CENSUS.md) |
+| `/websub` | hub verification and content push |
+
+**Next: v0.3.0 — clustering.** `/raw` already shows the same story twice from
+different outlets, which is what clustering fixes, and it has to land before
+summarisation so one AI call can cover eight outlets.
 
 **Running on Workers Paid.** Four cron triggers registered, tiered polling
 live, Vectorize and Workers AI bound. The scheduler dispatches every minute and
