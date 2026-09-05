@@ -40,6 +40,19 @@ describe("normalizeTitle", () => {
     expect(title).toBe("CVE-2026-31847: unauthenticated RCE in ScreenConnect");
   });
 
+  it("strips Reddit flair tags", () => {
+    expect(normalizeTitle("Language Models Can Control Their Own Attention [R]").title).toBe(
+      "Language Models Can Control Their Own Attention",
+    );
+    expect(normalizeTitle("Does it even matter? [D]").title).toBe("Does it even matter?");
+  });
+
+  it("leaves a bracketed word that is not flair alone", () => {
+    expect(normalizeTitle("Rust 1.94 [beta] ships async closures").title).toBe(
+      "Rust 1.94 [beta] ships async closures",
+    );
+  });
+
   it("decodes numeric and named entities", () => {
     expect(decodeEntities("a &mdash; b &#8212; c &amp; d")).toBe("a — b — c & d");
   });

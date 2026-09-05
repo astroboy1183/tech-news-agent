@@ -82,6 +82,9 @@ export function normalizeTitle(raw: string, source?: string): NormalizedTitle {
     title = toSentenceCase(title);
   }
 
+  // Reddit flair tags ride along in the title: "… Attention [R]", "… [D]".
+  title = title.replace(/\s*\[[A-Z]{1,3}\]\s*$/, "").trim();
+
   title = title.replace(/[…]+$|\.{3,}$/, "").trim();
 
   return { title, badge };

@@ -39,6 +39,25 @@ describe("classify", () => {
     expect(section).toBe("gaming");
   });
 
+  it("routes trade and policy to industry, not the source's hardware section", () => {
+    // Both seen live on Tom's Hardware, both originally landing in `hardware`.
+    expect(
+      classify({
+        ...base,
+        sourceSection: "hardware",
+        title: "Trump slaps up to 100% tariffs on imported drones and critical components",
+      }).section,
+    ).toBe("industry");
+
+    expect(
+      classify({
+        ...base,
+        sourceSection: "hardware",
+        title: "Taiwan cracks down on tech businesses with illegal Chinese ownership",
+      }).section,
+    ).toBe("industry");
+  });
+
   it("extracts sub-topics", () => {
     const { topics } = classify({
       ...base,

@@ -83,7 +83,8 @@ const RULES: Record<Section, [RegExp, number][]> = {
   ],
   industry: [
     [/\b(tariffs?|export controls?|sanctions?|trade (?:war|ban|restrictions?))\b/i, 4],
-    [/\b(crackdown|ownership rules|subsidy|subsidies|chips act|national security review)\b/i, 3],
+    [/\b(crack(?:s|ed|ing)? down|crackdown|investigations?|convictions?)\b/i, 3],
+    [/\b(ownership|state[- ]owned|subsidy|subsidies|chips act|national security)\b/i, 3],
     [/\b(acquisition|merger|ipo|funding round|series [a-e]\b|valuation)\b/i, 3],
     [/\b(antitrust|regulat\w+|lawsuit|settlement|ftc|doj|European Commission)\b/i, 3],
     [/\b(layoffs?|earnings|revenue|quarterly|market share)\b/i, 2],
