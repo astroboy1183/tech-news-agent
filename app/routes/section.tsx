@@ -2,7 +2,7 @@ import { Masthead } from "../components/masthead";
 import { Feature, Lead, Row } from "../components/story";
 import { cloudflare } from "../context";
 import { SECTIONS, type Section } from "../lib/classify";
-import { composeFrontPage, composeSection } from "../lib/compose.server";
+import { composeSection, siteCounts } from "../lib/compose.server";
 import { SECTION_LABELS } from "../lib/sections";
 import type { Route } from "./+types/section";
 
@@ -18,11 +18,11 @@ export async function loader({ context, params }: Route.LoaderArgs) {
 
   // The masthead needs the same counts everywhere, so it is composed here too
   // rather than duplicated into a layout that would query on every navigation.
-  const [{ lead, stories }, front] = await Promise.all([
+  const [{ lead, stories }, counts] = await Promise.all([
     composeSection(env, slug),
-    composeFrontPage(env),
+    siteCounts(env),
   ]);
-  return { section: slug, label: SECTION_LABELS[slug], lead, stories, counts: front.counts };
+  return { section: slug, label: SECTION_LABELS[slug], lead, stories, counts };
 }
 
 export default function SectionPage({ loaderData }: Route.ComponentProps) {

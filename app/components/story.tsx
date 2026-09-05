@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { Section } from "../lib/classify";
 import { hostOf, timeAgo } from "../lib/format";
 import { SECTION_LABELS, type Story } from "../lib/sections";
@@ -13,6 +14,46 @@ import { SECTION_LABELS, type Story } from "../lib/sections";
 
 function label(section: string): string {
   return SECTION_LABELS[section as Section] ?? section;
+}
+
+/**
+ * A story page only exists when it has something the outlet's own page does
+ * not — a summary drawn from every version, or the record of who else filed
+ * it. For a lone uncovered link it would be an empty wrapper around someone
+ * else's article, so those headlines go straight to the source.
+ */
+function hasStoryPage(story: Story): boolean {
+  return story.sourceCount > 1 || story.summary !== null;
+}
+
+/** Headline link: internal where there is more to show, external otherwise. */
+function Headline({
+  story,
+  className,
+  style,
+}: {
+  story: Story;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  if (hasStoryPage(story)) {
+    return (
+      <Link className={className} style={style} to={`/story/${story.id}`}>
+        {story.headline}
+      </Link>
+    );
+  }
+  return (
+    <a
+      className={className}
+      style={style}
+      href={story.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {story.headline}
+    </a>
+  );
 }
 
 /** "6 SOURCES · 2m", or just the age when nobody corroborated it. */
@@ -107,14 +148,7 @@ export function Lead({ story }: { story: Story }) {
           <Meta story={story} />
         </span>
       </div>
-      <a
-        className="lead-headline clamp-4"
-        href={story.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {story.headline}
-      </a>
+      <Headline story={story} className="lead-headline clamp-4" />
       {story.summary ? (
         <p className="standfirst">{story.summary}</p>
       ) : story.excerpt ? (
@@ -133,11 +167,9 @@ export function Feature({ story, size = "md" }: { story: Story; size?: "md" | "s
     <article style={{ display: "flex", flexDirection: "column", gap: 9, minWidth: 0 }}>
       <Thumb story={story} height={big ? 126 : 104} />
       <span className="kicker">{label(story.section)}</span>
-      <a
+      <Headline
+        story={story}
         className="clamp-3"
-        href={story.url}
-        target="_blank"
-        rel="noopener noreferrer"
         style={{
           fontFamily: "Literata, Georgia, serif",
           fontSize: big ? 19 : 16,
@@ -145,9 +177,7 @@ export function Feature({ story, size = "md" }: { story: Story; size?: "md" | "s
           lineHeight: 1.24,
           letterSpacing: "-0.015em",
         }}
-      >
-        {story.headline}
-      </a>
+      />
       {story.excerpt && big ? (
         <p
           className="clamp-2"
@@ -177,14 +207,7 @@ export function Row({ story, thumb = false }: { story: Story; thumb?: boolean })
         </div>
       ) : null}
       <div style={{ minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
-        <a
-          className="row-headline clamp-3"
-          href={story.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {story.headline}
-        </a>
+        <Headline story={story} className="row-headline clamp-3" />
         <span className="meta">
           {(story.sources[0] ?? hostOf(story.url)).toLowerCase()} ·{" "}
           {timeAgo(story.publishedAt ?? story.firstSeenAt)}

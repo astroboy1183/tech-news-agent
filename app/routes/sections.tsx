@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Masthead } from "../components/masthead";
 import { cloudflare } from "../context";
 import { SECTIONS } from "../lib/classify";
-import { composeFrontPage } from "../lib/compose.server";
+import { siteCounts } from "../lib/compose.server";
 import { formatCount } from "../lib/format";
 import { SECTION_BLURBS, SECTION_LABELS } from "../lib/sections";
 import type { Route } from "./+types/sections";
@@ -20,9 +20,9 @@ export async function loader({ context }: Route.LoaderArgs) {
   ).all<{ section: string; stories: number; corroborated: number }>();
 
   const bySection = new Map((rows.results ?? []).map((r) => [r.section, r]));
-  const front = await composeFrontPage(env);
+  const counts = await siteCounts(env);
   return {
-    counts: front.counts,
+    counts,
     sections: SECTIONS.map((section) => ({
       section,
       label: SECTION_LABELS[section],

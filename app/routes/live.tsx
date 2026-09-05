@@ -1,7 +1,7 @@
 import { Masthead } from "../components/masthead";
 import { cloudflare } from "../context";
 import type { Section } from "../lib/classify";
-import { composeFrontPage } from "../lib/compose.server";
+import { siteCounts } from "../lib/compose.server";
 import { timeAgo } from "../lib/format";
 import { SECTION_LABELS } from "../lib/sections";
 import type { Route } from "./+types/live";
@@ -32,8 +32,8 @@ export async function loader({ context }: Route.LoaderArgs) {
       ORDER BY a.fetched_at DESC, a.id DESC
       LIMIT 120`,
   ).all<FeedRow>();
-  const front = await composeFrontPage(env);
-  return { rows: rows.results ?? [], counts: front.counts };
+  const counts = await siteCounts(env);
+  return { rows: rows.results ?? [], counts };
 }
 
 /**

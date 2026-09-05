@@ -64,7 +64,8 @@ export async function selectForSummary(env: Env): Promise<Selection> {
        LEFT JOIN enrichments e ON e.cluster_id = c.id
       WHERE e.cluster_id IS NULL
         AND c.last_seen_at >= ?
-      ORDER BY (c.score + (c.source_count - 1) * 8.0) DESC
+      ORDER BY (c.score + (c.source_count - 1) * 8.0)
+               * POW(0.5, (unixepoch() - c.last_seen_at) / 86400.0) DESC
       LIMIT 300`,
   )
     .bind(since)

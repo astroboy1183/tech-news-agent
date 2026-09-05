@@ -8,5 +8,7 @@ export default [
   route("s/:section", "routes/section.tsx"),
   route("sections", "routes/sections.tsx"),
   route("live", "routes/live.tsx"),
+  route("story/:id", "routes/story.tsx"),
+  route("api/frontpage.json", "routes/api.frontpage.ts"),
   route("websub", "routes/websub.ts"),
 ] satisfies RouteConfig;

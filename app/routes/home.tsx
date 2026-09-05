@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Masthead } from "../components/masthead";
 import { Feature, Lead, Row } from "../components/story";
 import { cloudflare } from "../context";
-import { composeFrontPage } from "../lib/compose.server";
+import { frontPage } from "../lib/compose.server";
 import { formatCount } from "../lib/format";
 import type { Route } from "./+types/home";
 
@@ -18,7 +18,7 @@ export function meta(_: Route.MetaArgs) {
 }
 
 export async function loader({ context }: Route.LoaderArgs) {
-  return composeFrontPage(context.get(cloudflare).env);
+  return frontPage(context.get(cloudflare).env);
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
@@ -121,7 +121,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             {formatCount(counts.articles)} ARTICLES GROUPED INTO {formatCount(counts.stories)}{" "}
             STORIES · {formatCount(counts.corroborated)} CONFIRMED BY MORE THAN ONE OUTLET
           </span>
-          <span className="meta">TECH NEWS AGENT · v0.5.0</span>
+          <span className="meta">TECH NEWS AGENT · v0.6.0</span>
         </footer>
       </main>
     </>

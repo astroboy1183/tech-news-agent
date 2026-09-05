@@ -9,6 +9,7 @@
  */
 
 import { SECTIONS, type Section } from "./classify";
+import { chooseLead, currentPin, type Rejection, readLeadHistory, recordLead } from "./lead.server";
 import { type FrontPageCounts, SECTION_LABELS, type SectionBlock, type Story } from "./sections";
 
 export type { SectionBlock, Story } from "./sections";
@@ -16,6 +17,11 @@ export { SECTION_LABELS } from "./sections";
 
 export type FrontPage = {
   lead: Story | null;
+  /** True when an editor pinned this lead rather than the gates choosing it. */
+  leadPinned: boolean;
+  /** Why the stories above the chosen lead were passed over. */
+  leadRejections: Rejection[];
+  composedAt: number;
   hero: Story[];
   across: Story[];
   sections: SectionBlock[];
@@ -40,6 +46,25 @@ type ClusterRow = {
   why_it_matters: string | null;
   topics_json: string | null;
 };
+
+/**
+ * How a story is ranked.
+ *
+ * Cluster scores are computed when the cluster is written and never change, so
+ * ordering on them alone means a story that scored well two days ago still
+ * outranks this morning's news forever. The front page filled with stale
+ * high-scorers and the lead gates were left rejecting every good story for
+ * being old — the age gate was papering over a missing decay term.
+ *
+ * Corroboration is added before the decay, not after: several newsrooms
+ * agreeing is a durable fact about a story, while its urgency is not.
+ *
+ * Halving every 24 hours, measured from the most recent arrival, so a story
+ * still being filed stays fresh while one nobody has touched since yesterday
+ * falls away.
+ */
+const RANK = `(c.score + (c.source_count - 1) * 6.0)
+              * POW(0.5, (unixepoch() - c.last_seen_at) / 86400.0)`;
 
 const SELECT = `
   SELECT c.id, c.headline, c.section, c.source_count, c.velocity, c.score,
@@ -118,6 +143,75 @@ async function loadSources(env: Env, clusterIds: number[]): Promise<Map<number, 
   return out;
 }
 
+/**
+ * How long a composed front page is served from KV.
+ *
+ * Short on purpose. Sources are polled every two minutes and clustering runs
+ * every minute, so a ten-minute cache would routinely serve a page older than
+ * the news it describes — which is the one thing this portal is meant not to
+ * do. Ninety seconds removes nearly all the database work without the page
+ * ever being visibly behind.
+ */
+const CACHE_TTL_SECONDS = 90;
+const CACHE_KEY = "frontpage:v1";
+const COUNTS_KEY = "counts:v1";
+
+/** The cached front page, composing it only when the cache is cold. */
+export async function frontPage(env: Env): Promise<FrontPage & { cached: boolean }> {
+  const hit = await env.CACHE.get(CACHE_KEY);
+  if (hit) {
+    try {
+      return { ...(JSON.parse(hit) as FrontPage), cached: true };
+    } catch {
+      /* a corrupt cache entry is a reason to recompose, not to fail */
+    }
+  }
+  const page = await composeFrontPage(env);
+  await env.CACHE.put(CACHE_KEY, JSON.stringify(page), {
+    expirationTtl: CACHE_TTL_SECONDS,
+  });
+  return { ...page, cached: false };
+}
+
+/**
+ * Masthead numbers only.
+ *
+ * Every page shows these, and the section and live pages were composing an
+ * entire front page — three hundred clusters and their outlet lists — purely
+ * to fill five figures in a header.
+ */
+export async function siteCounts(env: Env): Promise<FrontPageCounts> {
+  const cached = await env.CACHE.get(COUNTS_KEY);
+  if (cached) {
+    try {
+      return JSON.parse(cached) as FrontPageCounts;
+    } catch {
+      /* recompute rather than fail on a corrupt entry */
+    }
+  }
+  const row = await env.DB.prepare(
+    `SELECT (SELECT COUNT(*) FROM articles) AS articles,
+            (SELECT COUNT(*) FROM articles WHERE fetched_at > ?1) AS today,
+            (SELECT COUNT(*) FROM clusters) AS stories,
+            (SELECT COUNT(*) FROM clusters WHERE source_count > 1) AS corroborated,
+            (SELECT COUNT(*) FROM sources WHERE active = 1) AS sources,
+            (SELECT COUNT(*) FROM enrichments) AS summarized`,
+  )
+    .bind(Math.floor(Date.now() / 1000) - 86400)
+    .first<FrontPageCounts>();
+
+  const counts: FrontPageCounts = {
+    articles: row?.articles ?? 0,
+    today: row?.today ?? 0,
+    stories: row?.stories ?? 0,
+    corroborated: row?.corroborated ?? 0,
+    sources: row?.sources ?? 0,
+    summarized: row?.summarized ?? 0,
+  };
+  await env.CACHE.put(COUNTS_KEY, JSON.stringify(counts), { expirationTtl: 90 });
+  return counts;
+}
+
 export async function composeFrontPage(env: Env): Promise<FrontPage> {
   const now = Math.floor(Date.now() / 1000);
   const since = now - 3 * 86400;
@@ -128,7 +222,7 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
   const pool = await env.DB.prepare(
     `${SELECT}
       WHERE c.last_seen_at > ?
-      ORDER BY (c.score + (c.source_count - 1) * 6.0) DESC
+      ORDER BY ${RANK} DESC
       LIMIT 300`,
   )
     .bind(since)
@@ -149,7 +243,10 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
   };
   const available = () => candidates.filter((s) => !used.has(s.id));
 
-  const lead = take(available()[0]) ?? null;
+  const [history, pinnedId] = await Promise.all([readLeadHistory(env), currentPin(env, now)]);
+  const choice = chooseLead(candidates, history, pinnedId, now);
+  const lead = choice.lead ? (take(choice.lead) ?? null) : null;
+  if (lead) await recordLead(env, lead.id, now);
 
   // The top of the page never runs three versions of one subject: hero and
   // across both skip sections already spoken for above them.
@@ -203,6 +300,9 @@ export async function composeFrontPage(env: Env): Promise<FrontPage> {
 
   return {
     lead,
+    leadPinned: choice.pinned,
+    leadRejections: choice.rejected.slice(0, 12),
+    composedAt: now,
     hero,
     across,
     sections,
@@ -228,7 +328,7 @@ export async function composeSection(
   const pool = await env.DB.prepare(
     `${SELECT}
       WHERE c.section = ? AND c.last_seen_at > ?
-      ORDER BY (c.score + (c.source_count - 1) * 6.0) DESC
+      ORDER BY ${RANK} DESC
       LIMIT ?`,
   )
     .bind(section, since, limit)
