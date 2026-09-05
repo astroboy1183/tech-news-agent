@@ -607,7 +607,7 @@ async function refreshClusters(env: Env, clusterIds: number[], now: number): Pro
     clusterIds.map((id) =>
       env.DB.prepare(
         `WITH members AS (
-           SELECT source_id, title, section, heuristic_score,
+           SELECT id, source_id, title, section, heuristic_score,
                   COALESCE(published_at, fetched_at) AS seen_at, fetched_at
              FROM articles WHERE cluster_id = ?1
          ),
@@ -625,6 +625,12 @@ async function refreshClusters(env: Env, clusterIds: number[], now: number): Pro
            headline      = COALESCE(
                              (SELECT title FROM members ORDER BY heuristic_score DESC LIMIT 1),
                              headline),
+           -- The story fronts with its best-scoring member, so the link, image
+           -- and byline the page shows come from the outlet that told it best
+           -- rather than merely first.
+           primary_article_id = COALESCE(
+                             (SELECT id FROM members ORDER BY heuristic_score DESC LIMIT 1),
+                             primary_article_id),
            -- The lane the story belongs in is whichever its members mostly
            -- agree on, not whichever outlet happened to file first.
            section       = COALESCE(

@@ -1,5 +1,5 @@
 import { cloudflare } from "../context";
-import { composeFrontPage } from "../lib/compose.server";
+import { composeFrontPage, type Story } from "../lib/compose.server";
 import type { Route } from "./+types/raw";
 
 export function meta() {
@@ -21,15 +21,9 @@ export async function loader({ context }: Route.LoaderArgs) {
 export default function Raw({ loaderData }: Route.ComponentProps) {
   const { lead, hero, across, sections, latest, counts } = loaderData;
 
-  const line = (s: {
-    title: string;
-    sourceName: string;
-    section: string;
-    score: number;
-    badge: string | null;
-    imageUrl: string | null;
-  }) =>
-    `[${s.score}] ${s.badge ? `${s.badge} · ` : ""}${s.title} — ${s.sourceName} (${s.section})${s.imageUrl ? " [img]" : ""}`;
+  const line = (s: Story) =>
+    `[${s.score.toFixed(0)}] ${s.sourceCount > 1 ? `${s.sourceCount}src · ` : ""}${s.headline}` +
+    ` — ${s.sources[0] ?? "?"} (${s.section})${s.imageUrl ? " [img]" : ""}`;
 
   return (
     <main
@@ -37,7 +31,8 @@ export default function Raw({ loaderData }: Route.ComponentProps) {
     >
       <h1 style={{ fontSize: 16 }}>RAW COMPOSITION CHECK</h1>
       <p>
-        {counts.total} articles · {counts.today} in the last 24h · no styling by design
+        {counts.articles} articles in {counts.stories} stories · {counts.corroborated}
+        corroborated · {counts.today} in the last 24h · no styling by design
       </p>
 
       <h2 style={{ fontSize: 14 }}>LEAD</h2>
@@ -79,7 +74,7 @@ export default function Raw({ loaderData }: Route.ComponentProps) {
         </div>
       ))}
 
-      <h2 style={{ fontSize: 14 }}>LATEST ({latest.length}/12)</h2>
+      <h2 style={{ fontSize: 14 }}>LATEST ({latest.length})</h2>
       <ol>
         {latest.map((s) => (
           <li key={s.id}>{line(s)}</li>

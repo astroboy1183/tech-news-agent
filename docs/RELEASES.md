@@ -83,7 +83,26 @@ thresholds to hit it would have bought the number with false merges, which is
 the one outcome clustering must not produce. Raising the average is a sourcing
 task, tracked for v0.7.0 discovery.*
 
-## v0.4.0 — Summaries · *pre-release*
+## v0.4.0 — The Portal · **first release you can look at**
+
+**Phase 5a + 5b (brought forward) · shipped**
+
+Reordered deliberately. The plan put the portal third, behind summaries and
+the editorial engine — two releases with nothing to look at. But the data that
+fills a front page already existed after v0.3.0, and summaries drop into the
+cards later without redesigning anything, so the portal came first.
+
+- Paper and Ink themes, toggle persisted per browser, applied before first paint
+- The front page, composed from **clusters rather than articles** — corroboration
+  is on the card, so a story six newsrooms filed reads differently from one a
+  single blog posted
+- Lead, two-up hero, four-across, ten section columns, latest rail
+- All ten section pages at `/s/:section`, plus `/sections` and `/live`
+- Responsive down to a phone; headlines clamp instead of pushing the grid
+
+**Shipped when** the front page led with a real story and its corroboration.
+
+## v0.5.0 — Summaries · *pre-release*
 
 **Phase 3 · ~2.5 days**
 
@@ -93,41 +112,26 @@ The first release that costs money.
 - Cluster-level summarization through the Batch API
 - KV spend ledger with a hard daily cap
 - Prompt caching verified working
+- Summaries render into the cards the portal already has
 
 **Ship when** a full week stays under $0.45/day with every section clearing its floor.
 
-## v0.5.0 — Editorial engine · *pre-release*
+## v0.6.0 — Editorial engine · *pre-release*
 
 **Phase 4 · ~2.5 days**
 
-The front page composes itself.
+The front page composes itself, and can be overridden.
 
 - Five lead gates, manual pin override
-- Slot filler across 73 positions with no story repeated
 - Empty states for every slot
 - Image pipeline with R2 fallback
 - Composition cached in KV every 10 minutes
 - `GET /api/frontpage.json`
+- **`/story/:id`** — cluster pages with arrival timelines
 
 **Ship when** the API returns a correct front page and the pin works.
 
 ---
-
-## v0.6.0 — The Portal · **first real release**
-
-**Phase 5a + 5b · ~4.5 days**
-
-The first version you open in the morning.
-
-- Paper and Ink themes, toggle persisted
-- The front page, image-led, 73 stories
-- Story cards in both states, line-clamped
-- All ten section pages with topic filters
-- **`/story/:id`** — cluster pages with arrival timelines
-- `/live` and `/digest`
-- `j`/`k` navigation
-
-**Ship when** you read it by choice rather than to test it.
 
 ## v0.7.0 — Discovery
 
