@@ -33,11 +33,14 @@ const SECTIONS = [
   "gaming",
   "industry",
 ];
-const INTERVALS: Record<string, number> = { A: 300, B: 900, C: 3600, D: 43200 };
+// Every source polls on the same two-minute cadence: conditional GET makes a
+// quiet feed nearly free, and a failing one backs itself off. Tier now affects
+// only trust weight, not how often we look.
+const POLL_INTERVAL = 120;
 
 const fallbackSection = flag("section") ?? "software";
 const tier = (flag("tier") ?? "C").toUpperCase();
-const interval = INTERVALS[tier] ?? 3600;
+const interval = POLL_INTERVAL;
 
 const sources = parseOpml(readFileSync(file, "utf8"));
 if (sources.length === 0) {

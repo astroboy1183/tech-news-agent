@@ -43,7 +43,7 @@ Deployed Worker with the full schema behind it. Nothing user-facing.
 
 The database fills itself. Still no AI, still nothing to look at.
 
-- Tiered scheduler, conditional GET, WebSub push
+- Two-minute polling for every source, conditional GET, WebSub push
 - RSS, Atom and JSON Feed parsing with adapters for HN, Reddit, GitHub, arXiv
 - URL canonicalization and dedupe
 - Headline normalisation on ingest
@@ -60,11 +60,28 @@ The database fills itself. Still no AI, still nothing to look at.
 
 Eight outlets covering one story become one story.
 
-- Trigram candidate detection, embeddings for the ambiguous cases
-- Vector search resolution, cluster records, arrival timelines
-- Corroboration and velocity scoring
+- Tiers, cheapest first: trigram fast path → identifier guard → same-source
+  guard → bge-small embeddings, recent clusters in memory and the tail through
+  Vectorize
+- Cluster records, arrival timelines, corroboration and velocity scoring
+- Nightly vector pruning so closed clusters stop competing for match slots
+- **Every threshold measured, not guessed** — see [CLUSTERING.md](./CLUSTERING.md).
+  Four designs died against live data: an "ambiguous" trigram band that would
+  have carried more false pairs than true ones; a same-section requirement that
+  split one story across six clusters; sole reliance on Vectorize, whose
+  indexing lag breaks exactly during a breaking-news burst; and unrestricted
+  merging, where ~19 of 21 same-outlet merges were wrong.
 
-**Ship when** clusters average >1.8 members and 30 spot-checks show no false merges.
+**Ship when** 30 spot-checks show no false merges.
+
+*The original criterion also asked for >1.8 members per cluster. Live data
+retired it: across 900 headlines in 24 hours only a handful of stories were
+covered by more than one source, because the seeded feeds are mostly blogs,
+Reddit, HN and arXiv rather than outlets that chase the same events. Average
+cluster size measures the source list, not the clustering — and tuning
+thresholds to hit it would have bought the number with false merges, which is
+the one outcome clustering must not produce. Raising the average is a sourcing
+task, tracked for v0.7.0 discovery.*
 
 ## v0.4.0 — Summaries · *pre-release*
 

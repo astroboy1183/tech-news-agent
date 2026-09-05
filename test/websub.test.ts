@@ -14,7 +14,7 @@ async function sign(body: string, secret: string, hash: "SHA-1" | "SHA-256"): Pr
 }
 
 describe("websub", () => {
-  const body = '<rss><channel><item><title>hi</title></item></channel></rss>';
+  const body = "<rss><channel><item><title>hi</title></item></channel></rss>";
   const secret = "s3cret";
 
   it("accepts a correct sha1 signature", async () => {

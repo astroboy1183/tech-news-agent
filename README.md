@@ -29,19 +29,17 @@ support it.
 different outlets, which is what clustering fixes, and it has to land before
 summarisation so one AI call can cover eight outlets.
 
-**Running on Workers Paid.** Four cron triggers registered, tiered polling
-live, Vectorize and Workers AI bound. The scheduler dispatches every minute and
-the collect consumer drains the queue.
+**Running on Workers Paid.** Four cron triggers registered, Vectorize and
+Workers AI bound. The scheduler dispatches every minute and the collect
+consumer drains the queue.
 
-| Tier | Interval | Sources |
-|---|---|---|
-| A | 5 min | 5 |
-| B | 15 min | 33 |
-| C | 1 hour | 46 |
-| D | 12 hours | 18 |
-
-About 5,700 polls a day. WebSub push, arriving in v0.2.0, delivers instantly
-for feeds that support it.
+**Every source is polled every two minutes** — all 101 of them, about 72,700
+polls a day. The tiering this replaced (5 min / 15 min / hourly / 12-hourly)
+existed to ration a scarce budget, but conditional GET makes the steady state
+almost free: a feed that has not published answers `304` with no body. Sources
+that fail back off exponentially to a six-hour ceiling and honour `Retry-After`,
+so a rate-limiting origin removes itself without any tier to maintain. WebSub
+push delivers instantly for feeds that support it.
 
 **R2 still needs a one-time enable** in the dashboard — it is a separate opt-in
 from Workers Paid. Nothing uses it until v0.5.0 (thumbnail cache) and v1.0.0

@@ -1,13 +1,13 @@
 {
   "name": "tech-news-agent",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
     "preview": "pnpm build && wrangler dev",
-    "deploy": "pnpm build && wrangler deploy --triggers \"*/5 * * * *\"",
+    "deploy": "pnpm build && wrangler deploy",
     "typecheck": "react-router typegen && wrangler types && tsc --noEmit",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",

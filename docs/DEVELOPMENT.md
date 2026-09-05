@@ -135,8 +135,10 @@ P0 Scaffold
 ## Phase 1 — Collector, ending in a reality check · 4 days
 
 ### Fetching
-1. **Tiered scheduler** — cron every minute picks sources where `next_poll_at`
-   has passed. Tiers A 2–5 min, B 15 min, C hourly, D 6–24 h. Intervals adapt.
+1. **Scheduler** — cron every minute picks sources where `next_poll_at` has
+   passed, up to 60 a tick. Every source runs on a two-minute interval, so a
+   full sweep of 101 sources takes two ticks and the cap is headroom for
+   draining a backlog after a deploy.
 2. **Conditional GET** — 304 is success-with-no-work. Content-hash fallback.
 3. **WebSub** at `POST /websub` with signature verification and renewal.
 4. **Politeness** — per-domain floor, honour `Retry-After`, hard 429 backoff,

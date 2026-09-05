@@ -44,7 +44,7 @@ export async function loader({ context }: Route.LoaderArgs) {
   return Response.json(
     {
       status: healthy ? "ok" : "degraded",
-      version: "0.1.0",
+      version: "0.3.0",
       checks,
       lastRuns: lastRuns.results ?? [],
       time: new Date().toISOString(),

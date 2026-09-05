@@ -61,7 +61,7 @@ hard budget, only on the stories that earn it.
 
 | Stage | Trigger | What it does |
 |---|---|---|
-| **Schedule** | cron, every minute | Select sources whose `next_poll_at` has passed, take a slice, enqueue them. This is what makes polling tiered rather than uniform |
+| **Schedule** | cron, every minute | Select sources whose `next_poll_at` has passed, take a slice, enqueue them. Every source is on a two-minute interval; the slice keeps a backlog draining steadily rather than in one burst |
 | **Collect** | queue consumer | Conditional GET, parse, canonicalize, dedupe by URL hash, classify lane by keyword rules, score heuristically, insert as `status='live'`. **The article is on the site now** |
 | **Push** | `POST /websub` | WebSub hubs notify us the moment a supported feed publishes. Same collect path, zero polling latency |
 
