@@ -41,6 +41,13 @@ that fail back off exponentially to a six-hour ceiling and honour `Retry-After`,
 so a rate-limiting origin removes itself without any tier to maintain. WebSub
 push delivers instantly for feeds that support it.
 
+**Duplicates are stopped at four levels** — the same URL twice (hash), the
+same URL dressed with tracking parameters (canonicalization), one source
+reposting itself at a new URL within 48 hours, and the same event from
+different outlets, which is *clustered rather than dropped* because that is
+corroboration and the whole point of the portal. See
+[docs/RUNBOOK.md](docs/RUNBOOK.md).
+
 **R2 still needs a one-time enable** in the dashboard — it is a separate opt-in
 from Workers Paid. Nothing uses it until v0.5.0 (thumbnail cache) and v1.0.0
 (nightly backups); the binding is commented in `wrangler.jsonc` until then.

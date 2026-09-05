@@ -162,6 +162,27 @@ async function collectSource(
   return { inserted, unchanged: false };
 }
 
+/**
+ * How far back a repeated headline from one source counts as a repost.
+ *
+ * Measured, not guessed. Across the live corpus the only genuine same-source
+ * duplicate — a link posted twice to r/devops — was 0.3 hours apart, while the
+ * legitimate repeats were Rock Paper Shotgun's weekly columns ("The Sunday
+ * Papers", "What are we all playing this weekend?") at exactly 168 and 169
+ * hours. Anything between those two works; 48 hours sits well clear of both
+ * and matches the clustering window, which is the same idea applied to one
+ * publisher instead of many.
+ */
+const REPOST_WINDOW_SECONDS = 48 * 3600;
+
+/** A headline reduced to the parts that decide whether it is the same story. */
+export function titleKey(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+}
+
 async function storeItems(
   env: Env,
   source: SourceRow,
@@ -170,6 +191,17 @@ async function storeItems(
   firstRun: boolean,
 ): Promise<number> {
   const statements: D1PreparedStatement[] = [];
+
+  // The URL hash catches an item republished at the same address. It does not
+  // catch the same story posted twice at different addresses, which is what a
+  // Reddit repost or a re-published article looks like — so recent headlines
+  // from this source are checked too.
+  const recent = await env.DB.prepare(
+    `SELECT title FROM articles WHERE source_id = ? AND fetched_at >= ?`,
+  )
+    .bind(source.id, now - REPOST_WINDOW_SECONDS)
+    .all<{ title: string }>();
+  const seenTitles = new Set((recent.results ?? []).map((r) => titleKey(r.title)));
 
   for (const [index, item] of items.entries()) {
     const seeding = firstRun && index < FIRST_RUN_ITEMS;
@@ -180,6 +212,14 @@ async function storeItems(
 
     const { title, badge } = normalizeTitle(item.title, source.name);
     if (!title) continue;
+
+    // Also guards against one feed carrying the same item twice in a single
+    // fetch, which some aggregators do.
+    const key = titleKey(title);
+    if (key.length > 0) {
+      if (seenTitles.has(key)) continue;
+      seenTitles.add(key);
+    }
 
     const { section, topics, score } = classify({
       title,

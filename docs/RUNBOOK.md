@@ -28,6 +28,49 @@ wrong. Everything else on the page is context for why.
 Dispatch and clustering run under `Promise.allSettled`, so a failure in one
 cannot stop the other. Each records its own run.
 
+## Ingestion and duplicates
+
+**Every source is polled every two minutes.** All of them, on one interval —
+there is no tiering. `/ops` shows the observed figure; it usually sits under a
+minute because a full sweep of 101 sources takes two ticks of the
+every-minute scheduler at 60 sources a tick.
+
+Conditional GET makes the steady state nearly free: a feed that has not
+published answers `304` with no body. A source that fails backs off
+exponentially to a six-hour ceiling and honours `Retry-After`, so a
+rate-limiting origin removes itself from the fast lane without any tiering to
+maintain.
+
+Duplicates are stopped at four different levels, because they arrive in four
+different shapes:
+
+| shape | caught by |
+|---|---|
+| the same item at the same URL, seen again on the next poll | `url_hash` UNIQUE + `ON CONFLICT DO NOTHING` |
+| the same item at a URL dressed with tracking parameters, AMP, or a redirector | canonicalization before hashing |
+| the same item reposted by one source at a *different* URL | same source + same headline within 48 hours |
+| the same event covered by several different outlets | **not dropped — clustered**, which is the entire point |
+
+The last row is the important distinction. Two outlets covering one story are
+not a duplicate to be discarded; they are corroboration, and the portal is
+built to show it. Only a single publisher repeating *itself* is a duplicate.
+
+The 48-hour repost window was measured rather than chosen. In the live corpus
+the only genuine same-source duplicate — a link posted twice to r/devops — was
+**0.3 hours** apart, while the legitimate repeats were Rock Paper Shotgun's
+weekly columns at **exactly 168 and 169 hours**. Any boundary between those
+works; 48 hours sits clear of both.
+
+To check the current state:
+
+```sql
+SELECT COUNT(*) AS articles, COUNT(DISTINCT url_hash) AS distinct_urls FROM articles;
+SELECT source_id, title, COUNT(*) FROM articles GROUP BY 1, 2 HAVING COUNT(*) > 1;
+```
+
+The first two numbers must match. The second query should return only titles
+that are genuinely recurring columns, days apart.
+
 ## Common failures
 
 **Nothing is being collected.**
