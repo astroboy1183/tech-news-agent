@@ -60,7 +60,16 @@ export async function runScheduled(cron: string, env: Env): Promise<void> {
  * The cap exists so a backlog (after a deploy, or an outage) drains steadily
  * instead of dispatching thousands of messages in one tick.
  */
-const SOURCES_PER_TICK = 60;
+const SOURCES_PER_TICK = 120;
+
+/**
+ * Sources bundled into one queue message.
+ *
+ * Queues bill per message, so at a two-minute cadence across a few hundred
+ * sources this multiplier is worth real money: one source per message put
+ * queue operations second only to Workers itself on the bill.
+ */
+const SOURCES_PER_MESSAGE = 4;
 
 async function dispatchDueSources(env: Env): Promise<void> {
   const started = Date.now();
@@ -88,7 +97,16 @@ async function dispatchDueSources(env: Env): Promise<void> {
 
   // One message per source: a poisoned feed retries alone rather than dragging
   // its batch with it.
-  await env.COLLECT_Q.sendBatch(ids.map((sourceId) => ({ body: { sourceIds: [sourceId] } })));
+  // Several sources per message rather than one each. Queue operations are
+  // billed per message, and at a two-minute cadence across a few hundred
+  // sources one-per-message is the single largest line item after Workers
+  // itself — this cuts it by the group size. The consumer guards each source
+  // separately, so grouping costs nothing in retry precision.
+  const groups: number[][] = [];
+  for (let i = 0; i < ids.length; i += SOURCES_PER_MESSAGE) {
+    groups.push(ids.slice(i, i + SOURCES_PER_MESSAGE));
+  }
+  await env.COLLECT_Q.sendBatch(groups.map((sourceIds) => ({ body: { sourceIds } })));
 
   await recordRun(env, {
     stage: "schedule",

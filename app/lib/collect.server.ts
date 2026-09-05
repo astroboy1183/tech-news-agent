@@ -41,22 +41,30 @@ export async function runCollectBatch(
   let inserted = 0;
   let failed = 0;
 
-  // Per-message try/catch: an uncaught error retries the whole batch and
-  // re-polls sources that already succeeded.
+  // One message can carry several sources, so the guard is per *source*: an
+  // unexpected throw from one must not force a retry that re-polls the
+  // neighbours that already succeeded. Ordinary fetch failures never reach
+  // here — collectSource records them and backs the source off itself — so
+  // anything caught below is genuinely unexpected.
   for (const message of batch.messages) {
-    try {
-      for (const sourceId of message.body.sourceIds) {
+    let threw = false;
+    for (const sourceId of message.body.sourceIds) {
+      try {
         const result = await collectSource(env, sourceId);
         fetched++;
         inserted += result.inserted;
         if (result.unchanged) unchanged++;
+      } catch (error) {
+        failed++;
+        threw = true;
+        console.error("collect failed", sourceId, error);
       }
-      message.ack();
-    } catch (error) {
-      failed++;
-      console.error("collect failed", message.body.sourceIds, error);
-      message.retry();
     }
+    // Acked either way: the sources that threw have had their failure recorded
+    // and will come round again on their own schedule, and retrying the
+    // message would re-fetch everything else in it for nothing.
+    void threw;
+    message.ack();
   }
 
   await recordRun(env, {

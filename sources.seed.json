@@ -1,1023 +1,1802 @@
 [
   {
-    "name": "arXiv cs.LG",
-    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=40",
-    "section": "ai",
-    "kind": "atom",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "arXiv cs.CV",
-    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CV&sortBy=submittedDate&sortOrder=descending&max_results=40",
-    "section": "ai",
-    "kind": "atom",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "arXiv cs.CL",
-    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=40",
-    "section": "ai",
-    "kind": "atom",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Google Research",
-    "feed_url": "https://research.google/blog/rss/",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "DeepMind",
-    "feed_url": "https://deepmind.google/blog/rss.xml",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "Meta AI",
-    "feed_url": "https://ai.meta.com/blog/rss/",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
     "name": "Anthropic News",
+    "homepage": "",
     "feed_url": "https://www.anthropic.com/news/rss.xml",
-    "section": "ai",
     "kind": "rss",
+    "section": "ai",
+    "weight": 1.2,
     "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "OpenAI Blog",
-    "feed_url": "https://openai.com/blog/rss.xml",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Hugging Face Blog",
-    "feed_url": "https://huggingface.co/blog/feed.xml",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Import AI",
-    "feed_url": "https://importai.substack.com/feed",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "The Gradient",
-    "feed_url": "https://thegradient.pub/rss/",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Sebastian Raschka",
-    "feed_url": "https://magazine.sebastianraschka.com/feed",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Simon Willison",
-    "feed_url": "https://simonwillison.net/atom/everything/",
-    "section": "ai",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
     "name": "BAIR Blog",
+    "homepage": "",
     "feed_url": "https://bair.berkeley.edu/blog/feed.xml",
-    "section": "ai",
     "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "ai",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
   },
   {
-    "name": "r/MachineLearning",
-    "feed_url": "https://www.reddit.com/r/MachineLearning/.rss",
+    "name": "DeepMind",
+    "homepage": "",
+    "feed_url": "https://deepmind.google/blog/rss.xml",
+    "kind": "rss",
     "section": "ai",
-    "kind": "reddit",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Google AI Blog",
+    "homepage": "",
+    "feed_url": "https://blog.google/technology/ai/rss/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Google Research",
+    "homepage": "",
+    "feed_url": "https://research.google/blog/rss/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Hugging Face Blog",
+    "homepage": "",
+    "feed_url": "https://huggingface.co/blog/feed.xml",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Import AI",
+    "homepage": "",
+    "feed_url": "https://importai.substack.com/feed",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.3,
     "tier": "D",
-    "poll_interval": 120,
-    "weight": 0.7,
-    "homepage": ""
+    "poll_interval": 120
+  },
+  {
+    "name": "MIT News — AI",
+    "homepage": "",
+    "feed_url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Machine Learning Mastery",
+    "homepage": "",
+    "feed_url": "https://machinelearningmastery.com/feed/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Meta AI",
+    "homepage": "",
+    "feed_url": "https://ai.meta.com/blog/rss/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "NVIDIA Blog",
+    "homepage": "",
+    "feed_url": "https://blogs.nvidia.com/feed/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "OpenAI Blog",
+    "homepage": "",
+    "feed_url": "https://openai.com/blog/rss.xml",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Sebastian Raschka",
+    "homepage": "",
+    "feed_url": "https://magazine.sebastianraschka.com/feed",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.2,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Simon Willison",
+    "homepage": "",
+    "feed_url": "https://simonwillison.net/atom/everything/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "The Gradient",
+    "homepage": "",
+    "feed_url": "https://thegradient.pub/rss/",
+    "kind": "rss",
+    "section": "ai",
+    "weight": 1.2,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "arXiv cs.CL",
+    "homepage": "",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    "kind": "atom",
+    "section": "ai",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "arXiv cs.CV",
+    "homepage": "",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.CV&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    "kind": "atom",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "arXiv cs.LG",
+    "homepage": "",
+    "feed_url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    "kind": "atom",
+    "section": "ai",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
   },
   {
     "name": "r/LocalLLaMA",
-    "feed_url": "https://www.reddit.com/r/LocalLLaMA/.rss",
-    "section": "ai",
-    "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "Rust Blog",
-    "feed_url": "https://blog.rust-lang.org/feed.xml",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Go Blog",
-    "feed_url": "https://go.dev/blog/feed.atom",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Python Insider",
-    "feed_url": "https://blog.python.org/feeds/posts/default",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "TypeScript Devblog",
-    "feed_url": "https://devblogs.microsoft.com/typescript/feed/",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "V8 Blog",
-    "feed_url": "https://v8.dev/blog.atom",
-    "section": "software",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Node.js Blog",
-    "feed_url": "https://nodejs.org/en/feed/blog.xml",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Deno Blog",
-    "feed_url": "https://deno.com/feed",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "Bun Blog",
-    "feed_url": "https://bun.sh/rss.xml",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "PostgreSQL News",
-    "feed_url": "https://www.postgresql.org/news.rss",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "SQLite Changelog",
-    "feed_url": "https://sqlite.org/changes.html",
-    "section": "software",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.1,
     "homepage": "",
-    "active": false
-  },
-  {
-    "name": "GitHub Blog",
-    "feed_url": "https://github.blog/feed/",
-    "section": "software",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "Lobsters",
-    "feed_url": "https://lobste.rs/rss",
-    "section": "software",
-    "kind": "rss",
-    "tier": "A",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Hacker News front page",
-    "feed_url": "https://hnrss.org/frontpage?points=100",
-    "section": "software",
-    "kind": "hn",
-    "tier": "A",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "r/programming",
-    "feed_url": "https://www.reddit.com/r/programming/.rss",
-    "section": "software",
+    "feed_url": "https://www.reddit.com/r/LocalLLaMA/.rss",
     "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "ai",
     "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "AnandTech",
-    "feed_url": "https://www.anandtech.com/rss/",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "Tom's Hardware",
-    "feed_url": "https://www.tomshardware.com/feeds/all",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "TechPowerUp",
-    "feed_url": "https://www.techpowerup.com/rss/news",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "VideoCardz",
-    "feed_url": "https://videocardz.com/feed",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "Chips and Cheese",
-    "feed_url": "https://chipsandcheese.com/feed/",
-    "section": "hardware",
-    "kind": "rss",
     "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
-    "name": "SemiAnalysis",
-    "feed_url": "https://www.semianalysis.com/feed",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "ServeTheHome",
-    "feed_url": "https://www.servethehome.com/feed/",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Phoronix",
-    "feed_url": "https://www.phoronix.com/rss.php",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "A",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "EE Times",
-    "feed_url": "https://www.eetimes.com/feed/",
-    "section": "hardware",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "r/hardware",
-    "feed_url": "https://www.reddit.com/r/hardware/.rss",
-    "section": "hardware",
+    "name": "r/MachineLearning",
+    "homepage": "",
+    "feed_url": "https://www.reddit.com/r/MachineLearning/.rss",
     "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "ai",
     "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "The Verge",
-    "feed_url": "https://www.theverge.com/rss/index.xml",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "A",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "Ars Technica",
-    "feed_url": "https://feeds.arstechnica.com/arstechnica/index",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "A",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "Engadget",
-    "feed_url": "https://www.engadget.com/rss.xml",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "Notebookcheck",
-    "feed_url": "https://www.notebookcheck.net/News.152.100.html",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "GSMArena",
-    "feed_url": "https://www.gsmarena.com/rss-news-reviews.php3",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "Android Police",
-    "feed_url": "https://www.androidpolice.com/feed/",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "9to5Mac",
-    "feed_url": "https://9to5mac.com/feed/",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "9to5Google",
-    "feed_url": "https://9to5google.com/feed/",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "MacRumors",
-    "feed_url": "https://feeds.macrumors.com/MacRumors-All",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "DPReview",
-    "feed_url": "https://www.dpreview.com/feeds/news.xml",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "iFixit News",
-    "feed_url": "https://www.ifixit.com/News/rss",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Liliputing",
-    "feed_url": "https://liliputing.com/feed",
-    "section": "consumer",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "LWN.net",
-    "feed_url": "https://lwn.net/headlines/newrss",
-    "section": "os",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.5,
-    "homepage": ""
-  },
-  {
-    "name": "kernel.org releases",
-    "feed_url": "https://www.kernel.org/feeds/kdist.xml",
-    "section": "os",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "OMG Ubuntu",
-    "feed_url": "https://www.omgubuntu.co.uk/feed",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "It's FOSS",
-    "feed_url": "https://itsfoss.com/feed/",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "Linuxiac",
-    "feed_url": "https://linuxiac.com/feed/",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "9to5Linux",
-    "feed_url": "https://9to5linux.com/feed",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "Fedora Magazine",
-    "feed_url": "https://fedoramagazine.org/feed/",
-    "section": "os",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Arch Linux News",
-    "feed_url": "https://archlinux.org/feeds/news/",
-    "section": "os",
-    "kind": "rss",
     "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Debian News",
-    "feed_url": "https://www.debian.org/News/news",
-    "section": "os",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Windows Blog",
-    "feed_url": "https://blogs.windows.com/feed/",
-    "section": "os",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
-  },
-  {
-    "name": "Windows Central",
-    "feed_url": "https://www.windowscentral.com/rss",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "Neowin",
-    "feed_url": "https://www.neowin.net/news/rss/",
-    "section": "os",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "Undeadly (OpenBSD)",
-    "feed_url": "https://undeadly.org/cgi?action=rss",
-    "section": "os",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "r/linux",
-    "feed_url": "https://www.reddit.com/r/linux/.rss",
-    "section": "os",
-    "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "Krebs on Security",
-    "feed_url": "https://krebsonsecurity.com/feed/",
-    "section": "security",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.4,
-    "homepage": ""
-  },
-  {
-    "name": "Schneier on Security",
-    "feed_url": "https://www.schneier.com/feed/atom/",
-    "section": "security",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "BleepingComputer",
-    "feed_url": "https://www.bleepingcomputer.com/feed/",
-    "section": "security",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "The Hacker News",
-    "feed_url": "https://feeds.feedburner.com/TheHackersNews",
-    "section": "security",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "Project Zero",
-    "feed_url": "https://googleprojectzero.blogspot.com/feeds/posts/default?alt=rss&max-results=25",
-    "section": "security",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.4,
-    "homepage": ""
-  },
-  {
-    "name": "CISA Advisories",
-    "feed_url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
-    "section": "security",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "Troy Hunt",
-    "feed_url": "https://www.troyhunt.com/rss/",
-    "section": "security",
-    "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Cloudflare Blog",
-    "feed_url": "https://blog.cloudflare.com/rss/",
-    "section": "security",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "r/netsec",
-    "feed_url": "https://www.reddit.com/r/netsec/.rss",
-    "section": "security",
-    "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
-    "weight": 0.7,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
     "name": "AWS News",
+    "homepage": "",
     "feed_url": "https://aws.amazon.com/blogs/aws/feed/",
-    "section": "cloud",
     "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
     "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
-    "name": "Google Cloud Blog",
-    "feed_url": "https://cloudblog.withgoogle.com/rss/",
-    "section": "cloud",
+    "name": "Azure Blog",
+    "homepage": "",
+    "feed_url": "https://azure.microsoft.com/en-us/blog/feed/",
     "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
+    "section": "cloud",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
   },
   {
     "name": "Azure Updates",
+    "homepage": "",
     "feed_url": "https://azurecomcdn.azureedge.net/en-us/updates/feed/",
-    "section": "cloud",
     "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
+    "section": "cloud",
     "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "Kubernetes Blog",
-    "feed_url": "https://kubernetes.io/feed.xml",
-    "section": "cloud",
-    "kind": "rss",
     "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
     "name": "CNCF Blog",
+    "homepage": "",
     "feed_url": "https://www.cncf.io/feed/",
-    "section": "cloud",
     "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
     "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
+    "poll_interval": 120
+  },
+  {
+    "name": "Cloudflare Workers",
+    "homepage": "",
+    "feed_url": "https://blog.cloudflare.com/tag/developers/rss/",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Docker Blog",
+    "homepage": "",
+    "feed_url": "https://www.docker.com/blog/feed/",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Elastic Blog",
+    "homepage": "",
+    "feed_url": "https://www.elastic.co/blog/feed",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
   },
   {
     "name": "Fly.io Blog",
+    "homepage": "",
     "feed_url": "https://fly.io/blog/feed.xml",
-    "section": "cloud",
     "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "cloud",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Google Cloud Blog",
+    "homepage": "",
+    "feed_url": "https://cloudblog.withgoogle.com/rss/",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Grafana Blog",
+    "homepage": "",
+    "feed_url": "https://grafana.com/blog/index.xml",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "HashiCorp Blog",
+    "homepage": "",
+    "feed_url": "https://www.hashicorp.com/blog/feed.xml",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Kubernetes Blog",
+    "homepage": "",
+    "feed_url": "https://kubernetes.io/feed.xml",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
   },
   {
     "name": "Netflix Tech Blog",
+    "homepage": "",
     "feed_url": "https://netflixtechblog.com/feed",
-    "section": "cloud",
     "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "cloud",
     "weight": 1.2,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Percona",
+    "homepage": "",
+    "feed_url": "https://www.percona.com/blog/feed/",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Red Hat Blog",
+    "homepage": "",
+    "feed_url": "https://www.redhat.com/en/rss/blog",
+    "kind": "rss",
+    "section": "cloud",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
   },
   {
     "name": "r/devops",
+    "homepage": "",
     "feed_url": "https://www.reddit.com/r/devops/.rss",
-    "section": "cloud",
     "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "cloud",
     "weight": 0.7,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
   },
   {
-    "name": "Nature News",
-    "feed_url": "https://www.nature.com/nature.rss",
-    "section": "science",
+    "name": "9to5Google",
+    "homepage": "",
+    "feed_url": "https://9to5google.com/feed/",
     "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Quanta Magazine",
-    "feed_url": "https://api.quantamagazine.org/feed/",
-    "section": "science",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
-  },
-  {
-    "name": "IEEE Spectrum",
-    "feed_url": "https://spectrum.ieee.org/feeds/feed.rss",
-    "section": "science",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "NASA Breaking News",
-    "feed_url": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
-    "section": "science",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Ars Science",
-    "feed_url": "https://feeds.arstechnica.com/arstechnica/science",
-    "section": "science",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Phys.org",
-    "feed_url": "https://phys.org/rss-feed/",
-    "section": "science",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
-  },
-  {
-    "name": "Steam News",
-    "feed_url": "https://store.steampowered.com/feeds/news.xml",
-    "section": "gaming",
-    "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
+    "section": "consumer",
     "weight": 0.9,
-    "homepage": ""
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "9to5Mac",
+    "homepage": "",
+    "feed_url": "https://9to5mac.com/feed/",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Android Police",
+    "homepage": "",
+    "feed_url": "https://www.androidpolice.com/feed/",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Apple Newsroom",
+    "homepage": "",
+    "feed_url": "https://www.apple.com/newsroom/rss-feed.rss",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Ars Technica",
+    "homepage": "",
+    "feed_url": "https://feeds.arstechnica.com/arstechnica/index",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "CNET",
+    "homepage": "",
+    "feed_url": "https://www.cnet.com/rss/news/",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "DPReview",
+    "homepage": "",
+    "feed_url": "https://www.dpreview.com/feeds/news.xml",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.9,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Daring Fireball",
+    "homepage": "",
+    "feed_url": "https://daringfireball.net/feeds/main",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Digital Trends",
+    "homepage": "",
+    "feed_url": "https://www.digitaltrends.com/feed/",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Engadget",
+    "homepage": "",
+    "feed_url": "https://www.engadget.com/rss.xml",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "GSMArena",
+    "homepage": "",
+    "feed_url": "https://www.gsmarena.com/rss-news-reviews.php3",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Liliputing",
+    "homepage": "",
+    "feed_url": "https://liliputing.com/feed",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "MacRumors",
+    "homepage": "",
+    "feed_url": "https://feeds.macrumors.com/MacRumors-All",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Mashable Tech",
+    "homepage": "",
+    "feed_url": "https://mashable.com/feeds/rss/tech",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Notebookcheck",
+    "homepage": "",
+    "feed_url": "https://www.notebookcheck.net/News.152.100.html",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Notebookcheck News",
+    "homepage": "",
+    "feed_url": "https://www.notebookcheck.net/News.152.100.html?type=100&rss=1",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "PCWorld",
+    "homepage": "",
+    "feed_url": "https://www.pcworld.com/feed",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Six Colors",
+    "homepage": "",
+    "feed_url": "https://sixcolors.com/feed/",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "TechRadar",
+    "homepage": "",
+    "feed_url": "https://www.techradar.com/feeds/articletype/news",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "The Verge",
+    "homepage": "",
+    "feed_url": "https://www.theverge.com/rss/index.xml",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 0.9,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Tom's Guide",
+    "homepage": "",
+    "feed_url": "https://www.tomsguide.com/feeds/all",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "iFixit News",
+    "homepage": "",
+    "feed_url": "https://www.ifixit.com/News/rss",
+    "kind": "rss",
+    "section": "consumer",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Eurogamer",
+    "homepage": "",
+    "feed_url": "https://www.eurogamer.net/feed",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
   },
   {
     "name": "Gamasutra / GDC",
+    "homepage": "",
     "feed_url": "https://gamedeveloper.com/rss.xml",
-    "section": "gaming",
     "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
+    "section": "gaming",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "C",
+    "poll_interval": 120
   },
   {
-    "name": "Rock Paper Shotgun",
-    "feed_url": "https://www.rockpapershotgun.com/feed",
-    "section": "gaming",
+    "name": "GamesIndustry.biz",
+    "homepage": "",
+    "feed_url": "https://www.gamesindustry.biz/feed",
     "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.8,
-    "homepage": ""
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
   },
   {
     "name": "GamingOnLinux",
+    "homepage": "",
     "feed_url": "https://www.gamingonlinux.com/article_rss.php",
-    "section": "gaming",
     "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
+    "section": "gaming",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "B",
+    "poll_interval": 120
   },
   {
     "name": "Godot News",
+    "homepage": "",
     "feed_url": "https://godotengine.org/rss.xml",
-    "section": "gaming",
     "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "gaming",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "IGN",
+    "homepage": "",
+    "feed_url": "https://feeds.ign.com/ign/all",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Kotaku",
+    "homepage": "",
+    "feed_url": "https://kotaku.com/rss",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "PC Gamer",
+    "homepage": "",
+    "feed_url": "https://www.pcgamer.com/rss/",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "PC Invasion",
+    "homepage": "",
+    "feed_url": "https://www.pcinvasion.com/feed/",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Polygon",
+    "homepage": "",
+    "feed_url": "https://www.polygon.com/rss/index.xml",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Rock Paper Shotgun",
+    "homepage": "",
+    "feed_url": "https://www.rockpapershotgun.com/feed",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Steam News",
+    "homepage": "",
+    "feed_url": "https://store.steampowered.com/feeds/news.xml",
+    "kind": "rss",
+    "section": "gaming",
+    "weight": 0.9,
+    "tier": "C",
+    "poll_interval": 120
   },
   {
     "name": "r/pcgaming",
+    "homepage": "",
     "feed_url": "https://www.reddit.com/r/pcgaming/.rss",
-    "section": "gaming",
     "kind": "reddit",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "gaming",
     "weight": 0.7,
-    "homepage": ""
-  },
-  {
-    "name": "TechCrunch",
-    "feed_url": "https://techcrunch.com/feed/",
-    "section": "industry",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 0.9,
-    "homepage": ""
-  },
-  {
-    "name": "The Register",
-    "feed_url": "https://www.theregister.com/headlines.atom",
-    "section": "industry",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.1,
-    "homepage": ""
-  },
-  {
-    "name": "Reuters Technology",
-    "feed_url": "https://www.reuters.com/arc/outboundfeeds/rss/category/technology/?outputType=xml",
-    "section": "industry",
-    "kind": "rss",
-    "tier": "B",
-    "poll_interval": 120,
-    "weight": 1.2,
-    "homepage": ""
-  },
-  {
-    "name": "Stratechery",
-    "feed_url": "https://stratechery.com/feed/",
-    "section": "industry",
-    "kind": "rss",
     "tier": "D",
-    "poll_interval": 120,
-    "weight": 1.3,
-    "homepage": ""
+    "poll_interval": 120
   },
   {
-    "name": "Techdirt",
-    "feed_url": "https://www.techdirt.com/feed/",
-    "section": "industry",
+    "name": "AnandTech",
+    "homepage": "",
+    "feed_url": "https://www.anandtech.com/rss/",
     "kind": "rss",
+    "section": "hardware",
+    "weight": 0.8,
     "tier": "C",
-    "poll_interval": 120,
-    "weight": 1.0,
-    "homepage": ""
+    "poll_interval": 120
+  },
+  {
+    "name": "Chips and Cheese",
+    "homepage": "",
+    "feed_url": "https://chipsandcheese.com/feed/",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.3,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "EE Times",
+    "homepage": "",
+    "feed_url": "https://www.eetimes.com/feed/",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 0.9,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Hackaday",
+    "homepage": "",
+    "feed_url": "https://hackaday.com/feed/",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Phoronix",
+    "homepage": "",
+    "feed_url": "https://www.phoronix.com/rss.php",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.2,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "SemiAnalysis",
+    "homepage": "",
+    "feed_url": "https://www.semianalysis.com/feed",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.3,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "SemiEngineering",
+    "homepage": "",
+    "feed_url": "https://semiengineering.com/feed/",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "ServeTheHome",
+    "homepage": "",
+    "feed_url": "https://www.servethehome.com/feed/",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "TechPowerUp",
+    "homepage": "",
+    "feed_url": "https://www.techpowerup.com/rss/news",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1.1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Tom's Hardware",
+    "homepage": "",
+    "feed_url": "https://www.tomshardware.com/feeds/all",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "VideoCardz",
+    "homepage": "",
+    "feed_url": "https://videocardz.com/feed",
+    "kind": "rss",
+    "section": "hardware",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "r/hardware",
+    "homepage": "",
+    "feed_url": "https://www.reddit.com/r/hardware/.rss",
+    "kind": "reddit",
+    "section": "hardware",
+    "weight": 0.7,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Computerworld",
+    "homepage": "",
+    "feed_url": "https://www.computerworld.com/feed",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
   },
   {
     "name": "EFF Deeplinks",
+    "homepage": "",
     "feed_url": "https://www.eff.org/rss/updates.xml",
-    "section": "industry",
     "kind": "rss",
-    "tier": "C",
-    "poll_interval": 120,
+    "section": "industry",
     "weight": 1.2,
-    "homepage": ""
+    "tier": "C",
+    "poll_interval": 120
   },
   {
     "name": "Platformer",
+    "homepage": "",
     "feed_url": "https://www.platformer.news/rss/",
-    "section": "industry",
     "kind": "rss",
-    "tier": "D",
-    "poll_interval": 120,
+    "section": "industry",
     "weight": 1.1,
-    "homepage": ""
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Reuters Technology",
+    "homepage": "",
+    "feed_url": "https://www.reuters.com/arc/outboundfeeds/rss/category/technology/?outputType=xml",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.2,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Slashdot",
+    "homepage": "",
+    "feed_url": "https://rss.slashdot.org/Slashdot/slashdotMain",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Stratechery",
+    "homepage": "",
+    "feed_url": "https://stratechery.com/feed/",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.3,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "TechCrunch",
+    "homepage": "",
+    "feed_url": "https://techcrunch.com/feed/",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Techdirt",
+    "homepage": "",
+    "feed_url": "https://www.techdirt.com/feed/",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Techmeme",
+    "homepage": "",
+    "feed_url": "https://www.techmeme.com/feed.xml",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "The Next Web",
+    "homepage": "",
+    "feed_url": "https://thenextweb.com/feed",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "The Register",
+    "homepage": "",
+    "feed_url": "https://www.theregister.com/headlines.atom",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Wired",
+    "homepage": "",
+    "feed_url": "https://www.wired.com/feed/rss",
+    "kind": "rss",
+    "section": "industry",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "9to5Linux",
+    "homepage": "",
+    "feed_url": "https://9to5linux.com/feed",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Android Developers",
+    "homepage": "",
+    "feed_url": "https://android-developers.googleblog.com/feeds/posts/default",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Arch Linux News",
+    "homepage": "",
+    "feed_url": "https://archlinux.org/feeds/news/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.2,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Debian News",
+    "homepage": "",
+    "feed_url": "https://www.debian.org/News/news.en.rdf",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Debian News",
+    "homepage": "",
+    "feed_url": "https://www.debian.org/News/news",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.1,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "DistroWatch",
+    "homepage": "",
+    "feed_url": "https://distrowatch.com/news/dw.xml",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Fedora Magazine",
+    "homepage": "",
+    "feed_url": "https://fedoramagazine.org/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "FreeBSD News",
+    "homepage": "",
+    "feed_url": "https://www.freebsd.org/news/feed.xml",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "It's FOSS",
+    "homepage": "",
+    "feed_url": "https://itsfoss.com/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "KDE Announcements",
+    "homepage": "",
+    "feed_url": "https://kde.org/index.xml",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "LWN.net",
+    "homepage": "",
+    "feed_url": "https://lwn.net/headlines/newrss",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.5,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Linux Magazine",
+    "homepage": "",
+    "feed_url": "https://www.linux-magazine.com/rss/feed/lmi_full",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Linuxiac",
+    "homepage": "",
+    "feed_url": "https://linuxiac.com/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Neowin",
+    "homepage": "",
+    "feed_url": "https://www.neowin.net/news/rss/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "OMG Ubuntu",
+    "homepage": "",
+    "feed_url": "https://www.omgubuntu.co.uk/feed",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Ubuntu Blog",
+    "homepage": "",
+    "feed_url": "https://ubuntu.com/blog/feed",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Undeadly (OpenBSD)",
+    "homepage": "",
+    "feed_url": "https://undeadly.org/cgi?action=rss",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.2,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Windows Blog",
+    "homepage": "",
+    "feed_url": "https://blogs.windows.com/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Windows Central",
+    "homepage": "",
+    "feed_url": "https://www.windowscentral.com/rss",
+    "kind": "rss",
+    "section": "os",
+    "weight": 0.7,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "XDA Developers",
+    "homepage": "",
+    "feed_url": "https://www.xda-developers.com/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "kernel.org releases",
+    "homepage": "",
+    "feed_url": "https://www.kernel.org/feeds/kdist.xml",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "openSUSE News",
+    "homepage": "",
+    "feed_url": "https://news.opensuse.org/feed/",
+    "kind": "rss",
+    "section": "os",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "r/linux",
+    "homepage": "",
+    "feed_url": "https://www.reddit.com/r/linux/.rss",
+    "kind": "reddit",
+    "section": "os",
+    "weight": 0.7,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Ars Science",
+    "homepage": "",
+    "feed_url": "https://feeds.arstechnica.com/arstechnica/science",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "IEEE Spectrum",
+    "homepage": "",
+    "feed_url": "https://spectrum.ieee.org/feeds/feed.rss",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Interesting Engineering",
+    "homepage": "",
+    "feed_url": "https://interestingengineering.com/rss",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Live Science Tech",
+    "homepage": "",
+    "feed_url": "https://www.livescience.com/feeds/all",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "MIT Technology Review",
+    "homepage": "",
+    "feed_url": "https://www.technologyreview.com/feed/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "NASA",
+    "homepage": "",
+    "feed_url": "https://www.nasa.gov/news-release/feed/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "NASA Breaking News",
+    "homepage": "",
+    "feed_url": "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Nature News",
+    "homepage": "",
+    "feed_url": "https://www.nature.com/nature.rss",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Nature Technology",
+    "homepage": "",
+    "feed_url": "https://www.nature.com/subjects/engineering.rss",
+    "kind": "rss",
+    "section": "science",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "New Scientist",
+    "homepage": "",
+    "feed_url": "https://www.newscientist.com/feed/home/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Phys.org",
+    "homepage": "",
+    "feed_url": "https://phys.org/rss-feed/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 0.8,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Quanta Magazine",
+    "homepage": "",
+    "feed_url": "https://api.quantamagazine.org/feed/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Quanta Magazine",
+    "homepage": "",
+    "feed_url": "https://www.quantamagazine.org/feed/",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "ScienceDaily Computing",
+    "homepage": "",
+    "feed_url": "https://www.sciencedaily.com/rss/computers_math.xml",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Space.com",
+    "homepage": "",
+    "feed_url": "https://www.space.com/feeds/all",
+    "kind": "rss",
+    "section": "science",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "BleepingComputer",
+    "homepage": "",
+    "feed_url": "https://www.bleepingcomputer.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "CISA Advisories",
+    "homepage": "",
+    "feed_url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Cisco Talos",
+    "homepage": "",
+    "feed_url": "https://blog.talosintelligence.com/rss/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Cloudflare Blog",
+    "homepage": "",
+    "feed_url": "https://blog.cloudflare.com/rss/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Dark Reading",
+    "homepage": "",
+    "feed_url": "https://www.darkreading.com/rss.xml",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Google Security Blog",
+    "homepage": "",
+    "feed_url": "https://security.googleblog.com/feeds/posts/default",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Graham Cluley",
+    "homepage": "",
+    "feed_url": "https://grahamcluley.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Help Net Security",
+    "homepage": "",
+    "feed_url": "https://www.helpnetsecurity.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Krebs on Security",
+    "homepage": "",
+    "feed_url": "https://krebsonsecurity.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.4,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Malwarebytes Labs",
+    "homepage": "",
+    "feed_url": "https://www.malwarebytes.com/blog/feed/index.xml",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Microsoft Security",
+    "homepage": "",
+    "feed_url": "https://www.microsoft.com/en-us/security/blog/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Project Zero",
+    "homepage": "",
+    "feed_url": "https://googleprojectzero.blogspot.com/feeds/posts/summary?alt=rss&max-results=15",
+    "kind": "rss",
+    "section": "security",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Project Zero",
+    "homepage": "",
+    "feed_url": "https://googleprojectzero.blogspot.com/feeds/posts/default?alt=rss&max-results=25",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.4,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Rapid7 Blog",
+    "homepage": "",
+    "feed_url": "https://blog.rapid7.com/rss/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "SANS ISC",
+    "homepage": "",
+    "feed_url": "https://isc.sans.edu/rssfeed_full.xml",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Schneier on Security",
+    "homepage": "",
+    "feed_url": "https://www.schneier.com/feed/atom/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Security Affairs",
+    "homepage": "",
+    "feed_url": "https://securityaffairs.com/feed",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "SecurityWeek",
+    "homepage": "",
+    "feed_url": "https://www.securityweek.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "The Hacker News",
+    "homepage": "",
+    "feed_url": "https://feeds.feedburner.com/TheHackersNews",
+    "kind": "rss",
+    "section": "security",
+    "weight": 0.9,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Threatpost",
+    "homepage": "",
+    "feed_url": "https://threatpost.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Troy Hunt",
+    "homepage": "",
+    "feed_url": "https://www.troyhunt.com/rss/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1.2,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Unit 42",
+    "homepage": "",
+    "feed_url": "https://unit42.paloaltonetworks.com/feed/",
+    "kind": "rss",
+    "section": "security",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "r/netsec",
+    "homepage": "",
+    "feed_url": "https://www.reddit.com/r/netsec/.rss",
+    "kind": "reddit",
+    "section": "security",
+    "weight": 0.7,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "Bun Blog",
+    "homepage": "",
+    "feed_url": "https://bun.sh/rss.xml",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Changelog",
+    "homepage": "",
+    "feed_url": "https://changelog.com/feed",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "DEV Community",
+    "homepage": "",
+    "feed_url": "https://dev.to/feed",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Deno Blog",
+    "homepage": "",
+    "feed_url": "https://deno.com/feed",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "GitHub Blog",
+    "homepage": "",
+    "feed_url": "https://github.blog/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Go Blog",
+    "homepage": "",
+    "feed_url": "https://go.dev/blog/feed.atom",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Hacker News front page",
+    "homepage": "",
+    "feed_url": "https://hnrss.org/frontpage?points=100",
+    "kind": "hn",
+    "section": "software",
+    "weight": 1.2,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Hacker Noon",
+    "homepage": "",
+    "feed_url": "https://hackernoon.com/feed",
+    "kind": "rss",
+    "section": "software",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "InfoQ",
+    "homepage": "",
+    "feed_url": "https://feed.infoq.com/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "InfoWorld",
+    "homepage": "",
+    "feed_url": "https://www.infoworld.com/feed",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "JetBrains Blog",
+    "homepage": "",
+    "feed_url": "https://blog.jetbrains.com/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Julia Evans",
+    "homepage": "",
+    "feed_url": "https://jvns.ca/atom.xml",
+    "kind": "rss",
+    "section": "software",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Lobsters",
+    "homepage": "",
+    "feed_url": "https://lobste.rs/rss",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.1,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "Martin Fowler",
+    "homepage": "",
+    "feed_url": "https://martinfowler.com/feed.atom",
+    "kind": "rss",
+    "section": "software",
+    "weight": 0.8,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Meta Engineering",
+    "homepage": "",
+    "feed_url": "https://engineering.fb.com/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "Node.js Blog",
+    "homepage": "",
+    "feed_url": "https://nodejs.org/en/feed/blog.xml",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "PostgreSQL News",
+    "homepage": "",
+    "feed_url": "https://www.postgresql.org/news.rss",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Python Insider",
+    "homepage": "",
+    "feed_url": "https://blog.python.org/feeds/posts/default",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.1,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Rust Blog",
+    "homepage": "",
+    "feed_url": "https://blog.rust-lang.org/feed.xml",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "Stack Overflow Blog",
+    "homepage": "",
+    "feed_url": "https://stackoverflow.blog/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1,
+    "tier": "B",
+    "poll_interval": 120
+  },
+  {
+    "name": "The New Stack",
+    "homepage": "",
+    "feed_url": "https://thenewstack.io/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.3,
+    "tier": "A",
+    "poll_interval": 120
+  },
+  {
+    "name": "TypeScript Devblog",
+    "homepage": "",
+    "feed_url": "https://devblogs.microsoft.com/typescript/feed/",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.2,
+    "tier": "C",
+    "poll_interval": 120
+  },
+  {
+    "name": "V8 Blog",
+    "homepage": "",
+    "feed_url": "https://v8.dev/blog.atom",
+    "kind": "rss",
+    "section": "software",
+    "weight": 1.1,
+    "tier": "D",
+    "poll_interval": 120
+  },
+  {
+    "name": "r/programming",
+    "homepage": "",
+    "feed_url": "https://www.reddit.com/r/programming/.rss",
+    "kind": "reddit",
+    "section": "software",
+    "weight": 0.7,
+    "tier": "D",
+    "poll_interval": 120
   }
 ]

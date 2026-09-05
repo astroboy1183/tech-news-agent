@@ -4,10 +4,15 @@
 const USER_AGENT =
   "Mozilla/5.0 (compatible; TechNewsAgent/0.2; +https://github.com/astroboy1183/tech-news-agent) FeedFetcher-Google";
 
-// Full-content Blogger and Substack feeds legitimately reach several MB.
-// Beyond this a feed is misconfigured and not worth the memory.
-const MAX_BODY_BYTES = 8_000_000;
-const TIMEOUT_MS = 15_000;
+// Full-content Blogger and Substack feeds legitimately reach several MB —
+// Project Zero's default feed is 13 MB of complete post bodies. Beyond this a
+// feed is misconfigured and not worth the memory.
+const MAX_BODY_BYTES = 20_000_000;
+
+// Raised from 15s after Berkeley's BAIR blog and debian.org both timed out on
+// feeds that are simply slow to generate rather than broken. A source that is
+// genuinely down fails on connect long before this.
+const TIMEOUT_MS = 25_000;
 
 export type FetchOutcome =
   | {

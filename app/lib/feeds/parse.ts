@@ -196,6 +196,43 @@ export function parseFeed(body: string, contentType = ""): ParsedFeed {
     };
   }
 
+  // ── RSS 1.0 (RDF) ──
+  //
+  // The oldest of the three and still in use by publishers who set a feed up
+  // twenty years ago and never changed it — DistroWatch, Debian and Slashdot
+  // among them. Structurally it is the odd one out: <item> elements are
+  // siblings of <channel> at the RDF root rather than children of it, so a
+  // parser written for RSS 2.0 finds a channel with no items and silently
+  // reports an empty feed rather than an error.
+  const rdf = doc["rdf:RDF"] as Record<string, unknown> | undefined;
+  if (rdf) {
+    const raw = (rdf.item ?? []) as Record<string, unknown>[];
+    const rdfChannel = rdf.channel as Record<string, unknown> | undefined;
+    const { hub, self } = discoverHub(rdfChannel?.["atom:link"] ?? rdfChannel?.link);
+    return {
+      hub,
+      self,
+      items: raw.flatMap((item) => {
+        const link = text(item.link);
+        const title = text(item.title);
+        if (!link || !title) return [];
+        const body = text(item["content:encoded"]) ?? text(item.description);
+        return [
+          {
+            title,
+            link,
+            // RSS 1.0 has no pubDate of its own; dates come from Dublin Core.
+            publishedAt: toEpochSeconds(text(item["dc:date"]) ?? text(item.pubDate)),
+            excerpt: stripHtml(body),
+            author: text(item["dc:creator"]),
+            imageUrl: firstImage(item, body),
+            engagement: engagementFrom(body),
+          },
+        ];
+      }),
+    };
+  }
+
   // ── Atom ──
   const feed = doc.feed as Record<string, unknown> | undefined;
   if (feed) {
