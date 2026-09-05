@@ -1,6 +1,6 @@
 import { createRequestHandler, RouterContextProvider } from "react-router";
 import { cloudflare } from "../app/context";
-import { runCollectBatch } from "../app/lib/collect.server";
+import { type CollectMessage, runCollectBatch } from "../app/lib/collect.server";
 import { runScheduled } from "../app/lib/scheduler.server";
 
 const requestHandler = createRequestHandler(
@@ -32,7 +32,7 @@ export default {
   async queue(batch, env, _ctx) {
     switch (batch.queue) {
       case "tech-news-collect":
-        await runCollectBatch(batch as MessageBatch<{ sourceId: number }>, env);
+        await runCollectBatch(batch as MessageBatch<CollectMessage>, env);
         break;
       case "tech-news-enrich":
         // v0.4.0 — summarization consumer.

@@ -7,7 +7,7 @@
     "dev": "react-router dev",
     "build": "react-router build",
     "preview": "pnpm build && wrangler dev",
-    "deploy": "pnpm build && wrangler deploy",
+    "deploy": "pnpm build && wrangler deploy --triggers \"*/5 * * * *\"",
     "typecheck": "react-router typegen && wrangler types && tsc --noEmit",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",

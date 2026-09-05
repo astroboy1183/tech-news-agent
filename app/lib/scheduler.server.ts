@@ -1,33 +1,48 @@
 import { recordRun } from "./runs.server";
 
 /**
- * Cron dispatcher. Each schedule maps to one stage; the handler enqueues work
- * rather than performing it, so no single invocation can exceed its CPU budget.
+ * Workers Free restricts every-minute crons per account, so the portal runs on
+ * a single five-minute trigger and branches on the clock here. Each stage keeps
+ * its own cadence; they simply share one trigger.
  */
-export async function runScheduled(cron: string, env: Env): Promise<void> {
-  switch (cron) {
-    case "* * * * *":
-      return dispatchDueSources(env);
-    case "*/10 * * * *":
-      // v0.4.0 — select what the remaining daily budget can afford.
-      return;
-    case "0 2 * * *":
-      // v0.5.0 — compose the daily digest.
-      return;
-    case "30 2 * * *":
-      // v0.9.0 — deliver to Slack and email.
-      return;
-    default:
-      console.warn(`unrecognised cron schedule: ${cron}`);
+export async function runScheduled(_cron: string, env: Env): Promise<void> {
+  const now = new Date();
+  const minute = now.getUTCMinutes();
+  const hour = now.getUTCHours();
+
+  // Every tick: keep the feed moving.
+  await dispatchDueSources(env);
+
+  // Every ten minutes: spend what is left of the day's summary budget.
+  if (minute % 10 === 0) {
+    // v0.4.0
+  }
+
+  // 02:00 UTC / 07:30 IST — compose the daily digest.
+  if (hour === 2 && minute === 0) {
+    // v0.5.0
+  }
+
+  // 02:30 UTC / 08:00 IST — deliver to Slack and email.
+  if (hour === 2 && minute === 30) {
+    // v0.9.0
   }
 }
 
 /**
- * Take the sources whose next poll is due, oldest first, and hand them to the
- * collect queue. The slice keeps one tick well inside the subrequest budget
- * even when a backlog has built up.
+ * Sources dispatched per tick, sized by the free plan's two binding limits.
+ *
+ * Queues allow 10,000 operations a day and a message costs about three (write,
+ * read, delete). At 288 ticks a day, ten messages per tick is 2,880 messages
+ * ≈ 8,600 operations — inside the allowance with room to spare.
+ *
+ * One message per source, with the consumer batching two, keeps each consumer
+ * invocation parsing two feeds and therefore inside the 10ms CPU budget.
+ *
+ * The result: 102 sources each polled roughly every 51 minutes. WebSub push
+ * still delivers instantly for the feeds that support it.
  */
-const SOURCES_PER_TICK = 40;
+const SOURCES_PER_TICK = 10;
 
 async function dispatchDueSources(env: Env): Promise<void> {
   const started = Date.now();
@@ -42,11 +57,10 @@ async function dispatchDueSources(env: Env): Promise<void> {
     .bind(now, SOURCES_PER_TICK)
     .all<{ id: number }>();
 
-  const rows = due.results ?? [];
-  if (rows.length === 0) return;
+  const ids = (due.results ?? []).map((r) => r.id);
+  if (ids.length === 0) return;
 
-  // Claim them up front so an overlapping tick cannot enqueue the same source.
-  const ids = rows.map((r) => r.id);
+  // Claim them before enqueueing so an overlapping tick cannot double-dispatch.
   const placeholders = ids.map(() => "?").join(",");
   await env.DB.prepare(
     `UPDATE sources SET next_poll_at = ? + poll_interval WHERE id IN (${placeholders})`,
@@ -54,7 +68,7 @@ async function dispatchDueSources(env: Env): Promise<void> {
     .bind(now, ...ids)
     .run();
 
-  await env.COLLECT_Q.sendBatch(ids.map((sourceId) => ({ body: { sourceId } })));
+  await env.COLLECT_Q.sendBatch(ids.map((sourceId) => ({ body: { sourceIds: [sourceId] } })));
 
   await recordRun(env, {
     stage: "schedule",

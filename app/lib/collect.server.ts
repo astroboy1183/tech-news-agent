@@ -1,27 +1,34 @@
 import { recordRun } from "./runs.server";
 
+export type CollectMessage = { sourceIds: number[] };
+
 /**
- * Collect consumer. v0.1.0 proves the queue wiring and the failure accounting;
- * feed fetching and parsing land in v0.2.0.
+ * Collect consumer. One message carries a batch of source ids — see the note in
+ * the scheduler on why batching keeps this inside the free queue allowance.
+ *
+ * v0.1.0 proves the wiring and the failure accounting; fetching and parsing
+ * land in v0.2.0.
  */
 export async function runCollectBatch(
-  batch: MessageBatch<{ sourceId: number }>,
+  batch: MessageBatch<CollectMessage>,
   env: Env,
 ): Promise<void> {
   const started = Date.now();
   let ok = 0;
   let failed = 0;
 
-  // Per-message try/catch: an uncaught error would retry the whole batch and
-  // re-fetch sources that already succeeded.
+  // Per-message try/catch: an uncaught error retries the whole batch and
+  // re-polls sources that already succeeded.
   for (const message of batch.messages) {
     try {
-      await touchSource(env, message.body.sourceId);
-      ok++;
+      for (const sourceId of message.body.sourceIds) {
+        await touchSource(env, sourceId);
+        ok++;
+      }
       message.ack();
     } catch (error) {
       failed++;
-      console.error(`collect failed for source ${message.body.sourceId}`, error);
+      console.error("collect failed", message.body.sourceIds, error);
       message.retry();
     }
   }

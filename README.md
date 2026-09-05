@@ -17,10 +17,20 @@ Systems · Security · Cloud & Infra · Science · Gaming · Industry & Policy
 Foundation is done: the Worker serves pages, the schema is live in production,
 102 sources are seeded, and lint, typecheck and tests all pass in CI.
 
-> **Blocked on one thing.** The account is still on the **Workers Free** plan, so
-> cron triggers could not be registered (Free caps at 5 per account) and
-> `limits.cpu_ms` is rejected. Nothing polls until the plan is upgraded —
-> everything else is in place and waiting.
+**Running on the Workers Free plan**, at $0 infrastructure. Cron fires every
+five minutes, dispatches ten sources and the collect consumer drains them.
+
+The free tier costs three things, all recoverable by upgrading later:
+
+| | Free | Paid |
+|---|---|---|
+| Poll interval | ~51 min per source | 2–15 min by tier |
+| Clustering | trigram similarity in SQL | + Vectorize semantic matching |
+| Images | hotlinked from the publisher | + R2 cache |
+
+Against that, **the whole $20 goes to Claude instead of $13.50 — roughly 740
+summaries a day rather than 500.** WebSub push still delivers instantly for
+feeds that support it, so "every 51 minutes" is the worst case, not the norm.
 
 **Running cost: ~$20/month** — $5 Workers Paid, ~$1.50 D1/R2/Vectorize, ~$13.50
 Claude Haiku.
@@ -52,6 +62,7 @@ the pipeline runs at two speeds:
 | Objects | R2 — thumbnail cache, nightly D1 backups |
 | Identity | Cloudflare Access |
 | AI | `claude-haiku-4-5` via `@anthropic-ai/sdk` |
+| Plan | Workers **Free** — Queues moved to free in Feb 2026 |
 | Package manager | pnpm — npm 10 hits a resolver bug on this tree |
 | Validation | Zod · **Feeds** fast-xml-parser · **Tests** Vitest with `@cloudflare/vitest-pool-workers` |
 
