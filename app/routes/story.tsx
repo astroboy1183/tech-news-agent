@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Masthead } from "../components/masthead";
+import { SaveButton } from "../components/save-button";
 import { Row } from "../components/story";
 import { cloudflare } from "../context";
 import type { Section } from "../lib/classify";
@@ -119,7 +120,15 @@ export default function StoryPage({ loaderData }: Route.ComponentProps) {
               </div>
             ) : null}
 
-            <p style={{ paddingTop: 22 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 14,
+                paddingTop: 22,
+                flexWrap: "wrap",
+              }}
+            >
               <a
                 href={story.url}
                 target="_blank"
@@ -128,7 +137,8 @@ export default function StoryPage({ loaderData }: Route.ComponentProps) {
               >
                 Read the full report →
               </a>
-            </p>
+              <SaveButton storyId={story.id} />
+            </div>
           </article>
 
           <aside style={{ paddingTop: 24, minWidth: 0 }}>

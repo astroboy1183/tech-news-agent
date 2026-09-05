@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 import { SECTIONS } from "../lib/classify";
 import { formatCount } from "../lib/format";
 import { SECTION_LABELS } from "../lib/sections";
@@ -76,6 +76,49 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
             <span style={{ color: "var(--accent)" }}>●</span> {formatCount(counts.today)} TODAY ·{" "}
             {formatCount(counts.corroborated)} CORROBORATED
           </span>
+          <Form
+            method="get"
+            action="/search"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 7,
+              border: "1px solid var(--rule)",
+              borderRadius: 4,
+              padding: "6px 10px",
+              background: "var(--card)",
+            }}
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--ink-4)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
+              <title>Search</title>
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" />
+            </svg>
+            <input
+              type="search"
+              name="q"
+              placeholder="Search stories"
+              aria-label="Search stories"
+              style={{
+                border: 0,
+                outline: "none",
+                background: "transparent",
+                color: "var(--ink)",
+                fontFamily: "inherit",
+                fontSize: 12.5,
+                width: 132,
+              }}
+            />
+          </Form>
           <ThemeToggle />
         </div>
       </div>
@@ -102,8 +145,11 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
           <Link className="meta" to="/live" style={{ letterSpacing: "0.1em" }}>
             <span style={{ color: "var(--accent)" }}>●</span> LIVE
           </Link>
-          <Link className="meta" to="/raw" style={{ letterSpacing: "0.1em" }}>
-            RAW
+          <Link className="meta" to="/archive" style={{ letterSpacing: "0.1em" }}>
+            ARCHIVE
+          </Link>
+          <Link className="meta" to="/saved" style={{ letterSpacing: "0.1em" }}>
+            SAVED
           </Link>
         </span>
       </nav>

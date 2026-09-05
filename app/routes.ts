@@ -10,5 +10,9 @@ export default [
   route("live", "routes/live.tsx"),
   route("story/:id", "routes/story.tsx"),
   route("api/frontpage.json", "routes/api.frontpage.ts"),
+  route("api/stories.json", "routes/api.stories.ts"),
+  route("search", "routes/search.tsx"),
+  route("archive", "routes/archive.tsx"),
+  route("saved", "routes/saved.tsx"),
   route("websub", "routes/websub.ts"),
 ] satisfies RouteConfig;
