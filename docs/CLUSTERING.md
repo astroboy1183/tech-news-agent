@@ -159,16 +159,18 @@ which cost a duplicate on the page, the cheap direction.
 | constant | value | why |
 |---|---|---|
 | lexical merge | ≥0.72 + key-token overlap | above every measured different-story pair (max 0.333) by a wide margin |
-| `MERGE_THRESHOLD` | **0.82** | separability starts at 0.765, but that margin came from twelve hand-built pairs. 0.82 clears every measured negative comfortably and still catches the rewordings trigrams miss. |
+| `MERGE_THRESHOLD` | **0.83** | set from live pairs, not the synthetic probe: the one clear false merge measured 0.817, the weakest merges worth keeping 0.838 and 0.841. |
 | `WINDOW_SECONDS` | 48h | two stories a week apart are not one event even when the words match |
 | `TOP_K` | 25 | the index outlives the window, so closed clusters compete for slots |
 | `HOT_SECONDS` | 3h | recent clusters are compared in memory, never through the index |
 | `HOT_LIMIT` | 400 | ceiling on vectors loaded per pass |
 
-**0.82 rather than 0.78 is a deliberate loss of recall.** Twelve synthetic
-pairs cannot justify a 0.019 margin. The recall given up costs a duplicate on
-the page; the alternative risks hiding a story. That is the cheap direction to
-be wrong in, and it is the direction every threshold here leans.
+**0.83 rather than 0.78 is a deliberate loss of recall.** Twelve synthetic
+pairs cannot justify a 0.019 margin, so the shipped value was re-derived from
+the first live run instead: 0.817 for the false merge it produced, 0.838 and
+0.841 for the weakest true ones. The recall given up costs a duplicate on the
+page; the alternative risks hiding a story. That is the cheap direction to be
+wrong in, and it is the direction every threshold here leans.
 
 ## Why the index is not enough on its own
 

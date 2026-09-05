@@ -32,13 +32,20 @@ import { compareFingerprints, fingerprint, type TitleFingerprint } from "./simil
 const WINDOW_SECONDS = 48 * 3600;
 
 /**
- * Cosine at or above this is one story. Measurement put the boundary between
- * 0.764 and 0.783 once the identifier guard is applied, but that margin came
- * from a small hand-built set. 0.82 sits well clear of every measured negative
- * and still catches the rewordings trigrams miss — the recall it gives up
- * costs a duplicate on the page, which is the cheap direction to be wrong in.
+ * Cosine at or above this is one story.
+ *
+ * Set from live data rather than the synthetic probes. Re-measuring the real
+ * pairs the first run produced put the one clear false merge — an HBM roadmap
+ * piece against a Linux virtual-memory explainer, colliding on "memory" — at
+ * 0.817, while the two weakest merges worth keeping (Google/Apple Maps on one
+ * renaming, two HBM roadmap stories) sat at 0.841 and 0.838. 0.83 is the cut
+ * between them.
+ *
+ * The recall this gives up costs a duplicate on the page. A false merge hides
+ * a story completely, so that is the cheap direction to be wrong in, and every
+ * threshold here leans the same way.
  */
-const MERGE_THRESHOLD = 0.82;
+const MERGE_THRESHOLD = 0.83;
 
 /** Articles handled per pass. A minute of arrivals, with headroom. */
 const BATCH_SIZE = 40;
