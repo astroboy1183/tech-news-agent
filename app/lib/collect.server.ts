@@ -47,23 +47,28 @@ export async function runCollectBatch(
   // here — collectSource records them and backs the source off itself — so
   // anything caught below is genuinely unexpected.
   for (const message of batch.messages) {
-    let threw = false;
-    for (const sourceId of message.body.sourceIds) {
-      try {
-        const result = await collectSource(env, sourceId);
+    // The sources in a message are fetched together, not one after another.
+    // Sequentially, a message carrying four sources took as long as their
+    // timeouts summed — up to 100 seconds at a 25s timeout — and the sweep
+    // fell behind its two-minute target the moment messages started carrying
+    // more than one. They are independent HTTP calls, so there is no reason
+    // for the second to wait on the first.
+    const outcomes = await Promise.allSettled(
+      message.body.sourceIds.map((sourceId) => collectSource(env, sourceId)),
+    );
+    for (const [i, outcome] of outcomes.entries()) {
+      if (outcome.status === "fulfilled") {
         fetched++;
-        inserted += result.inserted;
-        if (result.unchanged) unchanged++;
-      } catch (error) {
+        inserted += outcome.value.inserted;
+        if (outcome.value.unchanged) unchanged++;
+      } else {
         failed++;
-        threw = true;
-        console.error("collect failed", sourceId, error);
+        console.error("collect failed", message.body.sourceIds[i], outcome.reason);
       }
     }
-    // Acked either way: the sources that threw have had their failure recorded
-    // and will come round again on their own schedule, and retrying the
-    // message would re-fetch everything else in it for nothing.
-    void threw;
+    // Acked either way: a source that threw has had its failure recorded and
+    // comes round again on its own schedule, and retrying the message would
+    // re-fetch everything else in it for nothing.
     message.ack();
   }
 

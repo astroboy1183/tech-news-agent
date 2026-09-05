@@ -71,6 +71,14 @@ const SOURCES_PER_TICK = 120;
  */
 const SOURCES_PER_MESSAGE = 4;
 
+/**
+ * Ids claimed per statement.
+ *
+ * D1 caps a statement at 100 bound parameters and the claim binds one per id
+ * plus a timestamp, so this stays well clear of the edge rather than at it.
+ */
+const CLAIM_CHUNK = 80;
+
 async function dispatchDueSources(env: Env): Promise<void> {
   const started = Date.now();
   const now = Math.floor(started / 1000);
@@ -88,15 +96,24 @@ async function dispatchDueSources(env: Env): Promise<void> {
   if (ids.length === 0) return;
 
   // Claim them before enqueueing so an overlapping tick cannot double-dispatch.
-  const placeholders = ids.map(() => "?").join(",");
-  await env.DB.prepare(
-    `UPDATE sources SET next_poll_at = ? + poll_interval WHERE id IN (${placeholders})`,
-  )
-    .bind(now, ...ids)
-    .run();
+  //
+  // Chunked because D1 refuses a statement carrying more than 100 bound
+  // parameters, and this one binds every id plus the timestamp. Raising the
+  // per-tick cap past that limit made this throw on every single tick — and
+  // because the claim happens before the enqueue, nothing was dispatched at
+  // all and collection stopped dead while the rest of the cron kept running.
+  const claims: D1PreparedStatement[] = [];
+  for (let i = 0; i < ids.length; i += CLAIM_CHUNK) {
+    const chunk = ids.slice(i, i + CLAIM_CHUNK);
+    claims.push(
+      env.DB.prepare(
+        `UPDATE sources SET next_poll_at = ? + poll_interval
+          WHERE id IN (${chunk.map(() => "?").join(",")})`,
+      ).bind(now, ...chunk),
+    );
+  }
+  await env.DB.batch(claims);
 
-  // One message per source: a poisoned feed retries alone rather than dragging
-  // its batch with it.
   // Several sources per message rather than one each. Queue operations are
   // billed per message, and at a two-minute cadence across a few hundred
   // sources one-per-message is the single largest line item after Workers
