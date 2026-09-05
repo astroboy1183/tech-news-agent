@@ -144,9 +144,9 @@
     "feed_url": "https://www.reddit.com/r/MachineLearning/.rss",
     "section": "ai",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.9,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -154,9 +154,9 @@
     "feed_url": "https://www.reddit.com/r/LocalLLaMA/.rss",
     "section": "ai",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.9,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -251,13 +251,14 @@
   },
   {
     "name": "SQLite Changelog",
-    "feed_url": "https://sqlite.org/news.rss",
+    "feed_url": "https://sqlite.org/changes.html",
     "section": "software",
     "kind": "rss",
     "tier": "D",
     "poll_interval": 43200,
     "weight": 1.1,
-    "homepage": ""
+    "homepage": "",
+    "active": false
   },
   {
     "name": "GitHub Blog",
@@ -294,9 +295,9 @@
     "feed_url": "https://www.reddit.com/r/programming/.rss",
     "section": "software",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.9,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -394,9 +395,9 @@
     "feed_url": "https://www.reddit.com/r/hardware/.rss",
     "section": "hardware",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.9,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -654,9 +655,9 @@
     "feed_url": "https://www.reddit.com/r/linux/.rss",
     "section": "os",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.9,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -701,7 +702,7 @@
   },
   {
     "name": "Project Zero",
-    "feed_url": "https://googleprojectzero.blogspot.com/feeds/posts/default",
+    "feed_url": "https://googleprojectzero.blogspot.com/feeds/posts/default?alt=rss&max-results=25",
     "section": "security",
     "kind": "rss",
     "tier": "D",
@@ -744,9 +745,9 @@
     "feed_url": "https://www.reddit.com/r/netsec/.rss",
     "section": "security",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 1.0,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -824,9 +825,9 @@
     "feed_url": "https://www.reddit.com/r/devops/.rss",
     "section": "cloud",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.8,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -944,9 +945,9 @@
     "feed_url": "https://www.reddit.com/r/pcgaming/.rss",
     "section": "gaming",
     "kind": "reddit",
-    "tier": "B",
-    "poll_interval": 900,
-    "weight": 0.8,
+    "tier": "D",
+    "poll_interval": 43200,
+    "weight": 0.7,
     "homepage": ""
   },
   {
@@ -971,7 +972,7 @@
   },
   {
     "name": "Reuters Technology",
-    "feed_url": "https://www.reutersagency.com/feed/?taxonomy=best-sectors&post_type=best",
+    "feed_url": "https://www.reuters.com/arc/outboundfeeds/rss/category/technology/?outputType=xml",
     "section": "industry",
     "kind": "rss",
     "tier": "B",

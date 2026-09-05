@@ -20,6 +20,7 @@ type Source = {
   tier: string;
   poll_interval: number;
   weight: number;
+  active?: boolean;
 };
 
 const remote = process.argv.includes("--remote");
@@ -28,15 +29,16 @@ const q = (v: string) => `'${v.replace(/'/g, "''")}'`;
 
 const statements = sources.map(
   (s) => `INSERT INTO sources
-  (name, homepage, feed_url, kind, section, weight, tier, poll_interval, next_poll_at)
+  (name, homepage, feed_url, kind, section, weight, tier, poll_interval, next_poll_at, active)
 VALUES (${q(s.name)}, ${q(s.homepage)}, ${q(s.feed_url)}, ${q(s.kind)}, ${q(s.section)},
-        ${s.weight}, ${q(s.tier)}, ${s.poll_interval}, 0)
+        ${s.weight}, ${q(s.tier)}, ${s.poll_interval}, 0, ${s.active === false ? 0 : 1})
 ON CONFLICT (feed_url) DO UPDATE SET
   name = excluded.name,
   section = excluded.section,
   weight = excluded.weight,
   tier = excluded.tier,
-  poll_interval = excluded.poll_interval;`,
+  poll_interval = excluded.poll_interval,
+  active = excluded.active;`,
 );
 
 const file = ".wrangler/seed.generated.sql";

@@ -56,7 +56,7 @@ All Cloudflare, one platform, no servers.
 | **Queues** | Cloudflare Queues | Decouples collect → cluster → enrich |
 | **Vectors** | Vectorize + Workers AI `bge-small` | Semantic clustering; embeddings inside the free 10k neurons/day |
 | **Cache / counters** | KV | Conditional-GET etags, spend ledger, composed front page |
-| **Objects** | R2 | Thumbnail cache for hotlink-blocked sources, nightly D1 backups |
+| **Objects** | R2 — *optional* | Thumbnail cache for hotlink-blocked sources. Backups are covered by D1 Time Travel |
 | **Language** | TypeScript, frontend and backend | One `Article` type used by collector, summarizer and component |
 | **Web** | React 19 + React Router v7, SSR then hydrate | File routes and loaders; the composed page is cached in KV, so render cost is paid once per 10 minutes |
 | **ORM** | Drizzle over D1 | Typed queries and real migrations |
@@ -293,7 +293,7 @@ for high-scoring stories your preferences do *not* favour.
 
 ## Phase 9 — Hardening · 2 days
 
-Nightly D1 export to R2 with **one verified restore**. Rate limiting. Unit tests
+**D1 Time Travel already gives 30-day point-in-time restore on Paid at no cost**, so verify a Time Travel restore rather than building a backup job. An R2 export is only worth adding as insurance against losing the account itself. Rate limiting. Unit tests
 on parsers, canonicalizer, normaliser, classifier, scorer and slot filler — the
 six places a silent bug corrupts data. End-to-end run against fixture feeds.
 **Retention: keep summaries and metadata, drop raw excerpts after 90 days** — D1
