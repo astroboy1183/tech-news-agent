@@ -151,6 +151,12 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
           <Link className="meta" to="/saved" style={{ letterSpacing: "0.1em" }}>
             SAVED
           </Link>
+          <Link className="meta" to="/ops" style={{ letterSpacing: "0.1em" }}>
+            OPS
+          </Link>
+          <Link className="meta" to="/ops" style={{ letterSpacing: "0.1em" }}>
+            OPS
+          </Link>
         </span>
       </nav>
       <div className="rule" />

@@ -51,7 +51,7 @@ export async function loader({ context }: Route.LoaderArgs) {
   return Response.json(
     {
       status: healthy ? "ok" : "degraded",
-      version: "0.7.0",
+      version: "0.8.0",
       checks,
       summarizer,
       budget: spend

@@ -14,5 +14,6 @@ export default [
   route("search", "routes/search.tsx"),
   route("archive", "routes/archive.tsx"),
   route("saved", "routes/saved.tsx"),
+  route("ops", "routes/ops.tsx"),
   route("websub", "routes/websub.ts"),
 ] satisfies RouteConfig;

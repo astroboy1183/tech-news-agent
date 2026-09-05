@@ -121,7 +121,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             {formatCount(counts.articles)} ARTICLES GROUPED INTO {formatCount(counts.stories)}{" "}
             STORIES · {formatCount(counts.corroborated)} CONFIRMED BY MORE THAN ONE OUTLET
           </span>
-          <span className="meta">TECH NEWS AGENT · v0.7.0</span>
+          <span className="meta">TECH NEWS AGENT · v0.8.0</span>
         </footer>
       </main>
     </>
