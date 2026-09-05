@@ -17,20 +17,23 @@ Systems · Security · Cloud & Infra · Science · Gaming · Industry & Policy
 Foundation is done: the Worker serves pages, the schema is live in production,
 102 sources are seeded, and lint, typecheck and tests all pass in CI.
 
-**Running on the Workers Free plan**, at $0 infrastructure. Cron fires every
-five minutes, dispatches ten sources and the collect consumer drains them.
+**Running on Workers Paid.** Four cron triggers registered, tiered polling
+live, Vectorize and Workers AI bound. The scheduler dispatches every minute and
+the collect consumer drains the queue.
 
-The free tier costs three things, all recoverable by upgrading later:
-
-| | Free | Paid |
+| Tier | Interval | Sources |
 |---|---|---|
-| Poll interval | ~51 min per source | 2–15 min by tier |
-| Clustering | trigram similarity in SQL | + Vectorize semantic matching |
-| Images | hotlinked from the publisher | + R2 cache |
+| A | 5 min | 5 |
+| B | 15 min | 33 |
+| C | 1 hour | 46 |
+| D | 12 hours | 18 |
 
-Against that, **the whole $20 goes to Claude instead of $13.50 — roughly 740
-summaries a day rather than 500.** WebSub push still delivers instantly for
-feeds that support it, so "every 51 minutes" is the worst case, not the norm.
+About 5,700 polls a day. WebSub push, arriving in v0.2.0, delivers instantly
+for feeds that support it.
+
+**R2 still needs a one-time enable** in the dashboard — it is a separate opt-in
+from Workers Paid. Nothing uses it until v0.5.0 (thumbnail cache) and v1.0.0
+(nightly backups); the binding is commented in `wrangler.jsonc` until then.
 
 **Running cost: ~$20/month** — $5 Workers Paid, ~$1.50 D1/R2/Vectorize, ~$13.50
 Claude Haiku.
@@ -62,7 +65,7 @@ the pipeline runs at two speeds:
 | Objects | R2 — thumbnail cache, nightly D1 backups |
 | Identity | Cloudflare Access |
 | AI | `claude-haiku-4-5` via `@anthropic-ai/sdk` |
-| Plan | Workers **Free** — Queues moved to free in Feb 2026 |
+| Plan | Workers **Paid**, $5/mo |
 | Package manager | pnpm — npm 10 hits a resolver bug on this tree |
 | Validation | Zod · **Feeds** fast-xml-parser · **Tests** Vitest with `@cloudflare/vitest-pool-workers` |
 

@@ -9,9 +9,9 @@
 
   "observability": { "enabled": true },
 
-  // Paid plan only, and paid already gives 30s by default, so this is left
-  // commented until the account is upgraded.
-  // "limits": { "cpu_ms": 30000 },
+  // 30s CPU for crons under an hour. The collector slices work across queue
+  // batches, so this is headroom rather than a target.
+  "limits": { "cpu_ms": 30000 },
 
   "triggers": {
     "crons": [
