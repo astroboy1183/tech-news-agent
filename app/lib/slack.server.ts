@@ -17,13 +17,13 @@ export class NoWebhook extends Error {}
 /** Slack renders at most 50 blocks and truncates text at 3000 characters. */
 const MAX_BLOCKS = 48;
 
-function escape(text: string): string {
+function escapeMrkdwn(text: string): string {
   // Slack's mrkdwn only requires these three; over-escaping mangles headlines.
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function link(url: string, label: string): string {
-  return `<${url}|${escape(label)}>`;
+  return `<${url}|${escapeMrkdwn(label)}>`;
 }
 
 type Block = Record<string, unknown>;
@@ -53,7 +53,7 @@ export function renderDigestBlocks(digest: Digest, origin: string): Block[] {
       text: {
         type: "mrkdwn",
         text: `*${link(`${origin}/story/${lead.id}`, lead.headline)}*${
-          body ? `\n${escape(body.slice(0, 600))}` : ""
+          body ? `\n${escapeMrkdwn(body.slice(0, 600))}` : ""
         }${lead.sourceCount > 1 ? `\n_${lead.sourceCount} outlets_` : ""}`,
       },
     });
@@ -71,7 +71,7 @@ export function renderDigestBlocks(digest: Digest, origin: string): Block[] {
 
     blocks.push({
       type: "section",
-      text: { type: "mrkdwn", text: `*${escape(block.label)}*\n${lines.slice(0, 2800)}` },
+      text: { type: "mrkdwn", text: `*${escapeMrkdwn(block.label)}*\n${lines.slice(0, 2800)}` },
     });
   }
 

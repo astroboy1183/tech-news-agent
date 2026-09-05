@@ -30,10 +30,18 @@ export function escapeXml(value: string): string {
  * and some of it carries stray bytes.
  */
 export function cleanXml(value: string): string {
-  const stripped = value.replace(
-    /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\uFFFE\uFFFF]/g,
-    "",
-  );
+  let stripped = "";
+  for (const character of value) {
+    const code = character.codePointAt(0) ?? 0;
+    // Tab, newline and carriage return are the only control characters XML 1.0
+    // permits; everything below 0x20 besides those, the C1 block, and the two
+    // permanently-unassigned code points have to go.
+    const isAllowedWhitespace = code === 0x09 || code === 0x0a || code === 0x0d;
+    const isControl = code < 0x20 || (code >= 0x7f && code <= 0x9f);
+    const isNoncharacter = code === 0xfffe || code === 0xffff;
+    if ((isControl && !isAllowedWhitespace) || isNoncharacter) continue;
+    stripped += character;
+  }
   return escapeXml(stripped);
 }
 
