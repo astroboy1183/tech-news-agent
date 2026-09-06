@@ -8,8 +8,8 @@ Every number here was read from the live deployment rather than from memory.
 
 ## What it is, in one paragraph
 
-A single Cloudflare Worker that polls **180 RSS/Atom/JSON feeds every two
-minutes**, deduplicates what it finds, groups articles about the same event
+A single Cloudflare Worker that polls **every source every two minutes** —
+190 feeds today, and the list grows on its own each week —, deduplicates what it finds, groups articles about the same event
 into *stories*, ranks them, optionally writes a summary of each story under a
 hard daily spend cap, and serves the result as a newspaper-style front page,
 section pages, a search index, a daily digest, an RSS feed and a Slack post.
@@ -23,7 +23,7 @@ cron schedule, and consumes the queues.
 ```mermaid
 flowchart TB
     subgraph WORLD["The open web"]
-        FEEDS["180 publisher feeds<br/>RSS · Atom · JSON Feed · Reddit · HN"]
+        FEEDS["190 publisher feeds<br/>RSS 2.0 · RSS 1.0 · Atom<br/>JSON Feed · Reddit · HN"]
         HUBS["WebSub hubs<br/>push on publish"]
     end
 
@@ -177,7 +177,7 @@ flowchart LR
     CRON["cron * * * * *"] --> CLAIM
 
     subgraph DISPATCH["scheduled() — dispatchDueSources"]
-        CLAIM["SELECT ≤120 sources<br/>WHERE next_poll_at ≤ now"]
+        CLAIM["SELECT due sources<br/>limit = half the fleet + 25%"]
         BUMP["claim: next_poll_at += 120s<br/>chunked ≤80 ids per statement"]
         SEND["enqueue, 4 sources per message"]
         CLAIM --> BUMP --> SEND
@@ -386,7 +386,7 @@ erDiagram
 
 | table | rows | purpose |
 |---|---:|---|
-| `sources` | 187 | 180 active, 7 retired |
+| `sources` | 190 | active, plus retired rows kept for history |
 | `articles` | 4,397 | one row per item from one publisher |
 | `articles_fts` | 4,397 | FTS5 shadow, kept in step by 3 triggers |
 | `clusters` | 4,122 | one row per *story* |
