@@ -56,7 +56,7 @@ function Stat({
 
 export default function Ops({ loaderData }: Route.ComponentProps) {
   const { ops, counts } = loaderData;
-  const { sources, pipeline, budget, stages } = ops;
+  const { sources, pipeline, budget, stages, capacity } = ops;
 
   // A pipeline that has collected nothing for an hour is broken, whatever the
   // individual bindings report.
@@ -97,6 +97,21 @@ export default function Ops({ loaderData }: Route.ComponentProps) {
                   <Status level="warn">{sources.stale} healthy but not polled in 15 min</Status>
                 ) : (
                   <Status level="ok">all polled within 15 minutes</Status>
+                )
+              }
+            />
+            <Stat
+              label="SWEEP CAPACITY"
+              value={`${capacity.perTick} / tick`}
+              detail={
+                capacity.sufficient ? (
+                  <Status level="ok">
+                    covers {capacity.neededPerTick} needed for a 2-minute sweep
+                  </Status>
+                ) : (
+                  <Status level="bad">
+                    below the {capacity.neededPerTick} needed — the sweep is falling behind
+                  </Status>
                 )
               }
             />

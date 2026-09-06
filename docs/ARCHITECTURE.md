@@ -432,7 +432,7 @@ with `porter unicode61` tokenization, kept in sync by `articles_ai`,
 | `*/10 * * * *` | websub + select | renew hub leases; spend remaining budget |
 | `0 2 * * *` | maintain | prune vectors for closed clusters |
 | `30 2 * * *` | deliver | compose the digest, post to Slack |
-| `0 3 * * 1` | agent + prune | reweight sources, retire the dead, trim past retention |
+| `0 3 * * 1` | agent + discover + prune | reweight sources, retire the dead, **find new sources**, trim past retention |
 
 Dispatch and clustering run under `Promise.allSettled` so neither can stop the
 other, and each records its own row in `runs`.
@@ -452,6 +452,23 @@ one quiet fortnight cannot bury a publisher.
 Feeds that stop answering are retired after 24 consecutive failures and eight
 are retried each week — capped, because unbounded revival makes a dead feed
 flap between states forever.
+
+The same pass **finds new sources**. Aggregator feeds link out, so a domain
+appearing repeatedly in Hacker News or Lobsters submissions has been vouched
+for by people — a better filter than any list. Each candidate is probed for a
+feed (the page's own `<link rel="alternate">` first, then the paths most
+publishers use), verified to parse with at least three usable items, and added
+at low weight. At most ten a week.
+
+Coverage is judged on **who produced an article, not the feed's address**: if
+any non-aggregator source has produced an article on a host, that host is
+already ours however its feed is addressed. Comparing hostnames instead looked
+right and re-proposed five publishers we already had within a single run,
+because feeds so often live on a different subdomain than the articles.
+
+Dispatch capacity is derived from the live source count for the same reason —
+a fixed per-tick number silently breaks a two-minute sweep as soon as the list
+outgrows it, and the list is designed to grow.
 
 ---
 

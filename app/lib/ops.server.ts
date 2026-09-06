@@ -28,6 +28,12 @@ export type StageRun = {
 };
 
 export type Ops = {
+  capacity: {
+    active: number;
+    perTick: number;
+    neededPerTick: number;
+    sufficient: boolean;
+  };
   sources: {
     active: number;
     healthy: number;
@@ -148,7 +154,20 @@ export async function loadOps(env: Env): Promise<Ops> {
   const clusters = pipeline?.clusters ?? 0;
   const articlesClustered = (pipeline?.articles ?? 0) - (pipeline?.unclustered ?? 0);
 
+  // The scheduler ticks every minute against a two-minute interval, so a full
+  // sweep needs half the fleet per tick. Shown because the source list grows on
+  // its own and silently outrunning this is exactly how the cadence breaks.
+  const activeCount = sourceStats?.active ?? 0;
+  const neededPerTick = Math.ceil(activeCount / 2);
+  const perTick = Math.min(400, Math.max(60, Math.ceil(neededPerTick * 1.25)));
+
   return {
+    capacity: {
+      active: activeCount,
+      perTick,
+      neededPerTick,
+      sufficient: perTick >= neededPerTick,
+    },
     sources: {
       active: sourceStats?.active ?? 0,
       healthy: sourceStats?.healthy ?? 0,

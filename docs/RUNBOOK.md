@@ -31,9 +31,33 @@ cannot stop the other. Each records its own run.
 ## Ingestion and duplicates
 
 **Every source is polled every two minutes.** All of them, on one interval —
-there is no tiering. `/ops` shows the observed figure; it usually sits under a
-minute because a full sweep of 101 sources takes two ticks of the
-every-minute scheduler at 60 sources a tick.
+there is no tiering. `/ops` shows the observed figure and, next to it, the
+sweep capacity.
+
+Capacity is derived rather than fixed: the scheduler ticks every minute against
+a two-minute interval, so a full sweep needs half the fleet per tick, and the
+limit is computed from the live source count with 25% headroom. A hard-coded
+number silently breaks the cadence the moment the list grows past it — which is
+not hypothetical, since the source list grows on its own every week. `/ops`
+turns that check red rather than letting the sweep quietly fall behind.
+
+**The source list expands by itself.** Aggregator feeds link out to whatever a
+technical audience found worth reading, so a domain that appears there
+repeatedly is a candidate. The weekly pass probes each one for a feed, verifies
+it parses with at least three usable items, and adds at most ten. New sources
+start at low weight and have to earn their place — the same weekly pass
+promotes what gets corroborated and retires what stops answering.
+
+Three guards keep it from becoming a firehose of blogs: a sighting threshold
+(one link is somebody's weekend project), a denylist of platforms (github.com
+is where publishers keep their code, not a publisher), and the weekly cap.
+
+Coverage is judged on **who produced an article, not on the feed's address**. A
+publisher's feed usually lives somewhere else entirely — Ars Technica publishes
+at arstechnica.com but feeds from feeds.arstechnica.com, and The Hacker News
+feeds from feedburner.com — so comparing hostnames re-proposed five publishers
+we already had. If any non-aggregator source has produced an article on a host,
+that host is covered whatever its feed looks like.
 
 Conditional GET makes the steady state nearly free: a feed that has not
 published answers `304` with no body. A source that fails backs off

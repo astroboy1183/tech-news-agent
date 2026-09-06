@@ -1,6 +1,7 @@
 import { pruneOldArticles, runAgentPass } from "./agent.server";
 import { pruneVectors, runClusterPass } from "./cluster/index";
 import { composeDigest } from "./digest.server";
+import { discoverSources } from "./discover.server";
 import { reconcileSubscriptions } from "./feeds/websub.server";
 import { recordRun } from "./runs.server";
 import { dispatchForSummary } from "./select.server";
@@ -49,27 +50,38 @@ export async function runScheduled(cron: string, env: Env): Promise<void> {
 }
 
 /**
- * Sources dispatched per tick.
+ * Dispatch capacity, derived rather than fixed.
  *
- * Every source polls every two minutes, so a full sweep needs half the fleet
- * each tick. This sits above that with headroom, and stays a ceiling rather
- * than a target: a source is only picked up once its own interval elapses.
- * The cap still matters after a deploy or an outage, when everything is due at
- * once and the backlog should drain steadily instead of in one burst.
+ * The scheduler ticks every minute and every source is on a two-minute
+ * interval, so a full sweep needs half the fleet per tick. A hard-coded number
+ * silently breaks that the moment the source list grows past it — and the list
+ * is meant to grow, since discovery adds sources every week. So the limit is
+ * computed from the live count with headroom for sources that come due late.
  *
- * The cap exists so a backlog (after a deploy, or an outage) drains steadily
- * instead of dispatching thousands of messages in one tick.
+ * The floor keeps small deployments responsive; the ceiling is a guard against
+ * a runaway source list rather than a target.
  */
-const SOURCES_PER_TICK = 120;
+const MIN_PER_TICK = 60;
+const MAX_PER_TICK = 400;
+const TICK_HEADROOM = 1.25;
+
+function dispatchLimit(activeSources: number): number {
+  const needed = Math.ceil((activeSources / 2) * TICK_HEADROOM);
+  return Math.min(MAX_PER_TICK, Math.max(MIN_PER_TICK, needed));
+}
 
 /**
  * Sources bundled into one queue message.
  *
- * Queues bill per message, so at a two-minute cadence across a few hundred
+ * Queues bill per message, so at a two-minute cadence across hundreds of
  * sources this multiplier is worth real money: one source per message put
- * queue operations second only to Workers itself on the bill.
+ * queue operations second only to Workers itself on the bill. The consumer
+ * fetches the group in parallel, so a bigger group is not a slower one.
  */
 const SOURCES_PER_MESSAGE = 4;
+
+/** Queues refuses a sendBatch carrying more than 100 messages. */
+const SEND_CHUNK = 100;
 
 /**
  * Ids claimed per statement.
@@ -83,13 +95,18 @@ async function dispatchDueSources(env: Env): Promise<void> {
   const started = Date.now();
   const now = Math.floor(started / 1000);
 
+  const active = await env.DB.prepare(`SELECT COUNT(*) AS n FROM sources WHERE active = 1`).first<{
+    n: number;
+  }>();
+  const limit = dispatchLimit(active?.n ?? 0);
+
   const due = await env.DB.prepare(
     `SELECT id FROM sources
       WHERE active = 1 AND next_poll_at <= ?
       ORDER BY next_poll_at ASC
       LIMIT ?`,
   )
-    .bind(now, SOURCES_PER_TICK)
+    .bind(now, limit)
     .all<{ id: number }>();
 
   const ids = (due.results ?? []).map((r) => r.id);
@@ -123,12 +140,15 @@ async function dispatchDueSources(env: Env): Promise<void> {
   for (let i = 0; i < ids.length; i += SOURCES_PER_MESSAGE) {
     groups.push(ids.slice(i, i + SOURCES_PER_MESSAGE));
   }
-  await env.COLLECT_Q.sendBatch(groups.map((sourceIds) => ({ body: { sourceIds } })));
+  const messages = groups.map((sourceIds) => ({ body: { sourceIds } }));
+  for (let i = 0; i < messages.length; i += SEND_CHUNK) {
+    await env.COLLECT_Q.sendBatch(messages.slice(i, i + SEND_CHUNK));
+  }
 
   await recordRun(env, {
     stage: "schedule",
     startedAt: started,
-    counts: { dispatched: ids.length },
+    counts: { dispatched: ids.length, limit, active: active?.n ?? 0 },
   });
 }
 
@@ -247,6 +267,15 @@ async function weeklyPass(env: Env): Promise<void> {
   const startedAt = Date.now();
   try {
     await runAgentPass(env);
+    // Discovery runs after reweighting so a source added this week is judged
+    // on its own record next week rather than on a fortnight it did not exist
+    // for. Failing here must not cost the prune.
+    try {
+      await discoverSources(env);
+    } catch (error) {
+      console.error(`discovery failed: ${String(error)}`);
+      await recordRun(env, { stage: "discover", startedAt, error: String(error) });
+    }
     const pruned = await pruneOldArticles(env);
     if (pruned.articles > 0 || pruned.clusters > 0) {
       await recordRun(env, { stage: "prune", startedAt, counts: pruned });
