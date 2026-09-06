@@ -1,71 +1,36 @@
 # Tech News Agent
 
-A one-stop portal for everything technology. It polls 500+ sources continuously,
-collapses duplicate coverage into single stories, summarizes what earns it under
-a fixed budget, and composes a front page by itself.
+A one-stop portal for everything technology. It polls **180 sources every two
+minutes**, collapses duplicate coverage into single stories, summarizes what
+earns it under a fixed budget, and composes a front page by itself — all from a
+single Cloudflare Worker, for under $20 a month.
+
+**How it works:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — the full
+picture with diagrams: runtime, request path, ingestion, clustering, the data
+model, and the two platform limits that have bitten twice each.
 
 **Ten sections:** AI & ML · Software · Hardware · Consumer Tech · Operating
 Systems · Security · Cloud & Infra · Science · Gaming · Industry & Policy
 
 ---
 
-## Status — v0.2.0 deployed
+## Status — v1.0.0
 
 **Live:** https://tech-news-agent.jayanthapalla.workers.dev ·
-[/health](https://tech-news-agent.jayanthapalla.workers.dev/health)
+[/health](https://tech-news-agent.jayanthapalla.workers.dev/health) ·
+[/ops](https://tech-news-agent.jayanthapalla.workers.dev/ops)
 
-The collector runs continuously. ~2,400 articles from 85 working sources
-across all ten sections, with WebSub push confirmed active on hubs that
-support it.
-
-| Endpoint | |
+| | |
 |---|---|
-| [`/health`](https://tech-news-agent.jayanthapalla.workers.dev/health) | every binding, last run per stage |
-| [`/raw`](https://tech-news-agent.jayanthapalla.workers.dev/raw) | the composition check — real headlines, no styling |
-| [`/census`](https://tech-news-agent.jayanthapalla.workers.dev/census) | headline measurements; findings in [docs/CENSUS.md](docs/CENSUS.md) |
-| `/websub` | hub verification and content push |
+| Sources | **180 active**, polled every 2 minutes |
+| Articles | 4,400+, grouped into 4,100+ stories |
+| Corroborated | 177 stories covered by more than one outlet |
+| Sections | all ten populated |
+| Tests | 143 |
 
-**Next: v0.3.0 — clustering.** `/raw` already shows the same story twice from
-different outlets, which is what clustering fixes, and it has to land before
-summarisation so one AI call can cover eight outlets.
+All ten releases are tagged. The summarizer is built and deployed but dormant
+until `ANTHROPIC_API_KEY` is set — `/health` reports which channels are live.
 
-**Running on Workers Paid.** Four cron triggers registered, Vectorize and
-Workers AI bound. The scheduler dispatches every minute and the collect
-consumer drains the queue.
-
-**Every source is polled every two minutes** — all 101 of them, about 72,700
-polls a day. The tiering this replaced (5 min / 15 min / hourly / 12-hourly)
-existed to ration a scarce budget, but conditional GET makes the steady state
-almost free: a feed that has not published answers `304` with no body. Sources
-that fail back off exponentially to a six-hour ceiling and honour `Retry-After`,
-so a rate-limiting origin removes itself without any tier to maintain. WebSub
-push delivers instantly for feeds that support it.
-
-**Duplicates are stopped at four levels** — the same URL twice (hash), the
-same URL dressed with tracking parameters (canonicalization), one source
-reposting itself at a new URL within 48 hours, and the same event from
-different outlets, which is *clustered rather than dropped* because that is
-corroboration and the whole point of the portal. See
-[docs/RUNBOOK.md](docs/RUNBOOK.md).
-
-**R2 still needs a one-time enable** in the dashboard — it is a separate opt-in
-from Workers Paid. Nothing uses it until v0.5.0 (thumbnail cache) and v1.0.0
-(nightly backups); the binding is commented in `wrangler.jsonc` until then.
-
-**Running cost: ~$20/month** — $5 Workers Paid, ~$1.50 D1/R2/Vectorize, ~$13.50
-Claude Haiku.
-
-### The idea that makes it affordable
-
-Comprehensiveness is nearly free; only AI summarization scales with volume. So
-the pipeline runs at two speeds:
-
-- **Fast path, free.** ~7,900 articles a day collected, deduped, classified by
-  keyword rules and on the site within seconds.
-- **Slow path, budgeted.** Clustering happens *before* summarizing, so one call
-  covers eight outlets. ~510 cluster summaries a day, allocated per section with
-  a floor each, against a hard KV spend cap. At the cap the feed keeps filling —
-  it just stops gaining summaries.
 
 ## Stack
 
@@ -94,7 +59,12 @@ which matters more for a project maintained in evenings.
 
 | Document | What it is |
 |---|---|
-| [docs/PLAN.md](docs/PLAN.md) | Architecture, sources, data model, ranking, costs, risks |
+| **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | **How the running system works — diagrams, runtime, data model** |
+| [docs/RUNBOOK.md](docs/RUNBOOK.md) | What to check, what breaks, what to do |
+| [docs/CLUSTERING.md](docs/CLUSTERING.md) | Every clustering threshold and the measurement behind it |
+| [docs/BUDGET.md](docs/BUDGET.md) | How $20/month works, and what enforces it |
+| [docs/CENSUS.md](docs/CENSUS.md) | Headline statistics the layout is set from |
+| [docs/PLAN.md](docs/PLAN.md) | The original plan — sources, ranking, costs, risks |
 | [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) | Ten phases, task-level, with acceptance checks |
 | [docs/RELEASES.md](docs/RELEASES.md) | Version-wise release plan, v0.1 through v1.0 |
 | [design/](design/) | 18 `.dc.html` artboards and `canvas.json` |
