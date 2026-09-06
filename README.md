@@ -115,7 +115,91 @@ because release notes are generated from them.
 **Repository variable:** `HEALTH_URL`.
 The Anthropic key is a Worker secret, set with `wrangler secret put ANTHROPIC_API_KEY` — never in Actions.
 
+## Roadmap — v2.0
+
+Ordered by what the live data says is worth doing first, not by what is easiest
+to build. Every measurement below came from the running system.
+
+### First, because everything else is worth less without it
+
+- [ ] **Turn the summarizer on.** It is built, deployed and dormant — it needs
+      `wrangler secret put ANTHROPIC_API_KEY` and nothing else. Until then
+      every card falls back to the publisher's own excerpt, which is why feed
+      furniture occasionally shows through. Single biggest quality jump
+      available, zero build cost.
+      *Done when* `/health` reports `summarizer: enabled` and a week stays
+      under $0.45/day with every section clearing its floor.
+
+- [ ] **Raise the corroboration rate.** 255 of 4,249 stories have more than
+      one outlet — **6.0%**. Clustering is what makes the budget work, so
+      this number *is* the economics: one summary covering eight outlets is the
+      whole saving. Adding 79 sources roughly tripled it; more mainstream
+      newsrooms would push it further.
+      *Done when* corroborated stories exceed 15% of the total on `/ops`.
+
+### Content quality
+
+- [ ] **Extract article bodies.** Summaries are written from a headline and a
+      feed excerpt. Fetching the article and pulling readable text would make
+      them markedly better — and would make genuine disagreement between
+      outlets visible, which is currently invisible to the model.
+- [ ] **Entity extraction and topic pages** — `/t/nvidia`, `/t/kubernetes`.
+      `articles.topics_json` and `enrichments.topics_json` already exist and
+      the summarizer already returns tags; this is mostly UI over data we will
+      have as soon as the summarizer runs.
+- [ ] **Use `clusters.velocity`.** It is computed and stored on every cluster
+      and nothing reads it. Five outlets within an hour is categorically
+      different from five across two days — that is a "developing" badge, a
+      lead override, or a notification.
+- [ ] **Cross-encoder pass on the ambiguous band.** Measured cosines leave a
+      band where embeddings genuinely cannot decide (see
+      [CLUSTERING.md](docs/CLUSTERING.md)). A tiny model judging only that band
+      would recover merges currently declined for safety.
+
+### The reader
+
+- [ ] **Preference learning.** The `feedback` and `preferences` tables exist
+      and are empty. Clicks are signal; the weekly agent could reweight
+      *sections* the way it already reweights sources from corroboration.
+- [ ] **Keyboard navigation** — `j`/`k` through stories, `/` to search. Cheap,
+      and the layout is already a list of discrete items.
+- [ ] **PWA manifest and offline shell.** The site is already responsive; a
+      manifest plus a service worker gets most of what a mobile app would,
+      for about a day's work.
+- [ ] **Saved-list sync across devices.** Blocked on auth — the list
+      deliberately lives only in the browser today.
+
+### Operations
+
+- [ ] **Authentication, so `/ops` can write.** Pinning a lead is currently a
+      raw D1 statement. This one decision unblocks pinning, saved sync and
+      email subscriptions together.
+- [ ] **Alerting on a stalled pipeline.** `/pulse` shows a stall clearly but
+      only to someone looking. A cron check that posts to Slack when no article
+      has arrived in an hour would close the loop.
+- [ ] **Per-source detail page** — history, failure reasons, weight over time.
+      `/ops` lists failing sources but cannot explain one.
+- [ ] **Remove dead dependencies.** `drizzle-orm`, `drizzle-kit` and `zod` are
+      declared but imported nowhere, and `app/db/` is empty — scaffold
+      leftovers. Every query is hand-written SQL.
+
+### Deliberately not planned
+
+- **Comments.** Moderation cost dwarfs the value at this scale.
+- **A native mobile app.** The PWA above gets most of the benefit; a second
+  codebase is not worth it for a reading surface.
+- **Per-section colour.** Beyond about six, categorical hues stop separating
+  reliably for colourblind readers — measured, not assumed. Identity stays with
+  the section name and its position.
+
 ## Open decisions
+
+1. **A domain.** The single biggest unblocker left: it gates email delivery,
+   authentication, and anything meant to be shared. Most of the v2.0
+   operations work waits behind it.
+2. **Public, or behind Cloudflare Access?** Determines how `/saved` could
+   identify a reader and whether `/ops` can ever write. Access is free to 50
+   users and needs no auth code of our own.
 
 1. **Public, or behind Cloudflare Access?** Blocks v0.7 — it determines how
    `/saved` identifies you. Access is free to 50 users and needs no auth code.
