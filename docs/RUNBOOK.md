@@ -4,11 +4,15 @@
 
 ## Is it working?
 
-Two URLs answer that.
+Three URLs answer that.
 
 - **`/ops`** — the honest one. The headline check is **articles collected in
   the last hour**, not whether the bindings respond, because every binding can
   be green while the pipeline has quietly stopped.
+- **`/pulse`** — the collection cycle as it happens: how many sources are
+  inside the two-minute interval, what the last dispatches carried, and a bar
+  per minute of arrivals for the last half hour. A stall shows up as a visible
+  gap rather than as a number you have to interpret. It refreshes itself.
 - **`/health`** — machine-readable: bindings, the day's spend, whether the
   summarizer and each delivery channel are configured.
 

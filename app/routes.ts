@@ -15,6 +15,7 @@ export default [
   route("archive", "routes/archive.tsx"),
   route("saved", "routes/saved.tsx"),
   route("ops", "routes/ops.tsx"),
+  route("pulse", "routes/pulse.tsx"),
   route("digest", "routes/digest.tsx"),
   route("feed.xml", "routes/feed.ts", { id: "feed-all" }),
   route("feed/:section.xml", "routes/feed.ts", { id: "feed-section" }),

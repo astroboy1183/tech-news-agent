@@ -52,7 +52,16 @@ export type MastheadCounts = {
 /** Sections shown inline; the rest live on the index page. */
 const PRIMARY = ["ai", "software", "hardware", "security", "consumer", "os"] as const;
 
-export function Masthead({ counts, current }: { counts: MastheadCounts; current?: string }) {
+export function Masthead({
+  counts,
+  current,
+  freshness,
+}: {
+  counts: MastheadCounts;
+  current?: string;
+  /** Rendered beside the counts; the front page passes its refresh control. */
+  freshness?: React.ReactNode;
+}) {
   return (
     <header className="wrap">
       <div className="masthead">
@@ -67,6 +76,7 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
         </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+          {freshness}
           <span
             className="meta"
             style={{ textAlign: "right", lineHeight: 1.7, letterSpacing: "0.07em" }}
@@ -154,8 +164,14 @@ export function Masthead({ counts, current }: { counts: MastheadCounts; current?
           <Link className="meta" to="/saved" style={{ letterSpacing: "0.1em" }}>
             SAVED
           </Link>
+          <Link className="meta" to="/pulse" style={{ letterSpacing: "0.1em" }}>
+            PULSE
+          </Link>
           <Link className="meta" to="/ops" style={{ letterSpacing: "0.1em" }}>
             OPS
+          </Link>
+          <Link className="meta" to="/pulse" style={{ letterSpacing: "0.1em" }}>
+            PULSE
           </Link>
           <Link className="meta" to="/ops" style={{ letterSpacing: "0.1em" }}>
             OPS

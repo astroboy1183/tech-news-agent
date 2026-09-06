@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Masthead } from "../components/masthead";
+import { Refresh } from "../components/refresh";
 import { Feature, Lead, Row } from "../components/story";
 import { cloudflare } from "../context";
 import { frontPage } from "../lib/compose.server";
@@ -17,16 +18,17 @@ export function meta(_: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ context }: Route.LoaderArgs) {
-  return frontPage(context.get(cloudflare).env);
+export async function loader({ context, request }: Route.LoaderArgs) {
+  const force = new URL(request.url).searchParams.has("refresh");
+  return frontPage(context.get(cloudflare).env, { force });
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { lead, hero, across, sections, latest, counts } = loaderData;
+  const { lead, hero, across, sections, latest, counts, composedAt, cached } = loaderData;
 
   return (
     <>
-      <Masthead counts={counts} />
+      <Masthead counts={counts} freshness={<Refresh composedAt={composedAt} cached={cached} />} />
 
       <main className="wrap">
         {lead ? (

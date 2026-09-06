@@ -375,3 +375,19 @@ a:hover {
     padding-right: 0;
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A reader who prefers less motion still gets the state change from the label,
+   so nothing is lost by stopping the animation outright. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    /* biome-ignore lint/complexity/noImportantStyles: an accessibility override
+       has to beat the inline style that sets the animation */
+    animation: none !important;
+  }
+}

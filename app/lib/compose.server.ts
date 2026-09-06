@@ -163,20 +163,53 @@ const CACHE_KEY = "frontpage:v1";
 const COUNTS_KEY = "counts:v1";
 
 /** The cached front page, composing it only when the cache is cold. */
-export async function frontPage(env: Env): Promise<FrontPage & { cached: boolean }> {
-  const hit = await env.CACHE.get(CACHE_KEY);
-  if (hit) {
-    try {
-      return { ...(JSON.parse(hit) as FrontPage), cached: true };
-    } catch {
-      /* a corrupt cache entry is a reason to recompose, not to fail */
+/**
+ * Shortest gap between forced recompositions.
+ *
+ * A refresh button on a public page is a button anyone can hold down, and
+ * recomposing reads three hundred clusters and their outlet lists. This is not
+ * a per-visitor limit — it is a floor on how often the *work* happens, so a
+ * hundred people pressing refresh at once cost one recomposition between them.
+ * Well below the 90-second cache TTL, so the button still does something.
+ */
+const FORCE_FLOOR_SECONDS = 15;
+const FORCE_KEY = "frontpage:forced";
+
+export async function frontPage(
+  env: Env,
+  options: { force?: boolean } = {},
+): Promise<FrontPage & { cached: boolean; recomposed: boolean }> {
+  // A forced refresh skips the cache, unless one was forced moments ago.
+  //
+  // The floor is held as a timestamp rather than a short-lived key because KV
+  // will not accept an expirationTtl under 60 seconds, and a 60-second floor
+  // on a 90-second cache would make the button pointless.
+  let force = options.force === true;
+  if (force) {
+    const last = Number.parseInt((await env.CACHE.get(FORCE_KEY)) ?? "0", 10);
+    if (Number.isFinite(last) && Date.now() - last < FORCE_FLOOR_SECONDS * 1000) force = false;
+  }
+
+  if (!force) {
+    const hit = await env.CACHE.get(CACHE_KEY);
+    if (hit) {
+      try {
+        return { ...(JSON.parse(hit) as FrontPage), cached: true, recomposed: false };
+      } catch {
+        /* a corrupt cache entry is a reason to recompose, not to fail */
+      }
     }
   }
+
   const page = await composeFrontPage(env);
   await env.CACHE.put(CACHE_KEY, JSON.stringify(page), {
     expirationTtl: CACHE_TTL_SECONDS,
   });
-  return { ...page, cached: false };
+  if (force) {
+    // 60s is KV's minimum TTL; the value is what actually enforces the floor.
+    await env.CACHE.put(FORCE_KEY, String(Date.now()), { expirationTtl: 60 });
+  }
+  return { ...page, cached: false, recomposed: true };
 }
 
 /**

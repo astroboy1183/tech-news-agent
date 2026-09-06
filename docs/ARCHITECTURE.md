@@ -149,6 +149,7 @@ sequenceDiagram
 | `/search?q=` | FTS5 search | grouped to stories |
 | `/saved` | reading list | client-side only |
 | `/ops` | operations | read-only |
+| `/pulse` | the collection cycle, live | self-refreshing, counts down to the next dispatch |
 | `/health` | JSON health | bindings, budget, delivery config |
 | `/raw`, `/census` | development checks | unstyled composition, headline stats |
 | `/api/frontpage.json` | the composed page | same object the site renders |
